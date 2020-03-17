@@ -1,5 +1,12 @@
 class Input:
-    def __init__(self, id, source, weight, quality, time):
+    """docstring for Input."""
+
+    def __init__(self,
+                id: int,
+                source: int,
+                weight: int,
+                quality: [float],
+                time: float):
         self._id = id
         self._source = source
         self._weigth = weight
@@ -7,35 +14,53 @@ class Input:
         self._time = time
 
     def __repr__(self):
-        return f'id: {self._id}\nsource: {self._source}\n' + \
-        f'weight: {self._weigth}\nquality: {self._quality}\ntime: {self._time}'
+        return f'id: {self._id}\n' + \
+        f'source: {self._source}\n' + \
+        f'weight: {self._weigth}\n' + \
+        f'quality: {self._quality}\n' + \
+        f'time: {self._time}\n'
 
-    def set_id(self, id):
-        self._id = id
-
-    def get_id(self):
+    @property
+    def id(self) -> int:
+        """Input id."""
         return self._id
 
-    def set_source(self, source):
-        self._source = source
+    @id.setter
+    def id(self, value: int):
+        self._id = value
 
-    def get_source(self):
+    @property
+    def source(self) -> int:
+        """Input source."""
         return self._source
 
-    def set_weigth(self, weight):
-        self._weigth = weight
+    @source.setter
+    def source(self, value: int):
+        self._source = value
 
-    def get_weigth(self):
+    @property
+    def weight(self) -> float:
+        """Input weight."""
         return self._weigth
 
-    def set_quality(self, quality):
-        self._quality = quality
+    @weight.setter
+    def weight(self, value: float):
+        self._weigth = value
 
-    def get_quality(self):
+    @property
+    def quality(self) -> [float]:
+        """Input quality."""
         return self._quality
 
-    def set_time(self, time):
-        self._time = time
+    @quality.setter
+    def quality(self, value: [float]):
+        self._quality = value
 
-    def get_time(self):
+    @property
+    def time(self) -> float:
+        """Input time."""
         return self._time
+
+    @time.setter
+    def time(self, value: float):
+        self._time = value

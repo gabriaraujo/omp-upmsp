@@ -1,34 +1,66 @@
 class Engine:
-    def __init__(self, id, speed_stack, speed_reclaim, stockpiles):
+    """docstring for Engine."""
+
+    def __init__(self,
+                id: int,
+                speed_stack: float,
+                speed_reclaim: float,
+                pos_ini: int,
+                stockpiles: [int]):
         self._id = id
         self._speed_stack = speed_stack
         self._speed_reclaim = speed_reclaim
+        self._pos_ini = pos_ini
         self._stockpiles = stockpiles
 
     def __repr__(self):
-        return f'id: {self._id}\nspeedStack: {self._speed_stack}\n' + \
-        f'speedReclaim: {self._speed_reclaim}\nstockpiles: {self._stockpiles}'
+        return f'id: {self._id}\n' + \
+        f'speedStack: {self._speed_stack}\n' + \
+        f'speedReclaim: {self._speed_reclaim}\n' + \
+        f'posIni: {self._pos_ini}\n' + \
+        f'stockpiles: {self._stockpiles}\n'
 
-    def set_id(self, id):
-        self._id = id
-
-    def get_id(self):
+    @property
+    def id(self) -> int:
+        """Engine id."""
         return self._id
 
-    def set_speed_stack(self, speed_stack):
-        self._speed_stack = speed_stack
+    @id.setter
+    def id(self, value: int):
+        self._id = value
 
-    def get_speed_stack(self):
-        return self_.speed_stack
+    @property
+    def speed_stack(self) -> float:
+        """Engine speed stack."""
+        return self._speed_stack
 
-    def set_speed_reclaim(self, speed_reclaim):
-        self._speed_reclaim = speed_stack
+    @speed_stack.setter
+    def speed_stack(self, value: float):
+        self._speed_stack = value
 
-    def get_speed_reclaim(self):
+    @property
+    def speed_reclaim(self) -> float:
+        """Engine speed reclaim."""
         return self._speed_reclaim
 
-    def set_stockpiles(self, stockpiles):
-        self._stockpiles = stockpiles
+    @speed_reclaim.setter
+    def stockpiles(self, value: float):
+        self._speed_reclaim = value
 
-    def get_stockpiles(self):
+    @property
+    def pos_ini(self) -> int:
+        """Engine initial position."""
+        return self._pos_ini
+
+    @pos_ini.setter
+    def pos_ini(self, value: int):
+        self._pos_ini = value
+
+    @property
+    def stockpiles(self) -> [int]:
+        """Engine stockpiles."""
         return self._stockpiles
+
+    @stockpiles.setter
+    def stockpiles(self, value: [int]):
+        self._stockpiles = value
