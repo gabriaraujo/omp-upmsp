@@ -1,7 +1,7 @@
 from classes import *
 import ujson
 
-def read_file(file_name: str) -> list:
+def read_file(file_name: str) -> dict:
     with open(file_name, "r") as file:
         data_store = ujson.loads(file.read())
 
@@ -39,4 +39,13 @@ def read_file(file_name: str) -> list:
     distances_travel = data_store["distancesTravel"]
     time_travel = data_store["timeTravel"]
 
-    return stockpiles, engines, inputs, outputs, distances_travel, time_travel
+    dict = {
+        "stockpiles": stockpiles,
+        "engines": engines,
+        "inputs": inputs,
+        "outputs": outputs,
+        "distances_travel": distances_travel,
+        "time_travel": time_travel
+    }
+
+    return dict
