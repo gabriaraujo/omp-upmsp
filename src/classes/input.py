@@ -2,23 +2,23 @@ class Input:
     """docstring for Input."""
 
     def __init__(self,
-                id: int,
-                source: int,
-                weight: int,
-                quality: [float],
-                time: float):
+                 id: int,
+                 source: int,
+                 weight: int,
+                 quality: [float],
+                 time: float):
         self._id = id
         self._source = source
-        self._weigth = weight
+        self._weight = weight
         self._quality = quality
         self._time = time
 
     def __repr__(self):
         return f'id: {self._id}\n' + \
-        f'source: {self._source}\n' + \
-        f'weight: {self._weigth}\n' + \
-        f'quality: {self._quality}\n' + \
-        f'time: {self._time}\n'
+               f'source: {self._source}\n' + \
+               f'weight: {self._weight}\n' + \
+               f'quality: {self._quality}\n' + \
+               f'time: {self._time}\n'
 
     @property
     def id(self) -> int:
@@ -41,11 +41,11 @@ class Input:
     @property
     def weight(self) -> float:
         """Input weight."""
-        return self._weigth
+        return self._weight
 
     @weight.setter
     def weight(self, value: float):
-        self._weigth = value
+        self._weight = value
 
     @property
     def quality(self) -> [float]:

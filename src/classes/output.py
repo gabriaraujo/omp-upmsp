@@ -2,16 +2,16 @@ class Output:
     """docstring for Output."""
 
     def __init__(self,
-                id: int,
-                destination: int,
-                weight: float,
-                quality_goal: [float],
-                quality_upper_limit: [float],
-                quality_lower_limit: [float],
-                time: float):
+                 id: int,
+                 destination: int,
+                 weight: float,
+                 quality_goal: [float],
+                 quality_upper_limit: [float],
+                 quality_lower_limit: [float],
+                 time: float):
         self._id = id
         self._destination = destination
-        self._weigth = weight
+        self._weight = weight
         self._quality_goal = quality_goal
         self._quality_upper_limit = quality_upper_limit
         self._quality_lower_limit = quality_lower_limit
@@ -19,12 +19,12 @@ class Output:
 
     def __repr__(self):
         return f'id: {self._id}\n' + \
-        f'destination: {self._destination}\n' + \
-        f'weight: {self._weigth}\n' + \
-        f'qualityGoal: {self._quality_goal}\n' + \
-        f'qualityUpperLimit: {self._quality_upper_limit}\n' + \
-        f'qualityLowerLimit: {self._quality_lower_limit}\n'+ \
-        f'time: {self._time}\n'
+               f'destination: {self._destination}\n' + \
+               f'weight: {self._weight}\n' + \
+               f'qualityGoal: {self._quality_goal}\n' + \
+               f'qualityUpperLimit: {self._quality_upper_limit}\n' + \
+               f'qualityLowerLimit: {self._quality_lower_limit}\n' + \
+               f'time: {self._time}\n'
 
     @property
     def id(self) -> int:
@@ -47,11 +47,11 @@ class Output:
     @property
     def weight(self) -> float:
         """Output weight."""
-        return self._weigth
+        return self._weight
 
     @weight.setter
     def weight(self, value: float):
-        self._weigth = weight
+        self._weight = value
 
     @property
     def quality_goal(self) -> [float]:
