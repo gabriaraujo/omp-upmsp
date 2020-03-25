@@ -1,10 +1,4 @@
-<h2>Problema de Mistura de Minérios</h2>
+<h1>OMP Solver</h1>
 
-O problema de mistura ou blendagem de minérios consiste em determinar a 
-quantidade de cada minério, proveniente de um conjunto de frentes ou pilhas, 
-que deve ser blendada para formar um produto final com características que 
-atendam às exigências de um determinado cliente. Como os minérios possuem 
-características diferentes, seja o teor de certo elemento químico ou percentual 
-de um minério em certa faixa granulométrica, é necessário combinar os minérios 
-em determinadas proporções para que a mistura cumpra as metas de qualidade e 
-quantidade.
+<h2>Ore Mixing or Blending Problem</h2>
+The ore mixing or blending problem consists in determining the quantity of each ore, coming from a set of fronts or piles, which must be blended to form a final product with characteristics that meet the requirements of a given customer. As the ores have different characteristics, whether the content of a certain chemical element or the percentage of an ore in a certain granulometric range, it is necessary to combine the ores in certain proportions so that the mixture meets the quality and quantity targets.
