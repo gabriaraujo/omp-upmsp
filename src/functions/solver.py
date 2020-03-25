@@ -1,4 +1,6 @@
-from src.classes import *
+from functions import quality_print, linear_model
+from classes import Output, Stockpile
+import numpy as np
 
 
 def solver(file: dict) -> [(float, [float])]:
@@ -7,52 +9,66 @@ def solver(file: dict) -> [(float, [float])]:
     result = []
     for out in file["outputs"]:
         curr_weight = 0
-        curr_quality = [0, 0, 0, 0, 0, 0]
+        curr_quality = []
 
+        # resolve o modelo usando programação linear
+        linear_model(out, file["stockpiles"])
+
+        # retira-se o minério de cada pilha para completar a demanda
         for stp in file["stockpiles"]:
-            if check_quality(stp.quality_ini,
-                             out.quality_lower_limit,
-                             out.quality_upper_limit):
-                curr_weight += mixing(curr_weight, curr_weight, stp, out)
+            if curr_weight < out.weight:
+                curr_weight = mixing(curr_weight, curr_quality, out, stp)
 
-        r = curr_weight, curr_quality
-        result.append(r)
+        # calcula os parâmetros de qualidade obtidos
+        quality = quality_mean(curr_quality)
+
+        # imprime a qualidade obtida e os limites superior e inferior
+        quality_print(quality,
+                      out.quality_lower_limit,
+                      out.quality_upper_limit)
+
+        # verifica se a qualidade obtida está dentro dos limites desejados
+        if check_quality(quality,
+                         out.quality_lower_limit,
+                         out.quality_upper_limit):
+            result.append((curr_weight, quality))
 
     return result
 
 
-def check_quality(ini: [int], lower_limit: [int], upper_limit: [int]) -> bool:
+def check_quality(q: [int], lb: [int], ub: [int]) -> bool:
     """verifica se a qualidade está dentro dos limites."""
 
-    for (init, lower, upper) in zip(ini, lower_limit, upper_limit):
-        if init < lower or init > upper: return False
+    for (quality, lower, upper) in zip(q, lb, ub):
+        if not lower <= quality <= upper: return False
 
     return True
 
 
-def mixing(wt: float, quality: [float], stp: Stockpile, out: Output) -> float:
-    """calcula a média entre a qualidade atual e a recebida."""
+def mixing(cw: float,
+           qw: [(float, [float])],
+           out: Output,
+           stp: Stockpile) -> float:
+    """separa os pesos e qualidade de cada pilha para atender a demanda"""
 
-    diff = out.weight - wt
-    if 0 < diff < stp.weight_ini:
-        quality = quality_mean(wt, diff, quality, stp.quality_ini)
-        wt += diff
+    diff = out.weight - cw
+    if 0 < diff <= stp.weight_ini:
+        qw.append((diff, stp.quality_ini))
+        cw += diff
         stp.weight_ini -= diff
 
-    elif diff > 0 and stp.weight_ini < diff:
-        quality = quality_mean(wt, stp.weight_ini, quality, stp.quality_ini)
-        wt += stp.weight_ini
+    elif diff > 0 and diff > stp.weight_ini:
+        qw.append((stp.weight_ini, stp.quality_ini))
+        cw += stp.weight_ini
         stp.weight_ini = 0
 
-    return wt
+    return cw
 
 
-def quality_mean(wi: float, wr: float, qi: [float], qr: [float]) -> [float]:
-    """calcula a média pondera das qualidades."""
+def quality_mean(cq: [(float, [float])]) -> [float]:
+    """separa a lista de qualidade e pesos para calcular a média ponderada"""
 
-    result = []
-    for (ini, rec) in zip(qi, qr):
-        r = (ini * wi + rec * wr) / (wi + wr)
-        result.append(r)
+    quality_weights = [qw[0] for qw in cq]
+    quality_list = [ql[1] for ql in cq]
 
-    return result
+    return np.average(quality_list, axis=0, weights=quality_weights)

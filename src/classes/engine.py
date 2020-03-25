@@ -1,5 +1,5 @@
 class Engine:
-    """docstring for Engine."""
+    """classe para salvar as informações de cada equipamento."""
 
     def __init__(self,
                  id: int,

@@ -1,8 +1,10 @@
-from src.classes import *
+from classes import *
 import ujson
 
 
 def read_file(file_name: str) -> dict:
+    """função para realizar a leitura do arquivo de entrada."""
+
     with open(file_name, "r") as file:
         data_store = ujson.loads(file.read())
 

@@ -1,5 +1,5 @@
 class Output:
-    """docstring for Output."""
+    """classe para salvar as informações de cada pedido."""
 
     def __init__(self,
                  id: int,

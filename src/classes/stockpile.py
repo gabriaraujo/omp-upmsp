@@ -1,5 +1,5 @@
 class Stockpile:
-    """docstring for Stockpile."""
+    """classe para salvar as informações de cada pilha de minério."""
 
     def __init__(self,
                  id: int,

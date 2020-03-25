@@ -1,10 +1,11 @@
-from src.functions import *
+from functions import *
 import sys
 
 
 def main():
     file = read_file(sys.argv[1])
-    debug_print(file)
+    print('result: ', solver(file))
+    # file_print(file)
 
 
 if __name__ == '__main__':

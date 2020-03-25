@@ -1,5 +1,5 @@
 class Input:
-    """docstring for Input."""
+    """classe para salvar as informações de cada entrada de minério."""
 
     def __init__(self,
                  id: int,
