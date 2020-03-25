@@ -1,4 +1,4 @@
-<h4>Problema de Mistura de Minérios</h4>
+<h2>Problema de Mistura de Minérios</h2>
 <hr>
 
 O problema de mistura ou blendagem de minérios consiste em determinar a 
