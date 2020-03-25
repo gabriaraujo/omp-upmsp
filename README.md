@@ -1,5 +1,4 @@
 <h2>Problema de Mistura de Minérios</h2>
-<hr>
 
 O problema de mistura ou blendagem de minérios consiste em determinar a 
 quantidade de cada minério, proveniente de um conjunto de frentes ou pilhas, 
