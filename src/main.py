@@ -4,7 +4,8 @@ import sys
 
 def main():
     file = read_file(sys.argv[1])
-    print('result: ', solver(file))
+
+    write_file(sys.argv[2], solver(file))
     # file_print(file)
 
 

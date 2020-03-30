@@ -2,22 +2,22 @@ def file_print(file: dict):
     """função para imprimir os dados recebidos do arquivo de entrada."""
 
     print('### STOCKPILES ###')
-    for elem in file["stockpiles"]: print(elem)
+    for elem in file['stockpiles']: print(elem)
 
     print('### ENGINES ###')
-    for elem in file["engines"]: print(elem)
+    for elem in file['engines']: print(elem)
 
     print('### INPUTS ###')
-    for elem in file["inputs"]: print(elem)
+    for elem in file['inputs']: print(elem)
 
     print('### OUTPUTS ###')
-    for elem in file["outputs"]: print(elem)
+    for elem in file['outputs']: print(elem)
 
     print('### DISTANCES TRAVEL ###')
-    for elem in file["distances_travel"]: print(elem)
+    for elem in file['distances_travel']: print(elem)
 
     print('\n### TIME TRAVEL ###')
-    for elem in file["time_travel"]: print(elem)
+    for elem in file['time_travel']: print(elem)
 
 
 def quality_print(cq: [float], lb: [float], ub: [float]):
