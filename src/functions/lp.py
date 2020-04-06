@@ -31,23 +31,25 @@ def linear_model(out: Output, stp: [Stockpile], info: str) -> (float, [float]):
     for j in range(t):
         omp += xsum(x[i] * (stp[i].quality_ini[j] - out.quality_lower_limit[j])
                     for i in range(p)) + a_min[j] * out.weight >= 0, \
-               f'min_quality_constr_{j}'
+            f'min_quality_constr_{j}'
+
         omp += xsum(x[i] * (stp[i].quality_ini[j] - out.quality_upper_limit[j])
                     for i in range(p)) - a_max[j] * out.weight <= 0, \
-               f'max_quality_constr_{j}'
+            f'max_quality_constr_{j}'
+
         omp += xsum(x[i] * (stp[i].quality_ini[j] - out.quality_goal[j])
                     for i in range(p)) + b_min[j] - b_max[j] == 0, \
-               f'goal_quality_constr_{j}'
+            f'goal_quality_constr_{j}'
 
     # peso das restrições na função objetivo
     w_1, w_2 = 1e3, 1
 
     # função objetivo: w_1 * desvio_dos_limites + w_2 * desvio_da_meta
     omp += w_1 * xsum(a_min[j] / sub(out, j, 'lwr') +
-                      a_max[j] / sub(out, j, 'upr') for j in range(t)) + \
-           w_2 * xsum((b_min[j] + b_max[j]) / min(sub(out, j, 'lwr'),
-                                                  sub(out, j, 'upr'))
-                      for j in range(t))
+                      a_max[j] / sub(out, j, 'upr') for j in range(t)) \
+        + w_2 * xsum((b_min[j] + b_max[j]) / min(sub(out, j, 'lwr'),
+                                                 sub(out, j, 'upr'))
+                     for j in range(t))
 
     # resolvendo modelo
     omp.write(f'./out/logs/{info}.lp')
