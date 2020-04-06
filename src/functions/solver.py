@@ -16,8 +16,8 @@ def solver(file: dict) -> dict:
     for out in file['outputs']:
         # resolve o modelo usando programação linear
         result['objective'], weight_list = linear_model(out,
-                                               file['stockpiles'],
-                                               file['info'])
+                                                        file['stockpiles'],
+                                                        file['info'])
 
         quality_list = [stp.quality_ini for stp in file['stockpiles']]
 
