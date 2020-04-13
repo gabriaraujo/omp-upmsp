@@ -1,0 +1,203 @@
+{
+  "info": "Instance_001",
+  "stockpiles": [
+    {
+      "id": "1",
+      "position": 0,
+      "capacity": 400,
+      "engines": [
+        "1",
+        "2"
+      ],
+      "weightIni": 400,
+      "qualityIni": [
+        60,
+        1,
+        0.5,
+        1,
+        0.05,
+        4
+      ]
+    },
+    {
+      "id": "2",
+      "position": 1,
+      "capacity": 400,
+      "engines": [
+        "1",
+        "2"
+      ],
+      "weightIni": 300,
+      "qualityIni": [
+        50,
+        0.5,
+        0.5,
+        1,
+        0.05,
+        4
+      ]
+    },
+    {
+      "id": "3",
+      "position": 2,
+      "capacity": 400,
+      "engines": [
+        "1",
+        "2"
+      ],
+      "weightIni": 300,
+      "qualityIni": [
+        70,
+        1,
+        0.5,
+        1,
+        0.05,
+        3
+      ]
+    },
+    {
+      "id": "4",
+      "position": 3,
+      "capacity": 400,
+      "engines": [
+        "1",
+        "2"
+      ],
+      "weightIni": 300,
+      "qualityIni": [
+        70,
+        2,
+        0.5,
+        1,
+        0.05,
+        5
+      ]
+    }
+  ],
+  "engines": [
+    {
+      "id": "1",
+      "speedStack": 30.0,
+      "speedReclaim": 35.0,
+      "posIni": 2,
+      "stockpiles": [
+        "1",
+        "2",
+        "3",
+        "4"
+      ]
+    },
+    {
+      "id": "2",
+      "speedStack": 30.0,
+      "speedReclaim": 35.0,
+      "posIni": 1,
+      "stockpiles": [
+        "1",
+        "2",
+        "3",
+        "4"
+      ]
+    }
+  ],
+  "inputs": [
+  	{
+         "id":"1",
+         "source":"2",
+         "weight":100.0,
+         "quality":[
+            60,
+            1.5,
+            0.8,
+            1.0,
+            0.05,
+            3
+         ],
+         "time":8.0
+      }
+  ],
+  "outputs": [
+    {
+      "id": "1",
+      "destination": "1",
+      "weight": 1000,
+      "qualityGoal": [
+        65,
+        1.5,
+        0.5,
+        0.5,
+        0.04,
+        4
+      ],
+      "qualityUpperLimit": [
+        100,
+        1.5,
+        0.5,
+        0.5,
+        0.09,
+        5
+      ],
+      "qualityLowerLimit": [
+        55,
+        0,
+        0,
+        0,
+        0,
+        3.5
+      ],
+      "time": 4
+    }
+  ],
+  "distancesTravel": [
+    [
+      0.0,
+      1.0,
+      2.0,
+      3.0
+    ],
+    [
+      1.0,
+      0.0,
+      3.0,
+      2.0
+    ],
+    [
+      2.0,
+      3.0,
+      0.0,
+      1.0
+    ],
+    [
+      3.0,
+      2.0,
+      1.0,
+      0.0
+    ]
+  ],
+  "timeTravel": [
+    [
+      10.0,
+      30.0,
+      40.0,
+      60.0
+    ],
+    [
+      30.0,
+      10.0,
+      60.0,
+      40.0
+    ],
+    [
+      40.0,
+      60.0,
+      10.0,
+      30.0
+    ],
+    [
+      60.0,
+      40.0,
+      30.0,
+      10.0
+    ]
+  ]
+}
