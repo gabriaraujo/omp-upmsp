@@ -4,81 +4,81 @@
     {
       "id": "1",
       "position": 0,
-      "capacity": 262,
+      "capacity": 357.2,
       "engines": [
         "1",
         "2"
       ],
-      "weightIni": 227,
+      "weightIni": 270.6,
       "qualityIni": [
-        42.4,
-        0.94,
-        3.79,
-        2.49,
-        0.19,
-        6.73
+        70.88,
+        1.14,
+        3.46,
+        5.07,
+        1.15,
+        3.71
       ]
     },
     {
       "id": "2",
       "position": 1,
-      "capacity": 486,
+      "capacity": 412.1,
       "engines": [
         "1",
         "2"
       ],
-      "weightIni": 372,
+      "weightIni": 410.0,
       "qualityIni": [
-        72.98,
-        1.84,
-        6.33,
-        5.58,
-        0.93,
-        3.44
+        88.73,
+        1.38,
+        6.7,
+        4.5,
+        1.34,
+        4.94
       ]
     },
     {
       "id": "3",
       "position": 2,
-      "capacity": 359,
+      "capacity": 529.0,
       "engines": [
         "1",
         "2"
       ],
-      "weightIni": 342,
+      "weightIni": 385.4,
       "qualityIni": [
-        70.31,
-        1.3,
-        0.42,
-        5.77,
-        0.54,
-        2.76
+        59.57,
+        0.84,
+        4.29,
+        0.15,
+        1.33,
+        6.51
       ]
     },
     {
       "id": "4",
       "position": 3,
-      "capacity": 385,
+      "capacity": 487.6,
       "engines": [
         "1",
         "2"
       ],
-      "weightIni": 272,
+      "weightIni": 359.5,
       "qualityIni": [
-        71.46,
-        0.42,
-        2.7,
-        4.58,
-        1.03,
-        6.71
+        43.66,
+        1.31,
+        6.81,
+        4.09,
+        0.53,
+        6.06
       ]
     }
   ],
   "engines": [
     {
       "id": "1",
-      "speedStack": 41.6,
-      "speedReclaim": 40.1,
+      "speedStack": 23.5,
+      "speedReclaim": 22.5,
       "posIni": 2,
       "stockpiles": [
         "1",
@@ -89,9 +89,9 @@
     },
     {
       "id": "2",
-      "speedStack": 31.8,
-      "speedReclaim": 20.6,
-      "posIni": 2,
+      "speedStack": 46.7,
+      "speedReclaim": 35.3,
+      "posIni": 1,
       "stockpiles": [
         "1",
         "2",
@@ -104,30 +104,30 @@
     {
       "id": "1",
       "source": "2",
-      "weight": 143.6,
+      "weight": 211.6,
       "quality": [
-        59.92,
-        2.07,
-        5.84,
-        5.81,
-        0.14,
-        4.79
+        95.12,
+        0.85,
+        2.89,
+        2.49,
+        0.73,
+        3.24
       ],
-      "time": 7.0
+      "time": 9.3
     }
   ],
   "outputs": [
     {
       "id": "1",
       "destination": "1",
-      "weight": 1106,
+      "weight": 1162.1,
       "qualityGoal": [
-        56.08,
-        1.23,
-        0.3,
-        0.4,
-        0.45,
-        3.84
+        79.38,
+        1.17,
+        0.1,
+        0.1,
+        0.03,
+        4.12
       ],
       "qualityUpperLimit": [
         100,
@@ -145,19 +145,19 @@
         0,
         3.5
       ],
-      "time": 3.9
+      "time": 4.4
     },
     {
       "id": "2",
       "destination": "2",
-      "weight": 650,
+      "weight": 1110.5,
       "qualityGoal": [
-        63.22,
-        1.04,
-        0.2,
-        0.22,
-        0.22,
-        3.81
+        82.96,
+        0.37,
+        0.34,
+        0.05,
+        0.45,
+        4.39
       ],
       "qualityUpperLimit": [
         100,
@@ -175,7 +175,7 @@
         0,
         3.5
       ],
-      "time": 7.7
+      "time": 6.9
     }
   ],
   "distancesTravel": [

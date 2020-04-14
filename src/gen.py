@@ -18,43 +18,46 @@ def write_file(file_name: str, value: dict):
 
 def instance_gen(name: str = f'Instance_R{random.randint(1, 1e3)}',
                  stockpiles: int = 4,
-                 capacity: int = 400,
+                 capacity: float = 400,
                  outputs: int = 1,
-                 weight: int = 1000,
+                 weight: float = 1000,
                  inputs: int = 1,
                  engines: int = 2,
                  variant: float = 0.2) -> dict:
-    """gerador de instâncias aleatórias."""
+    """gerador de instâncias pseudo-aleatórias."""
 
+    # converte todos os parametros para os tipos corretos
     stockpiles = int(stockpiles)
-    capacity = int(capacity)
+    capacity = float(capacity)
     outputs = int(outputs)
-    weight = int(weight)
+    weight = float(weight)
     inputs = int(inputs)
     engines = int(engines)
     variant = float(variant)
 
-    ub = 1 + variant
+    # cria um dicionário para salvar os dados gerados
+    instance = {'info': name}
+
+    # valores de variação inferior e superior das medidas
     lb = 1 - variant
-    cpty = [random.randint(int(lb * capacity), int(ub * capacity))
+    ub = 1 + variant
+
+    # capacidade máxima de cada pilha
+    cpty = [round(random.uniform(lb * capacity, ub * capacity), 1)
             for _ in range(stockpiles)]
-    stp = [{
+
+    # gera os valores para as pilhas de minério
+    instance['stockpiles'] = [{
         'id': str(i + 1),
         'position': i,
         'capacity': cpty[i],
         'engines': [str(eng + 1) for eng in range(engines)],
-        'weightIni': random.randint(int(lb * cpty[i]), cpty[i]),
-        'qualityIni': [
-            round(random.uniform(55 * lb, 100), 2),
-            round(random.uniform(0, 1.5 * ub), 2),
-            round(random.uniform(0, 5 * ub), 2),
-            round(random.uniform(0, 5 * ub), 2),
-            round(random.uniform(0, 1 * ub), 2),
-            round(random.uniform(3.5 * lb, 5 * ub), 2)
-        ]
+        'weightIni': round(random.uniform(lb * cpty[i], cpty[i]), 1),
+        'qualityIni': gen_quality(lb, ub)
     } for i in range(stockpiles)]
 
-    eng = [{
+    # gera os valores para os equipamentos
+    instance['engines'] = [{
         'id': str(i + 1),
         'speedStack': round(random.uniform(20, 50), 1),
         'speedReclaim': round(random.uniform(20, 50), 1),
@@ -62,26 +65,21 @@ def instance_gen(name: str = f'Instance_R{random.randint(1, 1e3)}',
         'stockpiles': [str(j + 1) for j in range(stockpiles)]
     } for i in range(engines)]
 
+    # gera os valores para a entrada de minérios
     src = random.randrange(1, stockpiles)
-    inp = [{
+    instance['inputs'] = [{
         'id': str(i + 1),
         'source': str(src),
-        'weight': variant * cpty[src],
-        'quality': [
-            round(random.uniform(55 * lb, 100), 2),
-            round(random.uniform(0, 1.5 * ub), 2),
-            round(random.uniform(0, 5 * ub), 2),
-            round(random.uniform(0, 5 * ub), 2),
-            round(random.uniform(0, 1 * ub), 2),
-            round(random.uniform(3.5 * lb, 5 * ub), 2)
-        ],
+        'weight': round(variant * cpty[src], 1),
+        'quality': gen_quality(lb, ub),
         'time': round(random.uniform(0, 10), 1)
     } for i in range(inputs)]
 
-    out = [{
+    # gera os valores de cada pedido
+    instance['outputs'] = [{
         'id': str(i + 1),
         'destination': str(i + 1),
-        "weight": random.randint(int(lb * weight), int(ub * weight)),
+        "weight": round(random.uniform(lb * weight, ub * weight), 1),
         "qualityGoal": [
             round(random.uniform(55, 100), 2),
             round(random.uniform(0, 1.5), 2),
@@ -95,27 +93,32 @@ def instance_gen(name: str = f'Instance_R{random.randint(1, 1e3)}',
         "time": round(random.uniform(0, 10), 1)
     } for i in range(outputs)]
 
-    dist = [
+    # gera as distâncias entre as pilhas
+    instance['distancesTravel'] = [
         [float(abs(i - j)) for i in range(stockpiles)]
         for j in range(stockpiles)
     ]
 
-    time = [
+    # gera os tempos de locomoção entre as pilhas
+    instance['timeTravel'] = [
         [(abs(i - j) * 20.0 + 10.0) for i in range(stockpiles)]
         for j in range(stockpiles)
     ]
 
-    instance = {
-        'info': name,
-        'stockpiles': stp,
-        'engines': eng,
-        'inputs': inp,
-        'outputs': out,
-        'distancesTravel': dist,
-        'timeTravel': time
-    }
-
     return instance
+
+
+def gen_quality(lb: float, ub: float) -> [float]:
+    """gera a qualidade inicial para cada pilha de minério."""
+
+    return [
+        round(random.uniform(55 * lb, 100), 2),
+        round(random.uniform(0, 1.5 * ub), 2),
+        round(random.uniform(0, 5 * ub), 2),
+        round(random.uniform(0, 5 * ub), 2),
+        round(random.uniform(0, 1 * ub), 2),
+        round(random.uniform(3.5 * lb, 5 * ub), 2)
+    ]
 
 
 if __name__ == '__main__':

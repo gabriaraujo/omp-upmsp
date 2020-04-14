@@ -24,7 +24,7 @@ def linear_model(out: [Output], stp: [Stockpile], info: str) -> (float, dict):
              for j in range(t) for k in range(r)}
     b_min = {(j, k): omp.add_var(name=f'b_min_{j}{k}')
              for j in range(t) for k in range(r)}
-    b_max = {(j, k): omp.add_var(name=f'b_max_{j}')
+    b_max = {(j, k): omp.add_var(name=f'b_max_{j}{k}')
              for j in range(t) for k in range(r)}
 
     # criando restrições

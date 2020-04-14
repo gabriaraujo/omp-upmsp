@@ -1,3 +1,4 @@
+from classes import Engine
 from functions import linear_model
 import numpy as np
 
@@ -29,3 +30,9 @@ def solver(file: dict) -> dict:
                               'quality': quality})
 
     return result
+
+
+def set_engines(eng: [Engine], wl: [float]) -> [str]:
+    """define a ordem de funcionamento das máquinas."""
+
+    # some code

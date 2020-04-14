@@ -4,162 +4,162 @@
     {
       "id": "1",
       "position": 0,
-      "capacity": 673,
+      "capacity": 702.8,
       "engines": [
         "1",
         "2",
         "3"
       ],
-      "weightIni": 644,
+      "weightIni": 623.0,
       "qualityIni": [
-        70.28,
-        0.05,
-        2.7,
-        3.79,
-        0.67,
-        2.88
+        82.0,
+        1.23,
+        2.76,
+        1.5,
+        0.95,
+        5.56
       ]
     },
     {
       "id": "2",
       "position": 1,
-      "capacity": 792,
+      "capacity": 886.4,
       "engines": [
         "1",
         "2",
         "3"
       ],
-      "weightIni": 646,
+      "weightIni": 815.3,
       "qualityIni": [
-        97.04,
-        1.32,
-        3.11,
-        5.97,
-        0.36,
-        3.38
+        68.07,
+        0.96,
+        4.9,
+        0.85,
+        0.29,
+        3.25
       ]
     },
     {
       "id": "3",
       "position": 2,
-      "capacity": 890,
+      "capacity": 762.3,
       "engines": [
         "1",
         "2",
         "3"
       ],
-      "weightIni": 754,
+      "weightIni": 658.7,
       "qualityIni": [
-        81.95,
-        0.38,
-        0.55,
-        4.1,
-        0.92,
-        3.4
+        66.45,
+        1.01,
+        5.0,
+        3.78,
+        0.08,
+        5.4
       ]
     },
     {
       "id": "4",
       "position": 3,
-      "capacity": 653,
+      "capacity": 763.3,
       "engines": [
         "1",
         "2",
         "3"
       ],
-      "weightIni": 583,
+      "weightIni": 758.6,
       "qualityIni": [
-        46.03,
-        0.15,
-        1.41,
-        1.43,
-        1.06,
-        3.36
+        45.12,
+        1.3,
+        5.39,
+        5.24,
+        0.83,
+        5.45
       ]
     },
     {
       "id": "5",
       "position": 4,
-      "capacity": 690,
+      "capacity": 830.6,
       "engines": [
         "1",
         "2",
         "3"
       ],
-      "weightIni": 646,
+      "weightIni": 828.5,
       "qualityIni": [
-        50.77,
-        0.53,
-        1.75,
-        5.45,
-        1.03,
-        4.43
+        85.71,
+        1.31,
+        2.4,
+        5.72,
+        1.17,
+        3.86
       ]
     },
     {
       "id": "6",
       "position": 5,
-      "capacity": 676,
+      "capacity": 882.4,
       "engines": [
         "1",
         "2",
         "3"
       ],
-      "weightIni": 582,
+      "weightIni": 828.9,
       "qualityIni": [
-        95.87,
-        1.39,
-        4.43,
-        5.92,
-        1.19,
-        4.83
+        64.54,
+        1.2,
+        1.59,
+        0.96,
+        0.96,
+        5.44
       ]
     },
     {
       "id": "7",
       "position": 6,
-      "capacity": 641,
+      "capacity": 915.1,
       "engines": [
         "1",
         "2",
         "3"
       ],
-      "weightIni": 512,
+      "weightIni": 789.7,
       "qualityIni": [
-        46.39,
-        1.63,
-        5.21,
-        4.35,
-        1.1,
-        3.6
+        93.44,
+        1.53,
+        1.17,
+        5.59,
+        1.11,
+        4.27
       ]
     },
     {
       "id": "8",
       "position": 7,
-      "capacity": 812,
+      "capacity": 795.1,
       "engines": [
         "1",
         "2",
         "3"
       ],
-      "weightIni": 693,
+      "weightIni": 676.3,
       "qualityIni": [
-        75.61,
-        0.78,
-        1.48,
-        2.53,
-        0.26,
-        3.07
+        68.33,
+        1.12,
+        1.23,
+        4.07,
+        0.54,
+        5.99
       ]
     }
   ],
   "engines": [
     {
       "id": "1",
-      "speedStack": 33.2,
-      "speedReclaim": 26.5,
-      "posIni": 2,
+      "speedStack": 36.2,
+      "speedReclaim": 40.1,
+      "posIni": 0,
       "stockpiles": [
         "1",
         "2",
@@ -173,9 +173,9 @@
     },
     {
       "id": "2",
-      "speedStack": 23.9,
-      "speedReclaim": 45.7,
-      "posIni": 5,
+      "speedStack": 36.0,
+      "speedReclaim": 30.1,
+      "posIni": 1,
       "stockpiles": [
         "1",
         "2",
@@ -189,9 +189,9 @@
     },
     {
       "id": "3",
-      "speedStack": 45.4,
-      "speedReclaim": 20.8,
-      "posIni": 4,
+      "speedStack": 42.2,
+      "speedReclaim": 24.6,
+      "posIni": 0,
       "stockpiles": [
         "1",
         "2",
@@ -207,59 +207,59 @@
   "inputs": [
     {
       "id": "1",
-      "source": "5",
-      "weight": 135.20000000000002,
+      "source": "3",
+      "weight": 152.7,
       "quality": [
-        90.77,
-        1.43,
-        0.53,
-        1.54,
-        1.04,
-        4.2
+        80.92,
+        0.73,
+        3.08,
+        1.01,
+        1.14,
+        3.18
       ],
-      "time": 4.5
+      "time": 4.3
     },
     {
       "id": "2",
-      "source": "5",
-      "weight": 135.20000000000002,
+      "source": "3",
+      "weight": 152.7,
       "quality": [
-        81.87,
-        1.01,
-        4.34,
-        3.21,
-        0.24,
-        5.05
+        88.52,
+        1.26,
+        5.69,
+        0.86,
+        1.18,
+        3.95
       ],
-      "time": 8.1
+      "time": 3.4
     },
     {
       "id": "3",
-      "source": "5",
-      "weight": 135.20000000000002,
+      "source": "3",
+      "weight": 152.7,
       "quality": [
-        98.19,
-        1.66,
-        2.8,
-        5.61,
-        0.21,
-        4.23
+        57.23,
+        0.55,
+        2.18,
+        2.91,
+        0.12,
+        4.31
       ],
-      "time": 1.1
+      "time": 2.7
     }
   ],
   "outputs": [
     {
       "id": "1",
       "destination": "1",
-      "weight": 1273,
+      "weight": 1358.6,
       "qualityGoal": [
-        71.17,
-        0.49,
-        0.17,
+        81.13,
         0.0,
-        0.3,
-        4.52
+        0.25,
+        0.18,
+        0.58,
+        4.49
       ],
       "qualityUpperLimit": [
         100,
@@ -277,19 +277,19 @@
         0,
         3.5
       ],
-      "time": 3.7
+      "time": 5.0
     },
     {
       "id": "2",
       "destination": "2",
-      "weight": 1510,
+      "weight": 1338.5,
       "qualityGoal": [
-        91.39,
-        0.75,
-        0.07,
-        0.45,
-        0.8,
-        4.39
+        81.08,
+        0.63,
+        0.23,
+        0.38,
+        0.74,
+        4.28
       ],
       "qualityUpperLimit": [
         100,
@@ -307,48 +307,18 @@
         0,
         3.5
       ],
-      "time": 4.4
+      "time": 2.4
     },
     {
       "id": "3",
       "destination": "3",
-      "weight": 1208,
+      "weight": 1311.4,
       "qualityGoal": [
-        91.24,
-        1.27,
-        0.46,
-        0.06,
-        0.05,
-        4.75
-      ],
-      "qualityUpperLimit": [
-        100,
-        1.5,
-        0.5,
-        0.5,
-        1.0,
-        5
-      ],
-      "qualityLowerLimit": [
-        55,
-        0,
-        0,
-        0,
-        0,
-        3.5
-      ],
-      "time": 7.2
-    },
-    {
-      "id": "4",
-      "destination": "4",
-      "weight": 1643,
-      "qualityGoal": [
-        55.17,
-        0.42,
-        0.16,
-        0.02,
-        0.23,
+        82.17,
+        0.55,
+        0.04,
+        0.13,
+        0.22,
         4.03
       ],
       "qualityUpperLimit": [
@@ -367,7 +337,37 @@
         0,
         3.5
       ],
-      "time": 7.0
+      "time": 7.7
+    },
+    {
+      "id": "4",
+      "destination": "4",
+      "weight": 1128.2,
+      "qualityGoal": [
+        89.19,
+        1.1,
+        0.06,
+        0.02,
+        0.23,
+        4.02
+      ],
+      "qualityUpperLimit": [
+        100,
+        1.5,
+        0.5,
+        0.5,
+        1.0,
+        5
+      ],
+      "qualityLowerLimit": [
+        55,
+        0,
+        0,
+        0,
+        0,
+        3.5
+      ],
+      "time": 8.4
     }
   ],
   "distancesTravel": [
