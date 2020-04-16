@@ -4,123 +4,123 @@
     {
       "id": "1",
       "position": 0,
-      "capacity": 578.0,
+      "capacity": 1515.3,
       "engines": [
         "1",
         "2",
         "3"
       ],
-      "weightIni": 538.8,
+      "weightIni": 1238.0,
       "qualityIni": [
-        69.45,
-        0.98,
-        0.1,
-        1.16,
-        0.65,
-        2.94
+        57.19,
+        0.75,
+        5.3,
+        0.72,
+        0.13,
+        4.99
       ]
     },
     {
       "id": "2",
       "position": 1,
-      "capacity": 686.0,
+      "capacity": 1375.2,
       "engines": [
         "1",
         "2",
         "3"
       ],
-      "weightIni": 643.6,
+      "weightIni": 1194.1,
       "qualityIni": [
-        74.61,
-        0.45,
-        2.57,
-        1.27,
-        0.4,
-        3.11
+        59.69,
+        0.15,
+        4.0,
+        1.21,
+        0.07,
+        3.8
       ]
     },
     {
       "id": "3",
       "position": 2,
-      "capacity": 620.9,
+      "capacity": 1459.7,
       "engines": [
         "1",
         "2",
         "3"
       ],
-      "weightIni": 504.3,
+      "weightIni": 1191.3,
       "qualityIni": [
-        46.0,
-        0.86,
-        1.63,
-        4.3,
-        0.24,
-        5.65
+        53.04,
+        1.21,
+        4.24,
+        1.12,
+        1.17,
+        3.4
       ]
     },
     {
       "id": "4",
       "position": 3,
-      "capacity": 575.8,
+      "capacity": 1156.4,
       "engines": [
         "1",
         "2",
         "3"
       ],
-      "weightIni": 563.7,
+      "weightIni": 1147.0,
       "qualityIni": [
-        51.31,
-        0.05,
-        5.2,
-        1.51,
-        0.99,
-        5.16
+        46.87,
+        0.15,
+        4.2,
+        0.85,
+        0.37,
+        4.73
       ]
     },
     {
       "id": "5",
       "position": 4,
-      "capacity": 482.2,
+      "capacity": 1477.3,
       "engines": [
         "1",
         "2",
         "3"
       ],
-      "weightIni": 401.3,
+      "weightIni": 1370.5,
       "qualityIni": [
-        62.62,
-        1.15,
-        3.25,
-        4.39,
-        1.07,
-        5.43
+        79.96,
+        1.7,
+        2.5,
+        2.32,
+        0.04,
+        4.28
       ]
     },
     {
       "id": "6",
       "position": 5,
-      "capacity": 667.7,
+      "capacity": 1253.1,
       "engines": [
         "1",
         "2",
         "3"
       ],
-      "weightIni": 612.3,
+      "weightIni": 1059.2,
       "qualityIni": [
-        54.42,
-        0.78,
-        3.9,
-        5.63,
-        0.89,
-        3.04
+        70.95,
+        0.36,
+        3.45,
+        3.77,
+        0.31,
+        3.51
       ]
     }
   ],
   "engines": [
     {
       "id": "1",
-      "speedStack": 49.7,
-      "speedReclaim": 46.0,
+      "speedStack": 48.7,
+      "speedReclaim": 41.7,
       "posIni": 0,
       "stockpiles": [
         "1",
@@ -133,9 +133,9 @@
     },
     {
       "id": "2",
-      "speedStack": 38.4,
-      "speedReclaim": 44.6,
-      "posIni": 4,
+      "speedStack": 39.5,
+      "speedReclaim": 34.4,
+      "posIni": 2,
       "stockpiles": [
         "1",
         "2",
@@ -147,8 +147,8 @@
     },
     {
       "id": "3",
-      "speedStack": 22.9,
-      "speedReclaim": 35.6,
+      "speedStack": 35.2,
+      "speedReclaim": 46.7,
       "posIni": 5,
       "stockpiles": [
         "1",
@@ -163,45 +163,45 @@
   "inputs": [
     {
       "id": "1",
-      "source": "2",
-      "weight": 124.2,
+      "source": "1",
+      "weight": 275.0,
       "quality": [
-        89.38,
-        1.38,
-        4.4,
-        4.89,
-        0.65,
-        3.48
+        95.89,
+        0.19,
+        2.63,
+        4.0,
+        0.48,
+        4.56
       ],
-      "time": 9.6
+      "time": 6.0
     },
     {
       "id": "2",
-      "source": "2",
-      "weight": 124.2,
+      "source": "1",
+      "weight": 275.0,
       "quality": [
-        44.98,
-        0.43,
-        3.68,
-        5.09,
-        1.13,
-        4.68
+        53.47,
+        1.78,
+        3.89,
+        4.32,
+        0.38,
+        4.41
       ],
-      "time": 8.2
+      "time": 5.0
     }
   ],
   "outputs": [
     {
       "id": "1",
       "destination": "1",
-      "weight": 1424.7,
+      "weight": 1384.9,
       "qualityGoal": [
-        77.47,
-        0.89,
-        0.09,
-        0.36,
-        0.08,
-        4.06
+        57.52,
+        0.65,
+        0.01,
+        0.48,
+        0.86,
+        3.77
       ],
       "qualityUpperLimit": [
         100,
@@ -219,19 +219,19 @@
         0,
         3.5
       ],
-      "time": 4.4
+      "time": 9.8
     },
     {
       "id": "2",
       "destination": "2",
-      "weight": 1105.5,
+      "weight": 1251.6,
       "qualityGoal": [
-        87.01,
-        1.2,
-        0.23,
-        0.15,
-        0.25,
-        4.8
+        58.32,
+        0.64,
+        0.33,
+        0.31,
+        0.32,
+        4.69
       ],
       "qualityUpperLimit": [
         100,
@@ -249,19 +249,19 @@
         0,
         3.5
       ],
-      "time": 1.7
+      "time": 8.6
     },
     {
       "id": "3",
       "destination": "3",
-      "weight": 1359.3,
+      "weight": 1277.5,
       "qualityGoal": [
-        65.8,
-        0.36,
-        0.47,
+        81.37,
+        1.03,
         0.34,
-        0.48,
-        4.0
+        0.47,
+        1.0,
+        4.36
       ],
       "qualityUpperLimit": [
         100,
@@ -279,19 +279,19 @@
         0,
         3.5
       ],
-      "time": 7.8
+      "time": 7.3
     },
     {
       "id": "4",
       "destination": "4",
-      "weight": 1012.5,
+      "weight": 1180.0,
       "qualityGoal": [
-        65.91,
-        1.47,
-        0.07,
-        0.09,
-        0.79,
-        4.29
+        96.46,
+        1.26,
+        0.36,
+        0.24,
+        0.92,
+        3.5
       ],
       "qualityUpperLimit": [
         100,
@@ -309,7 +309,7 @@
         0,
         3.5
       ],
-      "time": 3.4
+      "time": 7.7
     }
   ],
   "distancesTravel": [

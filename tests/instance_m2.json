@@ -4,82 +4,82 @@
     {
       "id": "1",
       "position": 0,
-      "capacity": 357.2,
+      "capacity": 751.7,
       "engines": [
         "1",
         "2"
       ],
-      "weightIni": 270.6,
+      "weightIni": 554.6,
       "qualityIni": [
-        70.88,
-        1.14,
-        3.46,
-        5.07,
-        1.15,
-        3.71
+        42.35,
+        1.09,
+        2.49,
+        5.97,
+        0.44,
+        4.05
       ]
     },
     {
       "id": "2",
       "position": 1,
-      "capacity": 412.1,
+      "capacity": 652.9,
       "engines": [
         "1",
         "2"
       ],
-      "weightIni": 410.0,
+      "weightIni": 615.1,
       "qualityIni": [
-        88.73,
-        1.38,
-        6.7,
-        4.5,
-        1.34,
-        4.94
+        91.81,
+        0.35,
+        5.85,
+        0.63,
+        0.27,
+        4.16
       ]
     },
     {
       "id": "3",
       "position": 2,
-      "capacity": 529.0,
+      "capacity": 651.4,
       "engines": [
         "1",
         "2"
       ],
-      "weightIni": 385.4,
+      "weightIni": 616.8,
       "qualityIni": [
-        59.57,
-        0.84,
-        4.29,
-        0.15,
-        1.33,
-        6.51
+        48.74,
+        0.99,
+        5.95,
+        3.72,
+        0.46,
+        4.62
       ]
     },
     {
       "id": "4",
       "position": 3,
-      "capacity": 487.6,
+      "capacity": 640.4,
       "engines": [
         "1",
         "2"
       ],
-      "weightIni": 359.5,
+      "weightIni": 499.0,
       "qualityIni": [
-        43.66,
-        1.31,
-        6.81,
-        4.09,
-        0.53,
-        6.06
+        38.88,
+        1.26,
+        3.21,
+        4.05,
+        1.11,
+        5.58
       ]
     }
   ],
   "engines": [
     {
       "id": "1",
-      "speedStack": 23.5,
-      "speedReclaim": 22.5,
-      "posIni": 2,
+      "speedStack": 43.1,
+      "speedReclaim": 46.9,
+      "posIni": 1,
       "stockpiles": [
         "1",
         "2",
@@ -89,9 +89,9 @@
     },
     {
       "id": "2",
-      "speedStack": 46.7,
-      "speedReclaim": 35.3,
-      "posIni": 1,
+      "speedStack": 24.8,
+      "speedReclaim": 41.4,
+      "posIni": 2,
       "stockpiles": [
         "1",
         "2",
@@ -104,30 +104,30 @@
     {
       "id": "1",
       "source": "2",
-      "weight": 211.6,
+      "weight": 260.6,
       "quality": [
-        95.12,
-        0.85,
-        2.89,
-        2.49,
-        0.73,
-        3.24
+        84.33,
+        1.81,
+        2.05,
+        6.08,
+        1.23,
+        5.36
       ],
-      "time": 9.3
+      "time": 1.0
     }
   ],
   "outputs": [
     {
       "id": "1",
       "destination": "1",
-      "weight": 1162.1,
+      "weight": 995.7,
       "qualityGoal": [
-        79.38,
-        1.17,
-        0.1,
-        0.1,
-        0.03,
-        4.12
+        62.27,
+        0.44,
+        0.07,
+        0.42,
+        0.46,
+        4.75
       ],
       "qualityUpperLimit": [
         100,
@@ -145,19 +145,19 @@
         0,
         3.5
       ],
-      "time": 4.4
+      "time": 0.9
     },
     {
       "id": "2",
       "destination": "2",
-      "weight": 1110.5,
+      "weight": 871.8,
       "qualityGoal": [
-        82.96,
-        0.37,
-        0.34,
-        0.05,
-        0.45,
-        4.39
+        76.82,
+        0.16,
+        0.31,
+        0.09,
+        0.99,
+        4.88
       ],
       "qualityUpperLimit": [
         100,
@@ -175,7 +175,7 @@
         0,
         3.5
       ],
-      "time": 6.9
+      "time": 0.9
     }
   ],
   "distancesTravel": [

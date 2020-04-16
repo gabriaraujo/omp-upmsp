@@ -27,15 +27,16 @@ def linear_model(out: [Output], stp: [Stockpile], info: str) -> (float, dict):
     b_max = {(j, k): omp.add_var(name=f'b_max_{j}{k}')
              for j in range(t) for k in range(r)}
 
+    # restrição de capacidade
+    for i in range(p):
+        omp += xsum(x[i, k] for k in range(r)) <= stp[i].weight_ini, \
+            f'capacity_constr_{i}'
+
     # criando restrições
     for k in range(r):
         # restrição de demanda
         omp += xsum(x[i, k] for i in range(p)) == out[k].weight, \
                f'demand_constr_{k}'
-
-        # restrição de capacidade
-        for i in range(p):
-            omp += x[i, k] <= stp[i].weight_ini, f'capacity_constr_{i}{k}'
 
         # restrições de qualidade
         for j in range(t):

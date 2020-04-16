@@ -1,39 +1,26 @@
-import sys
-import ujson
+from functions import write_file
 import random
+import sys
 
 
 def generate():
     """função para gerar as instâncias e gravar em um arquivo .json"""
-    write_file(sys.argv[1], instance_gen(*sys.argv[2:]))
+    write_file('./tests/', sys.argv[1], instance_gen(sys.argv[2:]))
 
 
-def write_file(file_name: str, value: dict):
-    """função para realizar a gravação do arquivo de saída."""
-
-    path = './tests/'
-    with open(path + file_name, 'w') as file:
-        ujson.dump(value, file, indent=2)
-
-
-def instance_gen(name: str = f'Instance_R{random.randint(1, 1e3)}',
-                 stockpiles: int = 4,
-                 capacity: float = 400,
-                 outputs: int = 1,
-                 weight: float = 1000,
-                 inputs: int = 1,
-                 engines: int = 2,
-                 variant: float = 0.2) -> dict:
+def instance_gen(args: [str]) -> dict:
     """gerador de instâncias pseudo-aleatórias."""
 
     # converte todos os parametros para os tipos corretos
-    stockpiles = int(stockpiles)
-    capacity = float(capacity)
-    outputs = int(outputs)
-    weight = float(weight)
-    inputs = int(inputs)
-    engines = int(engines)
-    variant = float(variant)
+    argc = len(args)
+    name = args[0] if argc > 0 else f'Instance_R{random.randint(1, 1e3)}'
+    stockpiles = int(args[1]) if argc > 1 else 4
+    capacity = float(args[2]) if argc > 2 else 400
+    outputs = int(args[3]) if argc > 3 else 1
+    weight = float(args[4]) if argc > 4 else 1000
+    inputs = int(args[5]) if argc > 5 else 1
+    engines = int(args[6]) if argc > 6 else 2
+    variant = float(args[7]) if argc > 7 else 0.2
 
     # cria um dicionário para salvar os dados gerados
     instance = {'info': name}
@@ -57,11 +44,13 @@ def instance_gen(name: str = f'Instance_R{random.randint(1, 1e3)}',
     } for i in range(stockpiles)]
 
     # gera os valores para os equipamentos
+    stp = [i for i in range(stockpiles)]
+    random.shuffle(stp)
     instance['engines'] = [{
         'id': str(i + 1),
         'speedStack': round(random.uniform(20, 50), 1),
         'speedReclaim': round(random.uniform(20, 50), 1),
-        'posIni': random.randrange(stockpiles),
+        'posIni': stp.pop(),
         'stockpiles': [str(j + 1) for j in range(stockpiles)]
     } for i in range(engines)]
 

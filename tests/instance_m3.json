@@ -4,117 +4,117 @@
     {
       "id": "1",
       "position": 0,
-      "capacity": 566.1,
+      "capacity": 871.1,
       "engines": [
         "1",
         "2"
       ],
-      "weightIni": 559.7,
+      "weightIni": 728.7,
       "qualityIni": [
-        64.97,
+        64.1,
+        0.64,
+        0.75,
         1.03,
-        5.44,
-        1.84,
-        1.18,
-        5.04
+        1.09,
+        5.4
       ]
     },
     {
       "id": "2",
       "position": 1,
-      "capacity": 607.2,
+      "capacity": 668.3,
       "engines": [
         "1",
         "2"
       ],
-      "weightIni": 510.4,
+      "weightIni": 555.5,
       "qualityIni": [
-        99.8,
-        1.41,
-        3.43,
-        1.42,
-        0.82,
-        3.9
+        84.73,
+        1.36,
+        0.84,
+        5.85,
+        1.2,
+        5.12
       ]
     },
     {
       "id": "3",
       "position": 2,
-      "capacity": 625.7,
+      "capacity": 914.5,
       "engines": [
         "1",
         "2"
       ],
-      "weightIni": 612.3,
+      "weightIni": 863.3,
       "qualityIni": [
-        84.58,
-        0.74,
-        3.9,
-        0.46,
-        0.27,
-        5.51
+        96.53,
+        0.81,
+        3.5,
+        0.63,
+        1.14,
+        5.11
       ]
     },
     {
       "id": "4",
       "position": 3,
-      "capacity": 620.7,
+      "capacity": 913.1,
       "engines": [
         "1",
         "2"
       ],
-      "weightIni": 541.2,
+      "weightIni": 857.2,
       "qualityIni": [
-        87.22,
-        0.11,
-        0.22,
-        5.46,
-        0.09,
-        3.83
+        62.92,
+        1.57,
+        5.48,
+        0.14,
+        0.48,
+        4.39
       ]
     },
     {
       "id": "5",
       "position": 4,
-      "capacity": 698.3,
+      "capacity": 854.8,
       "engines": [
         "1",
         "2"
       ],
-      "weightIni": 637.2,
+      "weightIni": 822.3,
       "qualityIni": [
-        76.16,
-        0.13,
-        5.47,
-        5.14,
-        0.14,
-        5.94
+        88.82,
+        1.78,
+        4.8,
+        1.74,
+        0.6,
+        3.15
       ]
     },
     {
       "id": "6",
       "position": 5,
-      "capacity": 585.3,
+      "capacity": 947.5,
       "engines": [
         "1",
         "2"
       ],
-      "weightIni": 538.0,
+      "weightIni": 907.5,
       "qualityIni": [
-        61.63,
-        1.1,
-        3.79,
-        4.71,
-        0.37,
-        5.94
+        68.21,
+        1.47,
+        5.4,
+        2.12,
+        1.2,
+        3.67
       ]
     }
   ],
   "engines": [
     {
       "id": "1",
-      "speedStack": 47.7,
-      "speedReclaim": 47.5,
+      "speedStack": 31.0,
+      "speedReclaim": 40.0,
       "posIni": 2,
       "stockpiles": [
         "1",
@@ -127,9 +127,9 @@
     },
     {
       "id": "2",
-      "speedStack": 38.7,
-      "speedReclaim": 26.4,
-      "posIni": 1,
+      "speedStack": 25.5,
+      "speedReclaim": 40.1,
+      "posIni": 0,
       "stockpiles": [
         "1",
         "2",
@@ -143,45 +143,45 @@
   "inputs": [
     {
       "id": "1",
-      "source": "3",
-      "weight": 124.1,
+      "source": "1",
+      "weight": 133.7,
       "quality": [
-        46.45,
-        0.42,
-        2.81,
-        5.38,
-        0.73,
-        4.39
+        56.99,
+        1.67,
+        4.02,
+        3.46,
+        0.62,
+        4.1
       ],
-      "time": 0.9
+      "time": 8.3
     },
     {
       "id": "2",
-      "source": "3",
-      "weight": 124.1,
+      "source": "1",
+      "weight": 133.7,
       "quality": [
-        61.85,
-        0.73,
-        5.03,
-        3.23,
-        0.62,
-        4.07
+        74.06,
+        0.2,
+        0.76,
+        0.23,
+        0.02,
+        4.78
       ],
-      "time": 6.1
+      "time": 9.4
     }
   ],
   "outputs": [
     {
       "id": "1",
       "destination": "1",
-      "weight": 1048.9,
+      "weight": 1080.2,
       "qualityGoal": [
-        84.64,
-        0.69,
-        0.25,
-        0.23,
-        0.22,
-        4.83
+        82.27,
+        0.64,
+        0.45,
+        0.28,
+        0.9,
+        3.95
       ],
       "qualityUpperLimit": [
         100,
@@ -199,19 +199,19 @@
         0,
         3.5
       ],
-      "time": 1.3
+      "time": 9.9
     },
     {
       "id": "2",
       "destination": "2",
-      "weight": 1022.9,
+      "weight": 1288.0,
       "qualityGoal": [
-        61.09,
-        0.89,
-        0.18,
-        0.21,
-        0.18,
-        3.68
+        91.79,
+        1.45,
+        0.02,
+        0.24,
+        0.24,
+        3.92
       ],
       "qualityUpperLimit": [
         100,
@@ -229,7 +229,7 @@
         0,
         3.5
       ],
-      "time": 2.0
+      "time": 6.0
     }
   ],
   "distancesTravel": [

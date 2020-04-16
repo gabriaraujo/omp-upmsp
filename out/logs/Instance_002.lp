@@ -9,11 +9,11 @@ Minimize
    + 1e+06 b_max_00 + 1e+06 b_max_10 + 1e+06 b_max_20 + 1e+06 b_max_30
    + 25 b_max_40 + 2 b_max_50
 Subject To
+ capacity_constr_0: x_00 <= 400
+ capacity_constr_1: x_10 <= 300
+ capacity_constr_2: x_20 <= 300
+ capacity_constr_3: x_30 <= 300
  demand_constr_0: x_00 + x_10 + x_20 + x_30 = 1000
- capacity_constr_00: x_00 <= 400
- capacity_constr_10: x_10 <= 300
- capacity_constr_20: x_20 <= 300
- capacity_constr_30: x_30 <= 300
  min_quality_constr_00: 5 x_00 + 10 x_10 + 15 x_20 - 5 x_30 + 1000 a_min_00
    >= -0
  max_quality_constr_00: - 40 x_00 - 35 x_10 - 30 x_20 - 50 x_30

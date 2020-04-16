@@ -58,9 +58,8 @@ def read_file(file_name: str) -> dict:
     return result
 
 
-def write_file(file_name: str, value: dict):
+def write_file(path: str, file_name: str, value: dict):
     """função para realizar a gravação do arquivo de saída."""
 
-    path = './out/json/'
     with open(path + file_name, 'w') as file:
         ujson.dump(value, file, indent=2)
