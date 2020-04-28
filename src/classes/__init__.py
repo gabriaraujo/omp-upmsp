@@ -4,3 +4,5 @@ from .stockpile import Stockpile
 from .engine import Engine
 from .input import Input
 from .output import Output
+from .quality import Quality
+from .request import Request

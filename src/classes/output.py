@@ -1,3 +1,6 @@
+from .request import Request
+
+
 class Output:
     """classe para salvar as informações de cada pedido."""
 
@@ -5,25 +8,19 @@ class Output:
                  id: int,
                  destination: int,
                  weight: float,
-                 quality_goal: [float],
-                 quality_upper_limit: [float],
-                 quality_lower_limit: [float],
+                 quality: [Request],
                  time: float):
         self._id = id
         self._destination = destination
         self._weight = weight
-        self._quality_goal = quality_goal
-        self._quality_upper_limit = quality_upper_limit
-        self._quality_lower_limit = quality_lower_limit
+        self._quality = quality
         self._time = time
 
     def __repr__(self):
         return f'id: {self._id}\n' + \
                f'destination: {self._destination}\n' + \
                f'weight: {self._weight}\n' + \
-               f'qualityGoal: {self._quality_goal}\n' + \
-               f'qualityUpperLimit: {self._quality_upper_limit}\n' + \
-               f'qualityLowerLimit: {self._quality_lower_limit}\n' + \
+               f'quality: {self._quality}\n' + \
                f'time: {self._time}\n'
 
     @property
@@ -54,31 +51,13 @@ class Output:
         self._weight = value
 
     @property
-    def quality_goal(self) -> [float]:
+    def quality(self) -> [Request]:
         """Output quality goal."""
-        return self._quality_goal
+        return self._quality
 
-    @quality_goal.setter
-    def quality_goal(self, value: [float]):
-        """Output quality goal."""
-
-    @property
-    def quality_upper_limit(self) -> [float]:
-        """Output quality upper limit."""
-        return self._quality_upper_limit
-
-    @quality_upper_limit.setter
-    def quality_upper_limit(self, value: [float]):
-        self._quality_upper_limit = value
-
-    @property
-    def quality_lower_limit(self) -> [float]:
-        """Output quality lower limit."""
-        return self._quality_lower_limit
-
-    @quality_lower_limit.setter
-    def quality_lower_limit(self, value: [float]):
-        self._quality_lower_limit = value
+    @quality.setter
+    def quality(self, value: [Request]):
+        self._quality = value
 
     @property
     def time(self) -> float:

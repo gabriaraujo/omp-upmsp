@@ -14,31 +14,29 @@ def read_file(file_name: str) -> dict:
     stockpiles = [Stockpile(data['id'],
                             data['position'],
                             data['capacity'],
-                            [int(i) for i in data['engines']],
+                            data['engines'],
                             data['weightIni'],
-                            data['qualityIni'])
+                            [Quality(*q.values()) for q in data['qualityIni']])
                   for data in data['stockpiles']]
 
     engines = [Engine(data['id'],
                       data['speedStack'],
                       data['speedReclaim'],
                       data['posIni'],
-                      [int(i) for i in data['stockpiles']])
+                      data['stockpiles'])
                for data in data['engines']]
 
     inputs = [Input(data['id'],
                     data['source'],
                     data['weight'],
-                    data['quality'],
+                    [Quality(*q.values()) for q in data['quality']],
                     data['time'])
               for data in data['inputs']]
 
     outputs = [Output(data['id'],
                       data['destination'],
                       data['weight'],
-                      data['qualityGoal'],
-                      data['qualityUpperLimit'],
-                      data['qualityLowerLimit'],
+                      [Request(*q.values()) for q in data['quality']],
                       data['time'])
                for data in data['outputs']]
 

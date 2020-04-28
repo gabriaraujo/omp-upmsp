@@ -9,7 +9,7 @@ def linear_model(out: [Output], stp: [Stockpile], info: str) -> (float, dict):
 
     # conjunto de pilhas, teores de qualidade e pedidos
     p = len(stp)
-    t = len(out[0].quality_goal)
+    t = len(out[0].quality)
     r = len(out)
 
     # criando variáveis
@@ -36,22 +36,22 @@ def linear_model(out: [Output], stp: [Stockpile], info: str) -> (float, dict):
     for k in range(r):
         # restrição de demanda
         omp += xsum(x[i, k] for i in range(p)) == out[k].weight, \
-               f'demand_constr_{k}'
+            f'demand_constr_{k}'
 
         # restrições de qualidade
         for j in range(t):
-            omp += xsum(x[i, k] * (stp[i].quality_ini[j] -
-                                   out[k].quality_lower_limit[j])
+            omp += xsum(x[i, k] * (stp[i].quality_ini[j].value -
+                                   out[k].quality[j].minimum)
                         for i in range(p)) + a_min[j, k] * out[k].weight >= 0, \
                 f'min_quality_constr_{j}{k}'
 
-            omp += xsum(x[i, k] * (stp[i].quality_ini[j] -
-                                   out[k].quality_upper_limit[j])
+            omp += xsum(x[i, k] * (stp[i].quality_ini[j].value -
+                                   out[k].quality[j].maximum)
                         for i in range(p)) - a_max[j, k] * out[k].weight <= 0, \
                 f'max_quality_constr_{j}{k}'
 
-            omp += xsum(x[i, k] * (stp[i].quality_ini[j] -
-                                   out[k].quality_goal[j])
+            omp += xsum(x[i, k] * (stp[i].quality_ini[j].value -
+                                   out[k].quality[j].goal)
                         for i in range(p)) + b_min[j, k] - b_max[j, k] == 0, \
                 f'goal_quality_constr_{j}{k}'
 
@@ -83,9 +83,9 @@ def sub(out: [Output], j: int, k: int, limit: str) -> float:
 
     ans = 0
     if limit == 'upr':
-        ans = out[k].quality_upper_limit[j] - out[k].quality_goal[j]
+        ans = out[k].quality[j].maximum - out[k].quality[j].goal
 
     elif limit == 'lwr':
-        ans = out[k].quality_goal[j] - out[k].quality_lower_limit[j]
+        ans = out[k].quality[j].goal - out[k].quality[j].minimum
 
     return ans if ans != 0 else 1e-6

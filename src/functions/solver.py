@@ -5,34 +5,66 @@ import numpy as np
 def solver(file: dict) -> dict:
     """verifica as saídas e combina as pilhas para atender o pedido."""
 
+    # resolve o modelo usando programação linear
+    objective, weight_list = linear_model(file['outputs'],
+                                          file['stockpiles'],
+                                          file['info'])
+
+    quality_mean(file, weight_list)
+
+    return format_file(file, objective)
+
+
+def format_file(file: dict, objective: float) -> dict:
+    """formata os resultados para o modelo de saída do arquivo .json"""
+
     # dicionário com resultados do modelo a serem gravados no arquivo .json
     result = {
         'info': file['info'],
-        'objective': None,
+        'objective': objective,
+        'reclaims': [],
         'outputs': []
     }
 
-    # resolve o modelo usando programação linear
-    result['objective'], weight_list = linear_model(file['outputs'],
-                                                    file['stockpiles'],
-                                                    file['info'])
+    requests = [out.quality for out in file['outputs']]
+    for req, out in zip(requests, file['outputs']):
+        quality_list = [
+            {
+                'parameter': quality.parameter,
+                'value': quality.value,
+                'minimum': quality.minimum,
+                'maximum': quality.maximum,
+                'goal': quality.goal,
+                'importance': quality.importance
+            } for quality in req]
 
-    quality_list = [stp.quality_ini for stp in file['stockpiles']]
-    weight_list = list(weight_list.values())
+        print(quality_list)
 
-    # calcula a qualidade final baseado no peso retirado de cada pilha
-    quality_mean = [np.average(quality_list, axis=0, weights=wl)
-                    for wl in weight_list]
-    quality_mean = [np.array(i).tolist() for i in quality_mean]
-
-    for weight, quality in zip(weight_list, quality_mean):
-        result['outputs'].append({'weight': weight,
-                                  'quality': quality})
+        result['outputs'].append({'weight': out.weight,
+                                  'start_time': 0,
+                                  'duration': 0,
+                                  'quality': quality_list})
 
     return result
 
 
-def set_routes(file: dict) -> [[str]]:
+def quality_mean(file: dict, weight_list: [float]):
+    """calcula o valor da qualidade final de cada pedido."""
+
+    weight_list = list(weight_list.values())
+    quality_list = [[quality.value for quality in stp.quality_ini]
+                    for stp in file['stockpiles']]
+
+    # calcula a qualidade final baseado no peso retirado de cada pilha
+    mean = [np.average(quality_list, axis=0, weights=wl) for wl in weight_list]
+
+    # atribui o valor calculado da qualidade ao parâmetro respectivo
+    for quality, out in zip(mean, file['outputs']):
+        for value, request in zip(quality, out.quality):
+            request.value = round(value, 1)
+
+
+def set_routes(file: dict) -> [[int]]:
     """define a ordem de funcionamento das máquinas."""
 
     routes = []
@@ -60,7 +92,7 @@ def set_routes(file: dict) -> [[str]]:
     return set_engines(file, routes)
 
 
-def set_engines(file: dict, routes: [[int]]) -> [[str]]:
+def set_engines(file: dict, routes: [[int]]) -> [[int]]:
     """define onde cada máquina irá atuar baseado em suas rotas."""
 
     result = [[] for _ in range(len(file['engines']))]
@@ -69,7 +101,7 @@ def set_engines(file: dict, routes: [[int]]) -> [[str]]:
     for rt in zip(*routes):
         for i, r in zip(rt, result):
             if visit[i] is False:
-                r.append(str(i))
+                r.append(i)
                 visit[i] = True
 
     return result

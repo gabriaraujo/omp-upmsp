@@ -35,10 +35,10 @@ def instance_gen(args: [str]) -> dict:
 
     # gera os valores para as pilhas de minério
     instance['stockpiles'] = [{
-        'id': str(i + 1),
+        'id': i + 1,
         'position': i,
         'capacity': cpty[i],
-        'engines': [str(eng + 1) for eng in range(engines)],
+        'engines': [eng + 1 for eng in range(engines)],
         'weightIni': round(random.uniform(lb * cpty[i], cpty[i]), 1),
         'qualityIni': gen_quality(lb, ub)
     } for i in range(stockpiles)]
@@ -47,18 +47,18 @@ def instance_gen(args: [str]) -> dict:
     stp = [i for i in range(stockpiles)]
     random.shuffle(stp)
     instance['engines'] = [{
-        'id': str(i + 1),
+        'id': i + 1,
         'speedStack': round(random.uniform(20, 50), 1),
         'speedReclaim': round(random.uniform(20, 50), 1),
         'posIni': stp.pop(),
-        'stockpiles': [str(j + 1) for j in range(stockpiles)]
+        'stockpiles': [j + 1 for j in range(stockpiles)]
     } for i in range(engines)]
 
     # gera os valores para a entrada de minérios
     src = random.randrange(1, stockpiles)
     instance['inputs'] = [{
-        'id': str(i + 1),
-        'source': str(src),
+        'id': i + 1,
+        'source': src,
         'weight': round(variant * cpty[src], 1),
         'quality': gen_quality(lb, ub),
         'time': round(random.uniform(0, 10), 1)
@@ -66,19 +66,53 @@ def instance_gen(args: [str]) -> dict:
 
     # gera os valores de cada pedido
     instance['outputs'] = [{
-        'id': str(i + 1),
-        'destination': str(i + 1),
+        'id': i + 1,
+        'destination': i + 1,
         "weight": round(random.uniform(lb * weight, ub * weight), 1),
-        "qualityGoal": [
-            round(random.uniform(55, 100), 2),
-            round(random.uniform(0, 1.5), 2),
-            round(random.uniform(0, 0.5), 2),
-            round(random.uniform(0, 0.5), 2),
-            round(random.uniform(0, 1), 2),
-            round(random.uniform(3.5, 5), 2)
+        "quality": [
+            {
+                'parameter': 'Fe',
+                'minimum': 55,
+                'maximum': 100,
+                'goal': round(random.uniform(55, 100), 2),
+                'importance': 10
+            },
+            {
+                'parameter': 'SiO2',
+                'minimum': 0,
+                'maximum': 1.5,
+                'goal': round(random.uniform(0, 1.5), 2),
+                'importance': 1000,
+            },
+            {
+                'parameter': 'AlO3',
+                'minimum': 0,
+                'maximum': 0.5,
+                'goal': round(random.uniform(0, 0.5), 2),
+                'importance': 100
+            },
+            {
+                'parameter': 'P',
+                'minimum': 0,
+                'maximum': 0.5,
+                'goal': round(random.uniform(0, 0.5), 2),
+                'importance': 100
+            },
+            {
+                'parameter': '+31.5',
+                'minimum': 0,
+                'maximum': 1,
+                'goal': round(random.uniform(0, 1), 2),
+                'importance': 100
+            },
+            {
+                'parameter': '-6.3',
+                'minimum:': 3.5,
+                'maximum': 5,
+                'goal': round(random.uniform(3.5, 5), 2),
+                'importance': 100
+            }
         ],
-        "qualityUpperLimit": [100, 1.5, 0.5, 0.5, 1.0, 5],
-        'qualityLowerLimit': [55, 0, 0, 0, 0, 3.5],
         "time": round(random.uniform(0, 10), 1)
     } for i in range(outputs)]
 
@@ -97,16 +131,34 @@ def instance_gen(args: [str]) -> dict:
     return instance
 
 
-def gen_quality(lb: float, ub: float) -> [float]:
+def gen_quality(lb: float, ub: float) -> [dict]:
     """gera a qualidade inicial para cada pilha de minério."""
 
     return [
-        round(random.uniform(55 * lb, 100), 2),
-        round(random.uniform(0, 1.5 * ub), 2),
-        round(random.uniform(0, 5 * ub), 2),
-        round(random.uniform(0, 5 * ub), 2),
-        round(random.uniform(0, 1 * ub), 2),
-        round(random.uniform(3.5 * lb, 5 * ub), 2)
+        {
+            'parameter': 'Fe',
+            'value': round(random.uniform(55 * lb, 100), 2)
+        },
+        {
+            'parameter': 'SiO2',
+            'value': round(random.uniform(0, 1.5 * ub), 2)
+        },
+        {
+            'parameter': 'Al2O3',
+            'value': round(random.uniform(0, 5 * ub), 2)
+        },
+        {
+            'parameter': 'P',
+            'value': round(random.uniform(0, 5 * ub), 2)
+        },
+        {
+            'parameter': '+31.5',
+            'value': round(random.uniform(0, 1 * ub), 2)
+        },
+        {
+            'parameter': '-6.3',
+            'value': round(random.uniform(3.5 * lb, 5 * ub), 2)
+        }
     ]
 
 

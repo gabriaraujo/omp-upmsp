@@ -1,11 +1,14 @@
+from .quality import Quality
+
+
 class Input:
     """classe para salvar as informações de cada entrada de minério."""
 
     def __init__(self,
                  id: int,
                  source: int,
-                 weight: int,
-                 quality: [float],
+                 weight: float,
+                 quality: [Quality],
                  time: float):
         self._id = id
         self._source = source
@@ -48,12 +51,12 @@ class Input:
         self._weight = value
 
     @property
-    def quality(self) -> [float]:
+    def quality(self) -> [Quality]:
         """Input quality."""
         return self._quality
 
     @quality.setter
-    def quality(self, value: [float]):
+    def quality(self, value: [Quality]):
         self._quality = value
 
     @property

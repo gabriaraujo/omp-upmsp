@@ -1,3 +1,6 @@
+from .quality import Quality
+
+
 class Stockpile:
     """classe para salvar as informações de cada pilha de minério."""
 
@@ -7,7 +10,7 @@ class Stockpile:
                  capacity: float,
                  engines: [int],
                  weight_ini: float,
-                 quality_ini: [float]):
+                 quality_ini: [Quality]):
         self._id = id
         self._position = position
         self._capacity = capacity
@@ -69,10 +72,10 @@ class Stockpile:
         self._weight_ini = value
 
     @property
-    def quality_ini(self) -> [float]:
+    def quality_ini(self) -> [Quality]:
         """Stockpile initial quality."""
         return self._quality_ini
 
     @quality_ini.setter
-    def quality_ini(self, value: [float]):
+    def quality_ini(self, value: [Quality]):
         self._quality_ini = value
