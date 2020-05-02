@@ -1,31 +1,63 @@
 {
   "info": "Instance_009",
   "objective": 4850000850.0,
+  "reclaims": [
+
+  ],
   "outputs": [
     {
-      "weight": [
-        400.0,
-        300.0,
-        0.0,
-        300.0
-      ],
+      "weight": 1000,
+      "start_time": 0,
+      "duration": 0,
       "quality": [
-        58.5,
-        1.15,
-        0.5,
-        1.0,
-        0.05,
-        4.3
-      ],
-      "engines": [
-        [
-          "2",
-          "3"
-        ],
-        [
-          "1",
-          "0"
-        ]
+        {
+          "parameter": "Fe",
+          "value": 58.5,
+          "minimum": 55,
+          "maximum": 100,
+          "goal": 55,
+          "importance": 10
+        },
+        {
+          "parameter": "SiO2",
+          "value": 1.2,
+          "minimum": 0,
+          "maximum": 1.5,
+          "goal": 1.5,
+          "importance": 1000
+        },
+        {
+          "parameter": "Al2O3",
+          "value": 0.5,
+          "minimum": 0,
+          "maximum": 0.5,
+          "goal": 0.5,
+          "importance": 100
+        },
+        {
+          "parameter": "P",
+          "value": 1.0,
+          "minimum": 0,
+          "maximum": 0.5,
+          "goal": 0.5,
+          "importance": 100
+        },
+        {
+          "parameter": "+31.5",
+          "value": 0.0,
+          "minimum": 0,
+          "maximum": 0.09,
+          "goal": 0.04,
+          "importance": 100
+        },
+        {
+          "parameter": "-6.3",
+          "value": 4.3,
+          "minimum": 3.5,
+          "maximum": 5,
+          "goal": 4,
+          "importance": 100
+        }
       ]
     }
   ]

@@ -38,8 +38,6 @@ def format_file(file: dict, objective: float) -> dict:
                 'importance': quality.importance
             } for quality in req]
 
-        print(quality_list)
-
         result['outputs'].append({'weight': out.weight,
                                   'start_time': 0,
                                   'duration': 0,

@@ -85,7 +85,7 @@ def instance_gen(args: [str]) -> dict:
                 'importance': 1000,
             },
             {
-                'parameter': 'AlO3',
+                'parameter': 'Al2O3',
                 'minimum': 0,
                 'maximum': 0.5,
                 'goal': round(random.uniform(0, 0.5), 2),

@@ -14,7 +14,7 @@ run:
 
 gen:
 	python3 src/gen.py instance_m1.json Instance_M001 4 600 2 1000 1 2 0.2
-	python3 src/gen.py instance_m2.json Instance_M002 4 600 2 1000 1 2 0.4
+	python3 src/gen.py instance_m2.json Instance_M002 4 800 2 1000 1 2 0.4
 	python3 src/gen.py instance_m3.json Instance_M003 6 800 2 1200 2 2 0.2
 	python3 src/gen.py instance_m4.json Instance_M004 6 800 2 1200 2 2 0.4
 	python3 src/gen.py instance_m5.json Instance_M005 6 1400 4 1200 2 3 0.2

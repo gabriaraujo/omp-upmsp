@@ -1,37 +1,118 @@
 {
   "info": "Instance_M002",
-  "objective": 237121.8229628214,
+  "objective": 339077.691945813,
+  "reclaims": [
+
+  ],
   "outputs": [
     {
-      "weight": [
-        0.0,
-        615.1,
-        380.6,
-        0.0
-      ],
+      "weight": 628.4,
+      "start_time": 0,
+      "duration": 0,
       "quality": [
-        75.3467660942051,
-        0.5946359345184293,
-        5.888224364768505,
-        1.8111328713467914,
-        0.3426262930601587,
-        4.3358320779351205
+        {
+          "parameter": "Fe",
+          "value": 82.9,
+          "minimum": 55,
+          "maximum": 100,
+          "goal": 81.54,
+          "importance": 10
+        },
+        {
+          "parameter": "SiO2",
+          "value": 0.4,
+          "minimum": 0,
+          "maximum": 1.5,
+          "goal": 1.25,
+          "importance": 1000
+        },
+        {
+          "parameter": "Al2O3",
+          "value": 4.6,
+          "minimum": 0,
+          "maximum": 0.5,
+          "goal": 0.02,
+          "importance": 100
+        },
+        {
+          "parameter": "P",
+          "value": 1.2,
+          "minimum": 0,
+          "maximum": 0.5,
+          "goal": 0.02,
+          "importance": 100
+        },
+        {
+          "parameter": "+31.5",
+          "value": 0.2,
+          "minimum": 0,
+          "maximum": 1,
+          "goal": 0.76,
+          "importance": 100
+        },
+        {
+          "parameter": "-6.3",
+          "value": 6.5,
+          "minimum": 3.5,
+          "maximum": 5,
+          "goal": 3.84,
+          "importance": 100
+        }
       ]
     },
     {
-      "weight": [
-        372.79999999999995,
-        0.0,
-        0.0,
-        499.0
-      ],
+      "weight": 1165.8,
+      "start_time": 0,
+      "duration": 0,
       "quality": [
-        40.3638449185593,
-        1.187304427621014,
-        2.9021128699242946,
-        4.871032346868547,
-        0.8234939206239964,
-        4.925739848589126
+        {
+          "parameter": "Fe",
+          "value": 75.9,
+          "minimum": 55,
+          "maximum": 100,
+          "goal": 59.98,
+          "importance": 10
+        },
+        {
+          "parameter": "SiO2",
+          "value": 0.1,
+          "minimum": 0,
+          "maximum": 1.5,
+          "goal": 0.36,
+          "importance": 1000
+        },
+        {
+          "parameter": "Al2O3",
+          "value": 0.5,
+          "minimum": 0,
+          "maximum": 0.5,
+          "goal": 0.49,
+          "importance": 100
+        },
+        {
+          "parameter": "P",
+          "value": 5.7,
+          "minimum": 0,
+          "maximum": 0.5,
+          "goal": 0.06,
+          "importance": 100
+        },
+        {
+          "parameter": "+31.5",
+          "value": 0.3,
+          "minimum": 0,
+          "maximum": 1,
+          "goal": 0.74,
+          "importance": 100
+        },
+        {
+          "parameter": "-6.3",
+          "value": 6.4,
+          "minimum": 3.5,
+          "maximum": 5,
+          "goal": 4.67,
+          "importance": 100
+        }
       ]
     }
   ]
