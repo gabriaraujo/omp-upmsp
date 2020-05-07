@@ -2,7 +2,126 @@
   "info": "Instance_M010",
   "objective": 309545.85280833044,
   "reclaims": [
-
+    {
+      "weight": 1548.1,
+      "stockpile": 3,
+      "engine": 4,
+      "start_time": 0,
+      "duration": 46.9,
+      "output": 1
+    },
+    {
+      "weight": 660.6,
+      "stockpile": 3,
+      "engine": 4,
+      "start_time": 46.9,
+      "duration": 20.0,
+      "output": 2
+    },
+    {
+      "weight": 596.7,
+      "stockpile": 2,
+      "engine": 4,
+      "start_time": 66.9,
+      "duration": 18.1,
+      "output": 2
+    },
+    {
+      "weight": 1320.6,
+      "stockpile": 1,
+      "engine": 1,
+      "start_time": 0.0,
+      "duration": 57.9,
+      "output": 3
+    },
+    {
+      "weight": 478.8,
+      "stockpile": 6,
+      "engine": 2,
+      "start_time": 0.0,
+      "duration": 16.6,
+      "output": 3
+    },
+    {
+      "weight": 58.9,
+      "stockpile": 2,
+      "engine": 4,
+      "start_time": 85.0,
+      "duration": 1.8,
+      "output": 3
+    },
+    {
+      "weight": 449.9,
+      "stockpile": 1,
+      "engine": 1,
+      "start_time": 57.9,
+      "duration": 19.7,
+      "output": 4
+    },
+    {
+      "weight": 397.3,
+      "stockpile": 5,
+      "engine": 2,
+      "start_time": 16.6,
+      "duration": 13.8,
+      "output": 4
+    },
+    {
+      "weight": 362.1,
+      "stockpile": 2,
+      "engine": 4,
+      "start_time": 86.8,
+      "duration": 11.0,
+      "output": 4
+    },
+    {
+      "weight": 526.7,
+      "stockpile": 5,
+      "engine": 2,
+      "start_time": 30.400000000000002,
+      "duration": 18.3,
+      "output": 5
+    },
+    {
+      "weight": 647.4,
+      "stockpile": 6,
+      "engine": 2,
+      "start_time": 48.7,
+      "duration": 22.5,
+      "output": 5
+    },
+    {
+      "weight": 74.8,
+      "stockpile": 2,
+      "engine": 4,
+      "start_time": 97.8,
+      "duration": 2.3,
+      "output": 5
+    },
+    {
+      "weight": 153.5,
+      "stockpile": 5,
+      "engine": 2,
+      "start_time": 71.2,
+      "duration": 5.3,
+      "output": 6
+    },
+    {
+      "weight": 1454.7,
+      "stockpile": 4,
+      "engine": 2,
+      "start_time": 76.5,
+      "duration": 50.5,
+      "output": 6
+    },
+    {
+      "weight": 154.3,
+      "stockpile": 0,
+      "engine": 3,
+      "start_time": 0.0,
+      "duration": 3.3,
+      "output": 6
+    }
   ],
   "outputs": [
     {

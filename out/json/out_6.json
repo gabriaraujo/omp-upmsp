@@ -2,7 +2,30 @@
   "info": "Instance_006",
   "objective": 4850000850.0,
   "reclaims": [
-
+    {
+      "weight": 300.0,
+      "stockpile": 3,
+      "engine": 1,
+      "start_time": 0.0,
+      "duration": 8.6,
+      "output": 1
+    },
+    {
+      "weight": 300.0,
+      "stockpile": 1,
+      "engine": 2,
+      "start_time": 0,
+      "duration": 8.6,
+      "output": 1
+    },
+    {
+      "weight": 400.0,
+      "stockpile": 0,
+      "engine": 2,
+      "start_time": 8.6,
+      "duration": 11.4,
+      "output": 1
+    }
   ],
   "outputs": [
     {

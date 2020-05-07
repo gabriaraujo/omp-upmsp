@@ -11,7 +11,7 @@ class Request(Quality):
                  goal: float,
                  importance: int):
 
-        super().__init__(parameter, goal)
+        super().__init__(parameter, 0)
         self._minimum = minimum
         self._maximum = maximum
         self._goal = goal

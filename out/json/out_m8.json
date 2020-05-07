@@ -2,7 +2,86 @@
   "info": "Instance_M008",
   "objective": 1632332579.8826127,
   "reclaims": [
-
+    {
+      "weight": 72.4,
+      "stockpile": 6,
+      "engine": 1,
+      "start_time": 0.0,
+      "duration": 1.5,
+      "output": 1
+    },
+    {
+      "weight": 1300.3,
+      "stockpile": 4,
+      "engine": 3,
+      "start_time": 0,
+      "duration": 46.6,
+      "output": 1
+    },
+    {
+      "weight": 868.4,
+      "stockpile": 7,
+      "engine": 1,
+      "start_time": 1.5,
+      "duration": 18.1,
+      "output": 2
+    },
+    {
+      "weight": 601.0,
+      "stockpile": 1,
+      "engine": 2,
+      "start_time": 0.0,
+      "duration": 14.4,
+      "output": 2
+    },
+    {
+      "weight": 249.5,
+      "stockpile": 0,
+      "engine": 2,
+      "start_time": 14.4,
+      "duration": 6.0,
+      "output": 3
+    },
+    {
+      "weight": 1218.4,
+      "stockpile": 1,
+      "engine": 2,
+      "start_time": 20.4,
+      "duration": 29.1,
+      "output": 3
+    },
+    {
+      "weight": 283.0,
+      "stockpile": 4,
+      "engine": 3,
+      "start_time": 46.6,
+      "duration": 10.1,
+      "output": 3
+    },
+    {
+      "weight": 275.3,
+      "stockpile": 6,
+      "engine": 1,
+      "start_time": 19.6,
+      "duration": 5.7,
+      "output": 4
+    },
+    {
+      "weight": 552.1,
+      "stockpile": 0,
+      "engine": 2,
+      "start_time": 49.5,
+      "duration": 13.2,
+      "output": 4
+    },
+    {
+      "weight": 48.1,
+      "stockpile": 2,
+      "engine": 3,
+      "start_time": 56.7,
+      "duration": 1.7,
+      "output": 4
+    }
   ],
   "outputs": [
     {

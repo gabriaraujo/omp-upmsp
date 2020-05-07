@@ -10,19 +10,33 @@ def solver(file: dict) -> dict:
                                           file['stockpiles'],
                                           file['info'])
 
+    # converte o dicionário com os pesos de cada pedido em um lista de listas
+    weight_list = list(weight_list.values())
+
+    # lista com o tempo de início de trabalho de cada máquina
+    start_time = [0] * len(file['engines'])
+
+    # gera uma lista com os valores retirados das pilhas para cada pedido
+    reclaims = [set_reclaims(file, out.id, wl, start_time)
+                for wl, out in zip(weight_list, file['outputs'])]
+
+    # transforma o resultado em uma única lista
+    reclaims = [item for sublist in reclaims for item in sublist]
+
+    # altera os valores de qualidade obtidos de cada parâmetro para cada pedido
     quality_mean(file, weight_list)
 
-    return format_file(file, objective)
+    return format_file(file, objective, reclaims)
 
 
-def format_file(file: dict, objective: float) -> dict:
+def format_file(file: dict, objective: float, reclaims: [dict]) -> dict:
     """formata os resultados para o modelo de saída do arquivo .json"""
 
     # dicionário com resultados do modelo a serem gravados no arquivo .json
     result = {
         'info': file['info'],
         'objective': objective,
-        'reclaims': [],
+        'reclaims': reclaims,
         'outputs': []
     }
 
@@ -46,10 +60,9 @@ def format_file(file: dict, objective: float) -> dict:
     return result
 
 
-def quality_mean(file: dict, weight_list: [float]):
+def quality_mean(file: dict, weight_list: [[float]]):
     """calcula o valor da qualidade final de cada pedido."""
 
-    weight_list = list(weight_list.values())
     quality_list = [[quality.value for quality in stp.quality_ini]
                     for stp in file['stockpiles']]
 
@@ -66,23 +79,24 @@ def set_routes(file: dict) -> [[int]]:
     """define a ordem de funcionamento das máquinas."""
 
     routes = []
-    dist = file['distances_travel']
+    distances = file['distances_travel']
     for eng in file['engines']:
         # lista para indicar se a máquina já visitou a pilha
-        visit = [False] * len(file['stockpiles'])
-        visit[eng.pos_ini] = True
+        visited = [False] * len(file['stockpiles'])
+        visited[eng.pos_ini] = True
 
         route = [eng.pos_ini]
         pos = eng.pos_ini
 
         # encontra a pilha mais próxima da máquina e a adiciona na rota
-        while not all(visit):
-            closer = min(i for i in dist[pos] if i > 0 and
-                         visit[dist[pos].index(i)] is False)
+        while not all(visited):
+            closer = min(dist for dist, is_visited in
+                         zip(distances[pos], visited)
+                         if dist > 0 and is_visited is False)
 
-            pos = dist[pos].index(closer)
+            pos = distances[pos].index(closer)
             route.append(pos)
-            visit[pos] = True
+            visited[pos] = True
 
         # anexa a rota da máquina à lista de rotas
         routes.append(route)
@@ -93,13 +107,37 @@ def set_routes(file: dict) -> [[int]]:
 def set_engines(file: dict, routes: [[int]]) -> [[int]]:
     """define onde cada máquina irá atuar baseado em suas rotas."""
 
+    # result salva as lista de pilhas visitadas por cada máquina
     result = [[] for _ in range(len(file['engines']))]
-    visit = [False] * len(file['stockpiles'])
+    visited = [False] * len(file['stockpiles'])
 
-    for rt in zip(*routes):
-        for i, r in zip(rt, result):
-            if visit[i] is False:
-                r.append(i)
-                visit[i] = True
+    # t_stp é uma tupla das pilhas a serem visitadas por cada máquina
+    for t_stp in zip(*routes):
+        for stp, r in zip(t_stp, result):
+            if not visited[stp]:
+                r.append(stp)
+                visited[stp] = True
 
     return result
+
+
+def set_reclaims(file: dict, id: int, wl: [float], time: [float]) -> [dict]:
+    """define quanto vai ser tirado de cada pilha, a velocidade e o tempo."""
+
+    reclaims = []
+    for eng, route, in zip(file['engines'], set_routes(file)):
+        eng_index = file['engines'].index(eng)
+
+        for stp in route:
+            duration = round(wl[stp] / eng.speed_reclaim, 1)
+            reclaims.append({
+                "weight": round(wl[stp], 1),
+                "stockpile": stp,
+                "engine": eng.id,
+                "start_time": time[eng_index],
+                "duration": duration,
+                "output": id
+            }) if wl[stp] > 0 else None
+            time[eng_index] += duration
+
+    return reclaims

@@ -30,7 +30,7 @@ def linear_model(out: [Output], stp: [Stockpile], info: str) -> (float, dict):
     # restrição de capacidade
     for i in range(p):
         omp += xsum(x[i, k] for k in range(r)) <= stp[i].weight_ini, \
-            f'capacity_constr_{i}'
+               f'capacity_constr_{i}'
 
     # criando restrições
     for k in range(r):
@@ -58,13 +58,18 @@ def linear_model(out: [Output], stp: [Stockpile], info: str) -> (float, dict):
     # peso das restrições na função objetivo
     w_1, w_2 = 1e3, 1
 
+    # desvio dos limites
+    d_limit = xsum(a_min[j, k] / sub(out, j, k, 'lb') +
+                   a_max[j, k] / sub(out, j, k, 'ub')
+                   for j in range(t) for k in range(r))
+
+    # desvio da meta
+    d_goal = xsum((b_min[j, k] + b_max[j, k]) /
+                  min(sub(out, j, k, 'lb'), sub(out, j, k, 'ub'))
+                  for j in range(t) for k in range(r))
+
     # função objetivo: w_1 * desvio_dos_limites + w_2 * desvio_da_meta
-    omp += w_1 * xsum(a_min[j, k] / sub(out, j, k, 'lwr') +
-                      a_max[j, k] / sub(out, j, k, 'upr')
-                      for j in range(t) for k in range(r)) \
-        + w_2 * xsum((b_min[j, k] + b_max[j, k]) / min(sub(out, j, k, 'lwr'),
-                                                       sub(out, j, k, 'upr'))
-                     for j in range(t) for k in range(r))
+    omp += w_1 * d_limit + w_2 * d_goal
 
     # resolvendo modelo
     omp.write(f'./out/logs/{info}.lp')
@@ -78,14 +83,14 @@ def linear_model(out: [Output], stp: [Stockpile], info: str) -> (float, dict):
     return omp.objective_value, weights
 
 
-def sub(out: [Output], j: int, k: int, limit: str) -> float:
+def sub(out: [Output], j: int, k: int, bound: str) -> float:
     """auxilia no calculo das unidades de desvio e evita divisão por zero."""
 
     ans = 0
-    if limit == 'upr':
+    if bound == 'ub':
         ans = out[k].quality[j].maximum - out[k].quality[j].goal
 
-    elif limit == 'lwr':
+    elif bound == 'lb':
         ans = out[k].quality[j].goal - out[k].quality[j].minimum
 
     return ans if ans != 0 else 1e-6

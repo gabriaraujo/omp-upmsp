@@ -2,7 +2,38 @@
   "info": "Instance_M002",
   "objective": 339077.691945813,
   "reclaims": [
-
+    {
+      "weight": 19.4,
+      "stockpile": 2,
+      "engine": 2,
+      "start_time": 0,
+      "duration": 0.8,
+      "output": 1
+    },
+    {
+      "weight": 609.0,
+      "stockpile": 0,
+      "engine": 2,
+      "start_time": 0.8,
+      "duration": 24.6,
+      "output": 1
+    },
+    {
+      "weight": 976.1,
+      "stockpile": 2,
+      "engine": 2,
+      "start_time": 25.400000000000002,
+      "duration": 39.4,
+      "output": 2
+    },
+    {
+      "weight": 189.7,
+      "stockpile": 1,
+      "engine": 2,
+      "start_time": 64.8,
+      "duration": 7.6,
+      "output": 2
+    }
   ],
   "outputs": [
     {

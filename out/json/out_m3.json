@@ -2,7 +2,46 @@
   "info": "Instance_M003",
   "objective": 182543.13057064672,
   "reclaims": [
-
+    {
+      "weight": 470.1,
+      "stockpile": 2,
+      "engine": 1,
+      "start_time": 0,
+      "duration": 11.2,
+      "output": 1
+    },
+    {
+      "weight": 672.8,
+      "stockpile": 3,
+      "engine": 2,
+      "start_time": 0,
+      "duration": 14.3,
+      "output": 1
+    },
+    {
+      "weight": 30.4,
+      "stockpile": 2,
+      "engine": 1,
+      "start_time": 11.2,
+      "duration": 0.7,
+      "output": 2
+    },
+    {
+      "weight": 786.6,
+      "stockpile": 0,
+      "engine": 1,
+      "start_time": 11.899999999999999,
+      "duration": 18.8,
+      "output": 2
+    },
+    {
+      "weight": 599.0,
+      "stockpile": 4,
+      "engine": 2,
+      "start_time": 14.3,
+      "duration": 12.7,
+      "output": 2
+    }
   ],
   "outputs": [
     {

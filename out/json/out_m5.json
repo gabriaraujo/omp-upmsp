@@ -2,7 +2,70 @@
   "info": "Instance_M005",
   "objective": 656560.1073480522,
   "reclaims": [
-
+    {
+      "weight": 1041.0,
+      "stockpile": 3,
+      "engine": 3,
+      "start_time": 0.0,
+      "duration": 28.8,
+      "output": 1
+    },
+    {
+      "weight": 471.8,
+      "stockpile": 1,
+      "engine": 1,
+      "start_time": 0.0,
+      "duration": 13.7,
+      "output": 2
+    },
+    {
+      "weight": 71.3,
+      "stockpile": 0,
+      "engine": 2,
+      "start_time": 0.0,
+      "duration": 2.4,
+      "output": 2
+    },
+    {
+      "weight": 885.2,
+      "stockpile": 5,
+      "engine": 3,
+      "start_time": 28.8,
+      "duration": 24.5,
+      "output": 2
+    },
+    {
+      "weight": 1145.3,
+      "stockpile": 0,
+      "engine": 2,
+      "start_time": 2.4,
+      "duration": 38.4,
+      "output": 3
+    },
+    {
+      "weight": 983.0,
+      "stockpile": 1,
+      "engine": 1,
+      "start_time": 13.7,
+      "duration": 28.5,
+      "output": 4
+    },
+    {
+      "weight": 87.7,
+      "stockpile": 3,
+      "engine": 3,
+      "start_time": 53.3,
+      "duration": 2.4,
+      "output": 4
+    },
+    {
+      "weight": 200.4,
+      "stockpile": 5,
+      "engine": 3,
+      "start_time": 55.699999999999996,
+      "duration": 5.5,
+      "output": 4
+    }
   ],
   "outputs": [
     {
