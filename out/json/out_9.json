@@ -1,28 +1,28 @@
 {
   "info": "Instance_009",
-  "objective": 4850000850.0,
+  "objective": 52700001050.0,
   "reclaims": [
     {
-      "weight": 300.0,
+      "weight": 400.0,
       "stockpile": 3,
       "engine": 1,
       "start_time": 0.0,
-      "duration": 8.6,
+      "duration": 11.4,
       "output": 1
     },
     {
-      "weight": 300.0,
+      "weight": 200.0,
       "stockpile": 1,
       "engine": 2,
       "start_time": 0,
-      "duration": 8.6,
+      "duration": 5.7,
       "output": 1
     },
     {
       "weight": 400.0,
       "stockpile": 0,
       "engine": 2,
-      "start_time": 8.6,
+      "start_time": 5.7,
       "duration": 11.4,
       "output": 1
     }
@@ -35,7 +35,7 @@
       "quality": [
         {
           "parameter": "Fe",
-          "value": 58.5,
+          "value": 57.0,
           "minimum": 55,
           "maximum": 100,
           "goal": 55,
@@ -43,7 +43,7 @@
         },
         {
           "parameter": "SiO2",
-          "value": 1.2,
+          "value": 1.3,
           "minimum": 0,
           "maximum": 1.5,
           "goal": 1.5,
@@ -75,7 +75,7 @@
         },
         {
           "parameter": "-6.3",
-          "value": 4.3,
+          "value": 4.4,
           "minimum": 3.5,
           "maximum": 5,
           "goal": 4,

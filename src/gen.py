@@ -8,19 +8,19 @@ def generate():
     write_file('./tests/', sys.argv[1], instance_gen(sys.argv[2:]))
 
 
-def instance_gen(args: [str]) -> dict:
+def instance_gen(argv: [str]) -> dict:
     """gerador de instâncias pseudo-aleatórias."""
 
     # converte todos os parametros para os tipos corretos
-    argc = len(args)
-    name = args[0] if argc > 0 else f'Instance_R{random.randint(1, 1e3)}'
-    stockpiles = int(args[1]) if argc > 1 else 4
-    capacity = float(args[2]) if argc > 2 else 400
-    outputs = int(args[3]) if argc > 3 else 1
-    weight = float(args[4]) if argc > 4 else 1000
-    inputs = int(args[5]) if argc > 5 else 1
-    engines = int(args[6]) if argc > 6 else 2
-    variant = float(args[7]) if argc > 7 else 0.2
+    argc = len(argv)
+    name = argv[0] if argc > 0 else f'Instance_R{random.randint(1, 1e3)}'
+    stockpiles = int(argv[1]) if argc > 1 else 4
+    capacity = float(argv[2]) if argc > 2 else 400
+    outputs = int(argv[3]) if argc > 3 else 1
+    weight = float(argv[4]) if argc > 4 else 1000
+    inputs = int(argv[5]) if argc > 5 else 1
+    engines = int(argv[6]) if argc > 6 else 2
+    variant = float(argv[7]) if argc > 7 else 0.2
 
     # cria um dicionário para salvar os dados gerados
     instance = {'info': name}
@@ -59,7 +59,7 @@ def instance_gen(args: [str]) -> dict:
     instance['inputs'] = [{
         'id': i + 1,
         'source': src,
-        'weight': round(variant * cpty[src], 1),
+        'weight': round(variant * cpty[src] * 0.25, 1),
         'quality': gen_quality(lb, ub),
         'time': round(random.uniform(0, 10), 1)
     } for i in range(inputs)]

@@ -8,6 +8,7 @@ def solver(file: dict) -> dict:
     # resolve o modelo usando programação linear
     objective, weight_list = linear_model(file['outputs'],
                                           file['stockpiles'],
+                                          file['inputs'],
                                           file['info'])
 
     # converte o dicionário com os pesos de cada pedido em um lista de listas
@@ -40,22 +41,23 @@ def format_file(file: dict, objective: float, reclaims: [dict]) -> dict:
         'outputs': []
     }
 
-    requests = [out.quality for out in file['outputs']]
-    for req, out in zip(requests, file['outputs']):
-        quality_list = [
-            {
-                'parameter': quality.parameter,
-                'value': quality.value,
-                'minimum': quality.minimum,
-                'maximum': quality.maximum,
-                'goal': quality.goal,
-                'importance': quality.importance
-            } for quality in req]
+    if objective is not None:
+        requests = [out.quality for out in file['outputs']]
+        for req, out in zip(requests, file['outputs']):
+            quality_list = [
+                {
+                    'parameter': quality.parameter,
+                    'value': quality.value,
+                    'minimum': quality.minimum,
+                    'maximum': quality.maximum,
+                    'goal': quality.goal,
+                    'importance': quality.importance
+                } for quality in req]
 
-        result['outputs'].append({'weight': out.weight,
-                                  'start_time': 0,
-                                  'duration': 0,
-                                  'quality': quality_list})
+            result['outputs'].append({'weight': out.weight,
+                                    'start_time': 0,
+                                    'duration': 0,
+                                    'quality': quality_list})
 
     return result
 
@@ -66,13 +68,18 @@ def quality_mean(file: dict, weight_list: [[float]]):
     quality_list = [[quality.value for quality in stp.quality_ini]
                     for stp in file['stockpiles']]
 
-    # calcula a qualidade final baseado no peso retirado de cada pilha
-    mean = [np.average(quality_list, axis=0, weights=wl) for wl in weight_list]
+    try:
+        # calcula a qualidade final baseado no peso retirado de cada pilha
+        mean = [np.average(quality_list, axis=0, weights=wl) 
+                for wl in weight_list]
 
-    # atribui o valor calculado da qualidade ao parâmetro respectivo
-    for quality, out in zip(mean, file['outputs']):
-        for value, request in zip(quality, out.quality):
-            request.value = round(value, 1)
+        # atribui o valor calculado da qualidade ao parâmetro respectivo
+        for quality, out in zip(mean, file['outputs']):
+            for value, request in zip(quality, out.quality):
+                request.value = round(value, 1)
+    
+    except ZeroDivisionError:
+        pass
 
 
 def set_routes(file: dict) -> [[int]]:
@@ -122,7 +129,7 @@ def set_engines(file: dict, routes: [[int]]) -> [[int]]:
 
 
 def set_reclaims(file: dict, id: int, wl: [float], time: [float]) -> [dict]:
-    """define quanto vai ser tirado de cada pilha, a velocidade e o tempo."""
+    """define quanto vai ser retirado de cada pilha, a velocidade e o tempo."""
 
     reclaims = []
     for eng, route, in zip(file['engines'], set_routes(file)):
@@ -131,12 +138,12 @@ def set_reclaims(file: dict, id: int, wl: [float], time: [float]) -> [dict]:
         for stp in route:
             duration = round(wl[stp] / eng.speed_reclaim, 1)
             reclaims.append({
-                "weight": round(wl[stp], 1),
-                "stockpile": stp,
-                "engine": eng.id,
-                "start_time": time[eng_index],
-                "duration": duration,
-                "output": id
+                'weight': round(wl[stp], 1),
+                'stockpile': stp,
+                'engine': eng.id,
+                'start_time': round(time[eng_index], 1),
+                'duration': duration,
+                'output': id
             }) if wl[stp] > 0 else None
             time[eng_index] += duration
 

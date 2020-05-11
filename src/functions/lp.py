@@ -1,21 +1,29 @@
 from mip import *
-from classes import Output, Stockpile
+from classes import Output, Stockpile, Input
 
 
-def linear_model(out: [Output], stp: [Stockpile], info: str) -> (float, dict):
+def linear_model(out: [Output], 
+                 stp: [Stockpile],
+                 inp: [Input],
+                 info: str) -> (float, dict):
     """resolve o problema de mistura de minérios com programação linear."""
 
     omp = Model('Ore Mixing Problem')
 
-    # conjunto de pilhas, teores de qualidade e pedidos
+    # conjunto de pilhas, teores de qualidade, pedidos e entradas
     p = len(stp)
     t = len(out[0].quality)
     r = len(out)
+    e = len(inp)
 
     # criando variáveis
     # x_ik indica a quantidade de minério retirada da pilha i para o pedido k
     x = {(i, k): omp.add_var(name=f'x_{i}{k}')
          for i in range(p) for k in range(r)}
+
+    # y_li indica a quantidade de minério retirada do input l para a pilha i
+    y = {(l, i): omp.add_var(name=f'y_{l}{i}')
+         for l in range(e) for i in range(p)}
 
     # var_jk indica o teor de qualidade j do pedido k
     a_max = {(j, k): omp.add_var(name=f'a_max_{j}{k}')
@@ -27,10 +35,19 @@ def linear_model(out: [Output], stp: [Stockpile], info: str) -> (float, dict):
     b_max = {(j, k): omp.add_var(name=f'b_max_{j}{k}')
              for j in range(t) for k in range(r)}
 
-    # restrição de capacidade
+    # restrição de capacidade das entradas
+    for l in range(e):
+        omp += xsum(y[l, i] for i in range(p)) <= inp[l].weight, \
+            f'input_weitgh_constr_{l}'
+
+    # restrição de capacidade das pilhas
     for i in range(p):
-        omp += xsum(x[i, k] for k in range(r)) <= stp[i].weight_ini, \
-               f'capacity_constr_{i}'
+        omp += xsum(y[l, i] for l in range(e)) + stp[i].weight_ini \
+            <= stp[i].capacity, f'capacity_constr_{i}'
+
+        for l in range(e):
+            omp += xsum(x[i, k] for k in range(r)) \
+                <= stp[i].weight_ini + y[l, i], f'weitgh_constr_{i}{l}'
 
     # criando restrições
     for k in range(r):
@@ -40,32 +57,40 @@ def linear_model(out: [Output], stp: [Stockpile], info: str) -> (float, dict):
 
         # restrições de qualidade
         for j in range(t):
-            omp += xsum(x[i, k] * (stp[i].quality_ini[j].value -
-                                   out[k].quality[j].minimum)
-                        for i in range(p)) + a_min[j, k] * out[k].weight >= 0, \
+            # restrição de desvio da qualidade mínima
+            q_1 = xsum(x[i, k] * (stp[i].quality_ini[j].value - 
+                                  out[k].quality[j].minimum) for i in range(p))
+
+            omp += q_1 + a_min[j, k] * out[k].weight >= 0, \
                 f'min_quality_constr_{j}{k}'
 
-            omp += xsum(x[i, k] * (stp[i].quality_ini[j].value -
-                                   out[k].quality[j].maximum)
-                        for i in range(p)) - a_max[j, k] * out[k].weight <= 0, \
+            # restrição de desvio da qualidade máxima
+            q_2 = xsum(x[i, k] * (stp[i].quality_ini[j].value -
+                                  out[k].quality[j].maximum) for i in range(p))
+
+            omp += q_2 - a_max[j, k] * out[k].weight <= 0, \
                 f'max_quality_constr_{j}{k}'
 
-            omp += xsum(x[i, k] * (stp[i].quality_ini[j].value -
-                                   out[k].quality[j].goal)
-                        for i in range(p)) + b_min[j, k] - b_max[j, k] == 0, \
+            # restrição de desvio da meta de qualidade
+            q_3 = xsum(x[i, k] * (stp[i].quality_ini[j].value -
+                                  out[k].quality[j].goal) for i in range(p))
+
+            omp += q_3 + b_min[j, k] - b_max[j, k] == 0, \
                 f'goal_quality_constr_{j}{k}'
 
     # peso das restrições na função objetivo
     w_1, w_2 = 1e3, 1
 
     # desvio dos limites
-    d_limit = xsum(a_min[j, k] / sub(out, j, k, 'lb') +
-                   a_max[j, k] / sub(out, j, k, 'ub')
+    d_limit = xsum(out[k].quality[j].importance * 
+                   a_min[j, k] / normalize(out, j, k, 'lb') +
+                   out[k].quality[j].importance * 
+                   a_max[j, k] / normalize(out, j, k, 'ub')
                    for j in range(t) for k in range(r))
 
     # desvio da meta
     d_goal = xsum((b_min[j, k] + b_max[j, k]) /
-                  min(sub(out, j, k, 'lb'), sub(out, j, k, 'ub'))
+                  min(normalize(out, j, k, 'lb'), normalize(out, j, k, 'ub'))
                   for j in range(t) for k in range(r))
 
     # função objetivo: w_1 * desvio_dos_limites + w_2 * desvio_da_meta
@@ -75,21 +100,29 @@ def linear_model(out: [Output], stp: [Stockpile], info: str) -> (float, dict):
     omp.write(f'./out/logs/{info}.lp')
     omp.optimize()
 
-    # dicionário com as massas retiradas de cada pilha i para cada pedido k
-    weights = {
-        f'id: {out[k].id}': [x[i, k].x for i in range(p)] for k in range(r)
-    }
+    if omp.num_solutions > 0:
+        # dicionário com as massas retiradas de cada pilha i para cada pedido k
+        return omp.objective_value, {
+            f'id: {out[k].id}': [x[i, k].x for i in range(p)] for k in range(r)
+        }
 
-    return omp.objective_value, weights
+    else:
+        return None, {
+            f'id: {out[k].id}': [0 for i in range(p)] for k in range(r)
+        }
 
 
-def sub(out: [Output], j: int, k: int, bound: str) -> float:
+def normalize(out: [Output], j: int, k: int, bound: str) -> float:
     """auxilia no calculo das unidades de desvio e evita divisão por zero."""
 
+    # out[k].quality[j] indica o teor de qualidade j do pedido k
     ans = 0
+
+    # ub indica que o cálculo deve ser normalizado feito pela qualidade máxima
     if bound == 'ub':
         ans = out[k].quality[j].maximum - out[k].quality[j].goal
 
+    # lb indica que o cálculo deve ser normalizado feito pela qualidade mínima
     elif bound == 'lb':
         ans = out[k].quality[j].goal - out[k].quality[j].minimum
 
