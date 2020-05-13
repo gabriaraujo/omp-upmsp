@@ -5,7 +5,7 @@ from classes import Output, Stockpile, Input
 def linear_model(out: [Output], 
                  stp: [Stockpile],
                  inp: [Input],
-                 info: str) -> (float, dict):
+                 info: str) -> (float, dict, dict):
     """resolve o problema de mistura de minérios com programação linear."""
 
     omp = Model('Ore Mixing Problem')
@@ -102,12 +102,19 @@ def linear_model(out: [Output],
 
     if omp.num_solutions > 0:
         # dicionário com as massas retiradas de cada pilha i para cada pedido k
-        return omp.objective_value, {
+        weights = {
             f'id: {out[k].id}': [x[i, k].x for i in range(p)] for k in range(r)
         }
 
+        # dicionário com as massas retiradas de cada input j para cada pilha i
+        inputs = {
+            f'id: {stp[i].id}': [y[l, i].x for l in range(e)] for i in range(p)
+        }
+
+        return omp.objective_value, inputs, weights
+
     else:
-        return None, {
+        return None, {}, {
             f'id: {out[k].id}': [0 for i in range(p)] for k in range(r)
         }
 

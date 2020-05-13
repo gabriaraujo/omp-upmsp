@@ -6,13 +6,14 @@ def solver(file: dict) -> dict:
     """verifica as saídas e combina as pilhas para atender o pedido."""
 
     # resolve o modelo usando programação linear
-    objective, weight_list = linear_model(file['outputs'],
-                                          file['stockpiles'],
-                                          file['inputs'],
-                                          file['info'])
+    objective, input_dict, weight_dict = linear_model(file['outputs'],
+                                                      file['stockpiles'],
+                                                      file['inputs'],
+                                                      file['info'])
 
-    # converte o dicionário com os pesos de cada pedido em um lista de listas
-    weight_list = list(weight_list.values())
+    # converte os dicionários com os pesos de cada pedido em um lista de listas
+    weight_list = list(weight_dict.values())
+    input_list = list(input_dict.values())
 
     # lista com o tempo de início de trabalho de cada máquina
     start_time = [0] * len(file['engines'])
@@ -55,9 +56,9 @@ def format_file(file: dict, objective: float, reclaims: [dict]) -> dict:
                 } for quality in req]
 
             result['outputs'].append({'weight': out.weight,
-                                    'start_time': 0,
-                                    'duration': 0,
-                                    'quality': quality_list})
+                                      'start_time': 0,
+                                      'duration': 0,
+                                      'quality': quality_list})
 
     return result
 
@@ -132,19 +133,22 @@ def set_reclaims(file: dict, id: int, wl: [float], time: [float]) -> [dict]:
     """define quanto vai ser retirado de cada pilha, a velocidade e o tempo."""
 
     reclaims = []
+    travel = file['time_travel']
     for eng, route, in zip(file['engines'], set_routes(file)):
         eng_index = file['engines'].index(eng)
 
-        for stp in route:
+        for i, stp in enumerate(route):
             duration = round(wl[stp] / eng.speed_reclaim, 1)
+            time_travel = travel[stp][route[i - 1]] \
+                          if stp is not eng.pos_ini else travel[stp][stp]
             reclaims.append({
                 'weight': round(wl[stp], 1),
                 'stockpile': stp,
                 'engine': eng.id,
-                'start_time': round(time[eng_index], 1),
+                'start_time': round(time[eng_index] + time_travel, 1),
                 'duration': duration,
                 'output': id
             }) if wl[stp] > 0 else None
-            time[eng_index] += duration
+            time[eng_index] += duration + time_travel
 
     return reclaims
