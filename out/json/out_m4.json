@@ -1,44 +1,53 @@
 {
   "info": "Instance_M004",
   "objective": 1721486.5882067883,
+  "stacks": [
+    {
+      "weight": 167.2,
+      "stockpile": 3,
+      "engine": 1,
+      "start_time": 70.0,
+      "duration": 4.1
+    }
+  ],
   "reclaims": [
     {
       "weight": 63.1,
-      "stockpile": 2,
+      "stockpile": 3,
       "engine": 1,
-      "start_time": 0.0,
+      "start_time": 84.1,
       "duration": 2.8,
       "output": 1
     },
     {
       "weight": 294.6,
-      "stockpile": 5,
+      "stockpile": 6,
       "engine": 2,
-      "start_time": 0,
+      "start_time": 10.0,
       "duration": 10.1,
       "output": 1
     },
     {
       "weight": 507.1,
-      "stockpile": 3,
+      "stockpile": 4,
       "engine": 2,
-      "start_time": 10.1,
+      "start_time": 80.1,
       "duration": 17.4,
       "output": 1
     },
     {
       "weight": 671.1,
-      "stockpile": 2,
+      "stockpile": 3,
       "engine": 1,
-      "start_time": 2.8,
+      "start_time": 86.9,
       "duration": 30.2,
       "output": 2
     },
     {
       "weight": 54.1,
-      "stockpile": 3,
+      "stockpile": 4,
       "engine": 2,
-      "start_time": 27.5,
+      "start_time": 107.5,
       "duration": 1.9,
       "output": 2
     }
@@ -46,8 +55,8 @@
   "outputs": [
     {
       "weight": 864.8,
-      "start_time": 0,
-      "duration": 0,
+      "start_time": 10.0,
+      "duration": 87.5,
       "quality": [
         {
           "parameter": "Fe",
@@ -101,8 +110,8 @@
     },
     {
       "weight": 725.2,
-      "start_time": 0,
-      "duration": 0,
+      "start_time": 86.9,
+      "duration": 30.2,
       "quality": [
         {
           "parameter": "Fe",

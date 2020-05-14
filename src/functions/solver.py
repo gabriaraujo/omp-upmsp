@@ -13,31 +13,36 @@ def solver(file: dict) -> dict:
 
     # converte os dicionários com os pesos de cada pedido em um lista de listas
     weight_list = list(weight_dict.values())
-    input_list = list(input_dict.values())
+    input_list = [sum(inp) for inp in list(input_dict.values())]
 
     # lista com o tempo de início de trabalho de cada máquina
-    start_time = [0] * len(file['engines'])
+    time = [0] * len(file['engines'])
 
-    # gera uma lista com os valores retirados das pilhas para cada pedido
-    reclaims = [set_reclaims(file, out.id, wl, start_time)
-                for wl, out in zip(weight_list, file['outputs'])]
+    # lista com os valores empilhados e retirados das pilhas para cada pedido
+    stacks, reclaims = zip(*[set_works(file, out.id, wl, input_list, time)
+                             for wl, out in zip(weight_list, file['outputs'])])
 
     # transforma o resultado em uma única lista
     reclaims = [item for sublist in reclaims for item in sublist]
+    stacks = [item for sublist in stacks for item in sublist]
 
     # altera os valores de qualidade obtidos de cada parâmetro para cada pedido
     quality_mean(file, weight_list)
 
-    return format_file(file, objective, reclaims)
+    return format_file(file, objective, stacks, reclaims)
 
 
-def format_file(file: dict, objective: float, reclaims: [dict]) -> dict:
+def format_file(file: dict, 
+                objective: float, 
+                stacks: [dict], 
+                reclaims: [dict]) -> dict:
     """formata os resultados para o modelo de saída do arquivo .json"""
 
     # dicionário com resultados do modelo a serem gravados no arquivo .json
     result = {
         'info': file['info'],
         'objective': objective,
+        'stacks': stacks,
         'reclaims': reclaims,
         'outputs': []
     }
@@ -55,9 +60,14 @@ def format_file(file: dict, objective: float, reclaims: [dict]) -> dict:
                     'importance': quality.importance
                 } for quality in req]
 
+            start = min([item['start_time'] for item in reclaims
+                             if item['output'] == out.id])
+            end = max([item['start_time'] + item['duration'] 
+                            for item in reclaims if item['output'] == out.id])
+            
             result['outputs'].append({'weight': out.weight,
-                                      'start_time': 0,
-                                      'duration': 0,
+                                      'start_time': start,
+                                      'duration': round(end - start, 1),
                                       'quality': quality_list})
 
     return result
@@ -129,26 +139,55 @@ def set_engines(file: dict, routes: [[int]]) -> [[int]]:
     return result
 
 
-def set_reclaims(file: dict, id: int, wl: [float], time: [float]) -> [dict]:
-    """define quanto vai ser retirado de cada pilha, a velocidade e o tempo."""
+def set_works(file: dict, 
+              id: int, 
+              wl: [float],
+              inp : [float], 
+              time: [float]) -> ([dict], [dict]):
+    """define as operações realizadas em cada pilha, a velocidade e o tempo."""
 
-    reclaims = []
+    stacks, reclaims = [], []
     travel = file['time_travel']
     for eng, route, in zip(file['engines'], set_routes(file)):
-        eng_index = file['engines'].index(eng)
+        i = file['engines'].index(eng)
 
-        for i, stp in enumerate(route):
+        for j, stp in enumerate(route):
+            # tempo de configuração caso haja mais de uma tarefa na mesma pilha
+            reset = 0.0
+
+            # tempo da recuperação, de viagem e configuração até a pilha
             duration = round(wl[stp] / eng.speed_reclaim, 1)
-            time_travel = travel[stp][route[i - 1]] \
+            time_travel = travel[stp][route[j - 1]] \
                           if stp is not eng.pos_ini else travel[stp][stp]
+
+            # realiza a atividade de empilhamento antes de realizar a retirada
+            if inp[stp] > 0:
+                stacks.append({
+                    'weight': round(inp[stp], 1),
+                    'stockpile': stp + 1,
+                    'engine': eng.id,
+                    'start_time': round(time[i] + time_travel, 1),
+                    'duration': round(inp[stp] / eng.speed_stack, 1),
+                })
+
+                # adiciona o tempo de empilhamento caso haja alguma entrada
+                time[i] += stacks[-1]['duration']
+                reset += travel[stp][stp]
+                inp[stp] = 0.0
+
+            # atividade de retirada de minério da pilha
             reclaims.append({
                 'weight': round(wl[stp], 1),
-                'stockpile': stp,
+                'stockpile': stp + 1,
                 'engine': eng.id,
-                'start_time': round(time[eng_index] + time_travel, 1),
+                'start_time': round(time[i] + time_travel + reset, 1),
                 'duration': duration,
                 'output': id
             }) if wl[stp] > 0 else None
-            time[eng_index] += duration + time_travel
 
-    return reclaims
+            time[i] += duration + time_travel
+        
+        # altera a posição inicial da máquina para sua última pilha visitada
+        eng.pos_ini = route[-1]
+
+    return stacks, reclaims

@@ -1,53 +1,62 @@
 {
   "info": "Instance_M003",
   "objective": 1038398984.731246,
+  "stacks": [
+    {
+      "weight": 35.5,
+      "stockpile": 1,
+      "engine": 1,
+      "start_time": 40.0,
+      "duration": 0.9
+    }
+  ],
   "reclaims": [
     {
       "weight": 826.7,
-      "stockpile": 0,
+      "stockpile": 1,
       "engine": 1,
-      "start_time": 0.0,
+      "start_time": 50.9,
       "duration": 41.1,
       "output": 1
     },
     {
       "weight": 423.4,
-      "stockpile": 5,
+      "stockpile": 6,
       "engine": 2,
-      "start_time": 0.0,
+      "start_time": 120.0,
       "duration": 13.5,
       "output": 1
     },
     {
       "weight": 577.6,
-      "stockpile": 1,
+      "stockpile": 2,
       "engine": 1,
-      "start_time": 41.1,
+      "start_time": 122.0,
       "duration": 28.7,
       "output": 2
     },
     {
-      "weight": 511.6,
-      "stockpile": 4,
+      "weight": 240.0,
+      "stockpile": 6,
       "engine": 2,
-      "start_time": 13.5,
-      "duration": 16.3,
+      "start_time": 143.5,
+      "duration": 7.6,
       "output": 2
     },
     {
-      "weight": 240.0,
+      "weight": 511.6,
       "stockpile": 5,
       "engine": 2,
-      "start_time": 29.8,
-      "duration": 7.6,
+      "start_time": 181.1,
+      "duration": 16.3,
       "output": 2
     }
   ],
   "outputs": [
     {
       "weight": 1250.1,
-      "start_time": 0,
-      "duration": 0,
+      "start_time": 50.9,
+      "duration": 82.6,
       "quality": [
         {
           "parameter": "Fe",
@@ -101,8 +110,8 @@
     },
     {
       "weight": 1329.2,
-      "start_time": 0,
-      "duration": 0,
+      "start_time": 122.0,
+      "duration": 75.4,
       "quality": [
         {
           "parameter": "Fe",

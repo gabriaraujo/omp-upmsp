@@ -1,28 +1,37 @@
 {
   "info": "Instance_010",
   "objective": 52700001050.0,
+  "stacks": [
+    {
+      "weight": 100.0,
+      "stockpile": 4,
+      "engine": 1,
+      "start_time": 40.0,
+      "duration": 3.3
+    }
+  ],
   "reclaims": [
     {
       "weight": 400.0,
-      "stockpile": 3,
+      "stockpile": 4,
       "engine": 1,
-      "start_time": 0.0,
+      "start_time": 53.3,
       "duration": 11.4,
       "output": 1
     },
     {
       "weight": 200.0,
-      "stockpile": 1,
+      "stockpile": 2,
       "engine": 2,
-      "start_time": 0,
+      "start_time": 10.0,
       "duration": 5.7,
       "output": 1
     },
     {
       "weight": 400.0,
-      "stockpile": 0,
+      "stockpile": 1,
       "engine": 2,
-      "start_time": 5.7,
+      "start_time": 45.7,
       "duration": 11.4,
       "output": 1
     }
@@ -30,8 +39,8 @@
   "outputs": [
     {
       "weight": 1000,
-      "start_time": 0,
-      "duration": 0,
+      "start_time": 10.0,
+      "duration": 54.7,
       "quality": [
         {
           "parameter": "Fe",
