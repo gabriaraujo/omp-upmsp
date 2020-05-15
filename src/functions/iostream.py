@@ -1,8 +1,9 @@
-from classes import *
+from classes import Quality, Request
+from config import *
 import ujson
 
 
-def read_file(file_name: str) -> dict:
+def read_file(file_name: str) -> Datas:
     """função para realizar a leitura do arquivo de entrada."""
 
     path = './tests/'
@@ -56,7 +57,7 @@ def read_file(file_name: str) -> dict:
     return result
 
 
-def write_file(path: str, file_name: str, value: dict):
+def write_file(path: str, file_name: str, value: Result):
     """função para realizar a gravação do arquivo de saída."""
 
     with open(path + file_name, 'w') as file:

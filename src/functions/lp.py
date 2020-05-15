@@ -1,11 +1,11 @@
 from mip import *
-from classes import Output, Stockpile, Input
+from config import *
 
 
-def linear_model(out: [Output], 
-                 stp: [Stockpile],
-                 inp: [Input],
-                 info: str) -> (float, dict, dict):
+def linear_model(out: Outputs, 
+                 stp: Stockpiles,
+                 inp: Inputs,
+                 info: str) -> Solution:
     """resolve o problema de mistura de minérios com programação linear."""
 
     omp = Model('Ore Mixing Problem')
@@ -102,7 +102,7 @@ def linear_model(out: [Output],
 
     if omp.num_solutions > 0:
         # dicionário com as massas retiradas de cada pilha i para cada pedido k
-        weights = {
+        reclaims = {
             f'id: {out[k].id}': [x[i, k].x for i in range(p)] for k in range(r)
         }
 
@@ -111,7 +111,7 @@ def linear_model(out: [Output],
             f'id: {stp[i].id}': [y[l, i].x for l in range(e)] for i in range(p)
         }
 
-        return omp.objective_value, inputs, weights
+        return omp.objective_value, inputs, reclaims
 
     else:
         return None, {}, {
@@ -119,7 +119,7 @@ def linear_model(out: [Output],
         }
 
 
-def normalize(out: [Output], j: int, k: int, bound: str) -> float:
+def normalize(out: Outputs, j: int, k: int, bound: str) -> float:
     """auxilia no calculo das unidades de desvio e evita divisão por zero."""
 
     # out[k].quality[j] indica o teor de qualidade j do pedido k

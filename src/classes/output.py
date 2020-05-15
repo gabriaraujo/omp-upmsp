@@ -1,4 +1,5 @@
 from .request import Request
+from typing import List
 
 
 class Output:
@@ -8,7 +9,7 @@ class Output:
                  id: int,
                  destination: int,
                  weight: float,
-                 quality: [Request],
+                 quality: List[Request],
                  time: float):
         self._id = id
         self._destination = destination
@@ -51,12 +52,12 @@ class Output:
         self._weight = value
 
     @property
-    def quality(self) -> [Request]:
+    def quality(self) -> List[Request]:
         """Output quality goal."""
         return self._quality
 
     @quality.setter
-    def quality(self, value: [Request]):
+    def quality(self, value: List[Request]):
         self._quality = value
 
     @property

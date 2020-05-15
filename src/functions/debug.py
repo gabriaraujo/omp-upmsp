@@ -1,4 +1,7 @@
-def file_print(file: dict):
+from config import *
+
+
+def file_print(file: Datas):
     """função para imprimir os dados recebidos do arquivo de entrada."""
 
     print('### STOCKPILES ###')
@@ -20,7 +23,7 @@ def file_print(file: dict):
     for elem in file['time_travel']: print(elem)
 
 
-def quality_print(cq: [float], lb: [float], ub: [float]):
+def quality_print(cq: List[float], lb: List[float], ub: List[float]):
     """função para imprimir os parâmetros de qualidade desejados e o obtido."""
 
     print('ub: ', ['%6.2f' % elem for elem in ub])

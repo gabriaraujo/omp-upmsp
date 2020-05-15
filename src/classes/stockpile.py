@@ -1,4 +1,5 @@
 from .quality import Quality
+from typing import List
 
 
 class Stockpile:
@@ -8,9 +9,9 @@ class Stockpile:
                  id: int,
                  position: int,
                  capacity: float,
-                 engines: [int],
+                 engines: List[int],
                  weight_ini: float,
-                 quality_ini: [Quality]):
+                 quality_ini: List[Quality]):
         self._id = id
         self._position = position
         self._capacity = capacity

@@ -1,4 +1,5 @@
 from .quality import Quality
+from typing import List
 
 
 class Input:
@@ -8,7 +9,7 @@ class Input:
                  id: int,
                  source: int,
                  weight: float,
-                 quality: [Quality],
+                 quality: List[Quality],
                  time: float):
         self._id = id
         self._source = source
@@ -51,12 +52,12 @@ class Input:
         self._weight = value
 
     @property
-    def quality(self) -> [Quality]:
+    def quality(self) -> List[Quality]:
         """Input quality."""
         return self._quality
 
     @quality.setter
-    def quality(self, value: [Quality]):
+    def quality(self, value: List[Quality]):
         self._quality = value
 
     @property

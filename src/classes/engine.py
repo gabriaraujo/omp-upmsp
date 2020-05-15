@@ -1,3 +1,5 @@
+from typing import List
+
 class Engine:
     """classe para salvar as informações de cada equipamento."""
 
@@ -6,7 +8,7 @@ class Engine:
                  speed_stack: float,
                  speed_reclaim: float,
                  pos_ini: int,
-                 stockpiles: [int]):
+                 stockpiles: List[int]):
         self._id = id
         self._speed_stack = speed_stack
         self._speed_reclaim = speed_reclaim
@@ -57,10 +59,10 @@ class Engine:
         self._pos_ini = value
 
     @property
-    def stockpiles(self) -> [int]:
+    def stockpiles(self) -> List[int]:
         """Engine stockpiles."""
         return self._stockpiles
 
     @stockpiles.setter
-    def stockpiles(self, value: [int]):
+    def stockpiles(self, value: List[int]):
         self._stockpiles = value
