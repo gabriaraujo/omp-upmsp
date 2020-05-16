@@ -91,39 +91,50 @@ def quality_mean(file: Datas, weight_list: List[List[float]]):
             for value, request in zip(quality, out.quality):
                 request.value = round(value, 1)
 
+    # caso o modelo seja inviável, a função np.average() lança uma exceção
     except ZeroDivisionError:
         pass
 
 
-def set_routes(file: Datas, wl: List[float]) -> List[List[int]]:
+def set_routes(file: Datas, 
+               wl: List[float], 
+               inp: List[float],
+               time: List[float]) -> List[List[int]]:
     """define a ordem de funcionamento das máquinas."""
 
     routes = []
-    time_travel = file['time_travel']
+    travel = file['time_travel']
+    start_time = time.copy()
+
     for eng in file['engines']:
         # lista para indicar se a máquina já visitou a pilha
         visited = [False] * len(file['stockpiles'])
+        route, pos = [], eng.pos_ini
 
-        # lista com a posição inicial das outras máquinas
-        initials = [eng.pos_ini for eng in file['engines']]
-        initials.remove(eng.pos_ini)
-
-        route = []
-        pos = eng.pos_ini
-
-        # encontra a pilha mais próxima da máquina e a adiciona na rota
         while not all(visited):
             try:
-                closer = min((time, i) for i, (time, is_visited) in
-                             enumerate(zip(time_travel[pos], visited))
-                             if wl[pos] > 0
-                             and pos not in initials
-                             and is_visited is False)
+                # encontra a pilha com menor tempo de acesso
+                faster, pos = min((time_travel + start_time[eng.id - 1], i) 
+                                  for i, (time_travel, is_visited) 
+                                  in enumerate(zip(travel[pos], visited))
+                                  if wl[i] > 0 and is_visited is False)
+    
+                # calcula o tempo que a máquina permaneceu operando na pilha
+                duration = round(wl[pos] / eng.speed_reclaim, 1)
+                
+                # caso a máquina também precise reabastecer a pilha visitada
+                if inp[pos] > 0:
+                    reset = travel[pos][pos]
+                    duration += round(inp[pos] / eng.speed_stack, 1) + reset
 
-                pos = closer[1]
-                route.append((closer[0], eng.id, pos))
+                # adiona o tempo de operação ao tempo inicial de cada trabalho
+                start_time[eng.id - 1] += duration + faster
+
+                # adiona os dados à lista de rotas da máquina em questão
+                route.append((faster, eng.id, pos))
                 visited[pos] = True
 
+            # caso o modelo seja inviável, a função min() lança uma exceção
             except ValueError:
                 break
 
@@ -136,16 +147,24 @@ def set_routes(file: Datas, wl: List[float]) -> List[List[int]]:
 def set_engines(file: Datas, routes: List[Route]) -> List[List[int]]:
     """define onde cada máquina irá atuar baseado em suas rotas."""
 
+    routes = [item for sublist in routes for item in sublist]
+    heapify(routes)
+
     # result salva as lista de pilhas visitadas por cada máquina
     result = [[] for _ in range(len(file['engines']))]
     visited = [False] * len(file['stockpiles'])
 
-    # t_stp é uma tupla das pilhas a serem visitadas por cada máquina
-    for t_stp in zip(*routes):
-        for stp, r in zip(t_stp, result):
-            if not visited[stp]:
-                r.append(stp)
-                visited[stp] = True
+    while routes:
+        route = heappop(routes)
+        
+        # route[0] é o tempo gasto para acessar a pilha, utilizado pela heap
+        # route[1] é o id da máquina, que será seu índice na lista 
+        # route[2] é a posição da pilha que entrará na rota da máquina
+
+        eng, stp = route[1] - 1, route[2]
+        if not visited[stp]:
+            result[eng].append(stp)
+            visited[stp] = True
 
     return result
 
@@ -159,7 +178,7 @@ def set_works(file: Datas,
 
     stacks, reclaims = [], []
     travel = file['time_travel']
-    for eng, route, in zip(file['engines'], set_routes(file, wl)):
+    for eng, route, in zip(file['engines'], set_routes(file, wl, inp, time)):
         i = file['engines'].index(eng)
 
         for j, stp in enumerate(route):
@@ -199,6 +218,11 @@ def set_works(file: Datas,
             time[i] += duration + time_travel
 
         # altera a posição inicial da máquina para sua última pilha visitada
-        eng.pos_ini = route[-1]
+        try:
+            eng.pos_ini = route[-1]
+
+        # caso a máquina não tenha recebido nenhuma tarefa
+        except IndexError:
+            pass
 
     return stacks, reclaims

@@ -6,7 +6,7 @@
       "weight": 167.2,
       "stockpile": 3,
       "engine": 1,
-      "start_time": 70.0,
+      "start_time": 10.0,
       "duration": 4.1
     }
   ],
@@ -15,7 +15,7 @@
       "weight": 63.1,
       "stockpile": 3,
       "engine": 1,
-      "start_time": 84.1,
+      "start_time": 24.1,
       "duration": 2.8,
       "output": 1
     },
@@ -31,7 +31,7 @@
       "weight": 507.1,
       "stockpile": 4,
       "engine": 2,
-      "start_time": 80.1,
+      "start_time": 70.1,
       "duration": 17.4,
       "output": 1
     },
@@ -39,7 +39,7 @@
       "weight": 671.1,
       "stockpile": 3,
       "engine": 1,
-      "start_time": 86.9,
+      "start_time": 26.9,
       "duration": 30.2,
       "output": 2
     },
@@ -47,7 +47,7 @@
       "weight": 54.1,
       "stockpile": 4,
       "engine": 2,
-      "start_time": 107.5,
+      "start_time": 97.5,
       "duration": 1.9,
       "output": 2
     }
@@ -56,7 +56,7 @@
     {
       "weight": 864.8,
       "start_time": 10.0,
-      "duration": 87.5,
+      "duration": 77.5,
       "quality": [
         {
           "parameter": "Fe",
@@ -110,8 +110,8 @@
     },
     {
       "weight": 725.2,
-      "start_time": 86.9,
-      "duration": 30.2,
+      "start_time": 26.9,
+      "duration": 72.5,
       "quality": [
         {
           "parameter": "Fe",

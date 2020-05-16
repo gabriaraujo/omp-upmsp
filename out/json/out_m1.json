@@ -6,7 +6,7 @@
       "weight": 31.7,
       "stockpile": 1,
       "engine": 2,
-      "start_time": 54.3,
+      "start_time": 34.3,
       "duration": 1.0
     }
   ],
@@ -47,7 +47,7 @@
       "weight": 558.3,
       "stockpile": 1,
       "engine": 2,
-      "start_time": 65.3,
+      "start_time": 45.3,
       "duration": 13.1,
       "output": 2
     }
@@ -110,8 +110,8 @@
     },
     {
       "weight": 1005.5,
-      "start_time": 65.3,
-      "duration": 16.1,
+      "start_time": 45.3,
+      "duration": 36.1,
       "quality": [
         {
           "parameter": "Fe",
