@@ -68,55 +68,55 @@ Minimize
    + 3.571428571428568 b_max_52 + 4.347826086956514 b_max_53
    + 4.347826086956522 b_max_54 + 5.555555555555564 b_max_55
 Subject To
- input_weitgh_constr_0: y_00 + y_01 + y_02 + y_03 + y_04 + y_05 + y_06
+ input_weight_constr_0: y_00 + y_01 + y_02 + y_03 + y_04 + y_05 + y_06
    + y_07 <= 165.1
- input_weitgh_constr_1: y_10 + y_11 + y_12 + y_13 + y_14 + y_15 + y_16
+ input_weight_constr_1: y_10 + y_11 + y_12 + y_13 + y_14 + y_15 + y_16
    + y_17 <= 165.1
- input_weitgh_constr_2: y_20 + y_21 + y_22 + y_23 + y_24 + y_25 + y_26
+ input_weight_constr_2: y_20 + y_21 + y_22 + y_23 + y_24 + y_25 + y_26
    + y_27 <= 165.1
  capacity_constr_0: y_00 + y_10 + y_20 <= 557.9
- weitgh_constr_00: x_00 + x_01 + x_02 + x_03 + x_04 + x_05 - y_00 <= 1071
- weitgh_constr_01: x_00 + x_01 + x_02 + x_03 + x_04 + x_05 - y_10 <= 1071
- weitgh_constr_02: x_00 + x_01 + x_02 + x_03 + x_04 + x_05 - y_20 <= 1071
+ weight_constr_00: x_00 + x_01 + x_02 + x_03 + x_04 + x_05 - y_00 <= 1071
+ weight_constr_01: x_00 + x_01 + x_02 + x_03 + x_04 + x_05 - y_10 <= 1071
+ weight_constr_02: x_00 + x_01 + x_02 + x_03 + x_04 + x_05 - y_20 <= 1071
  capacity_constr_1: y_01 + y_11 + y_21 <= 109.2
- weitgh_constr_10: x_10 + x_11 + x_12 + x_13 + x_14 + x_15 - y_01
+ weight_constr_10: x_10 + x_11 + x_12 + x_13 + x_14 + x_15 - y_01
    <= 1452.7
- weitgh_constr_11: x_10 + x_11 + x_12 + x_13 + x_14 + x_15 - y_11
+ weight_constr_11: x_10 + x_11 + x_12 + x_13 + x_14 + x_15 - y_11
    <= 1452.7
- weitgh_constr_12: x_10 + x_11 + x_12 + x_13 + x_14 + x_15 - y_21
+ weight_constr_12: x_10 + x_11 + x_12 + x_13 + x_14 + x_15 - y_21
    <= 1452.7
  capacity_constr_2: y_02 + y_12 + y_22 <= 387.7
- weitgh_constr_20: x_20 + x_21 + x_22 + x_23 + x_24 + x_25 - y_02 <= 740.4
- weitgh_constr_21: x_20 + x_21 + x_22 + x_23 + x_24 + x_25 - y_12 <= 740.4
- weitgh_constr_22: x_20 + x_21 + x_22 + x_23 + x_24 + x_25 - y_22 <= 740.4
+ weight_constr_20: x_20 + x_21 + x_22 + x_23 + x_24 + x_25 - y_02 <= 740.4
+ weight_constr_21: x_20 + x_21 + x_22 + x_23 + x_24 + x_25 - y_12 <= 740.4
+ weight_constr_22: x_20 + x_21 + x_22 + x_23 + x_24 + x_25 - y_22 <= 740.4
  capacity_constr_3: y_03 + y_13 + y_23 <= 204.7
- weitgh_constr_30: x_30 + x_31 + x_32 + x_33 + x_34 + x_35 - y_03 <= 1874
- weitgh_constr_31: x_30 + x_31 + x_32 + x_33 + x_34 + x_35 - y_13 <= 1874
- weitgh_constr_32: x_30 + x_31 + x_32 + x_33 + x_34 + x_35 - y_23 <= 1874
+ weight_constr_30: x_30 + x_31 + x_32 + x_33 + x_34 + x_35 - y_03 <= 1874
+ weight_constr_31: x_30 + x_31 + x_32 + x_33 + x_34 + x_35 - y_13 <= 1874
+ weight_constr_32: x_30 + x_31 + x_32 + x_33 + x_34 + x_35 - y_23 <= 1874
  capacity_constr_4: y_04 + y_14 + y_24 <= 34.1
- weitgh_constr_40: x_40 + x_41 + x_42 + x_43 + x_44 + x_45 - y_04
+ weight_constr_40: x_40 + x_41 + x_42 + x_43 + x_44 + x_45 - y_04
    <= 2031.8
- weitgh_constr_41: x_40 + x_41 + x_42 + x_43 + x_44 + x_45 - y_14
+ weight_constr_41: x_40 + x_41 + x_42 + x_43 + x_44 + x_45 - y_14
    <= 2031.8
- weitgh_constr_42: x_40 + x_41 + x_42 + x_43 + x_44 + x_45 - y_24
+ weight_constr_42: x_40 + x_41 + x_42 + x_43 + x_44 + x_45 - y_24
    <= 2031.8
  capacity_constr_5: y_05 + y_15 + y_25 <= 113.2
- weitgh_constr_50: x_50 + x_51 + x_52 + x_53 + x_54 + x_55 - y_05
+ weight_constr_50: x_50 + x_51 + x_52 + x_53 + x_54 + x_55 - y_05
    <= 1537.8
- weitgh_constr_51: x_50 + x_51 + x_52 + x_53 + x_54 + x_55 - y_15
+ weight_constr_51: x_50 + x_51 + x_52 + x_53 + x_54 + x_55 - y_15
    <= 1537.8
- weitgh_constr_52: x_50 + x_51 + x_52 + x_53 + x_54 + x_55 - y_25
+ weight_constr_52: x_50 + x_51 + x_52 + x_53 + x_54 + x_55 - y_25
    <= 1537.8
  capacity_constr_6: y_06 + y_16 + y_26 <= 373.4
- weitgh_constr_60: x_60 + x_61 + x_62 + x_63 + x_64 + x_65 - y_06 <= 770
- weitgh_constr_61: x_60 + x_61 + x_62 + x_63 + x_64 + x_65 - y_16 <= 770
- weitgh_constr_62: x_60 + x_61 + x_62 + x_63 + x_64 + x_65 - y_26 <= 770
+ weight_constr_60: x_60 + x_61 + x_62 + x_63 + x_64 + x_65 - y_06 <= 770
+ weight_constr_61: x_60 + x_61 + x_62 + x_63 + x_64 + x_65 - y_16 <= 770
+ weight_constr_62: x_60 + x_61 + x_62 + x_63 + x_64 + x_65 - y_26 <= 770
  capacity_constr_7: y_07 + y_17 + y_27 <= 139.2
- weitgh_constr_70: x_70 + x_71 + x_72 + x_73 + x_74 + x_75 - y_07
+ weight_constr_70: x_70 + x_71 + x_72 + x_73 + x_74 + x_75 - y_07
    <= 1251.5
- weitgh_constr_71: x_70 + x_71 + x_72 + x_73 + x_74 + x_75 - y_17
+ weight_constr_71: x_70 + x_71 + x_72 + x_73 + x_74 + x_75 - y_17
    <= 1251.5
- weitgh_constr_72: x_70 + x_71 + x_72 + x_73 + x_74 + x_75 - y_27
+ weight_constr_72: x_70 + x_71 + x_72 + x_73 + x_74 + x_75 - y_27
    <= 1251.5
  demand_constr_0: x_00 + x_10 + x_20 + x_30 + x_40 + x_50 + x_60 + x_70
    = 1671.8

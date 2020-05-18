@@ -24,15 +24,15 @@ Minimize
    + 3.703703703703703 b_max_41 + 1.923076923076925 b_max_50
    + 1.351351351351351 b_max_51
 Subject To
- input_weitgh_constr_0: y_00 + y_01 + y_02 + y_03 <= 31.7
+ input_weight_constr_0: y_00 + y_01 + y_02 + y_03 <= 31.7
  capacity_constr_0: y_00 <= 112.2
- weitgh_constr_00: x_00 + x_01 - y_00 <= 526.6
+ weight_constr_00: x_00 + x_01 - y_00 <= 526.6
  capacity_constr_1: y_01 <= 24.3
- weitgh_constr_10: x_10 + x_11 - y_01 <= 609.1
+ weight_constr_10: x_10 + x_11 - y_01 <= 609.1
  capacity_constr_2: y_02 <= 125.9
- weitgh_constr_20: x_20 + x_21 - y_02 <= 554.3
+ weight_constr_20: x_20 + x_21 - y_02 <= 554.3
  capacity_constr_3: y_03 <= 57.7
- weitgh_constr_30: x_30 + x_31 - y_03 <= 645.1
+ weight_constr_30: x_30 + x_31 - y_03 <= 645.1
  demand_constr_0: x_00 + x_10 + x_20 + x_30 = 1102.2
  min_quality_constr_00: 44.42 x_00 + 20.11 x_10 - 10.5 x_20 + 37.94 x_30
    + 1102.2 a_min_00 >= -0

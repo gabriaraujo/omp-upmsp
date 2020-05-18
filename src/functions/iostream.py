@@ -1,9 +1,11 @@
-from classes import Quality, Request
+from typing import Dict, List, Any, Union
+
+from classes import Quality, Request, Stockpile, Input, Engine, Output
 from config import *
 import ujson
 
 
-def read_file(file_name: str) -> Datas:
+def read_file(file_name: str) -> Data:
     """função para realizar a leitura do arquivo de entrada."""
 
     path = './tests/'
@@ -57,7 +59,7 @@ def read_file(file_name: str) -> Datas:
     return result
 
 
-def write_file(path: str, file_name: str, value: Result):
+def write_file(path: str, file_name: str, value: Info):
     """função para realizar a gravação do arquivo de saída."""
 
     with open(path + file_name, 'w') as file:

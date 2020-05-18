@@ -1,11 +1,10 @@
-from functions import linear_model
+from functions import linear_model, set_routes
 from config import *
-from heapq import *
 import numpy as np
 
 
-def solver(file: Datas) -> Result:
-    """verifica as saídas e combina as pilhas para atender o pedido."""
+def solver(file: Data) -> Result:
+    """combina as pilhas para atender o pedido."""
 
     # resolve o modelo usando programação linear
     objective, input_dict, weight_dict = linear_model(file['outputs'],
@@ -30,52 +29,18 @@ def solver(file: Datas) -> Result:
 
     # altera os valores de qualidade obtidos de cada parâmetro para cada pedido
     quality_mean(file, weight_list)
+    outputs = set_outputs(file, objective, reclaims)
 
-    return format_file(file, objective, stacks, reclaims)
-
-
-def format_file(file: Datas,
-                objective: float,
-                stacks: Works,
-                reclaims: Works) -> Result:
-    """formata os resultados para o modelo de saída do arquivo .json"""
-
-    # dicionário com resultados do modelo a serem gravados no arquivo .json
-    result = {
+    return {
         'info': file['info'],
         'objective': objective,
         'stacks': stacks,
         'reclaims': reclaims,
-        'outputs': []
+        'outputs': outputs
     }
 
-    if objective is not None:
-        requests = [out.quality for out in file['outputs']]
-        for req, out in zip(requests, file['outputs']):
-            quality_list = [
-                {
-                    'parameter': quality.parameter,
-                    'value': quality.value,
-                    'minimum': quality.minimum,
-                    'maximum': quality.maximum,
-                    'goal': quality.goal,
-                    'importance': quality.importance
-                } for quality in req]
 
-            start = min([item['start_time'] for item in reclaims
-                         if item['output'] == out.id])
-            end = max([item['start_time'] + item['duration']
-                       for item in reclaims if item['output'] == out.id])
-
-            result['outputs'].append({'weight': out.weight,
-                                      'start_time': start,
-                                      'duration': round(end - start, 1),
-                                      'quality': quality_list})
-
-    return result
-
-
-def quality_mean(file: Datas, weight_list: List[List[float]]):
+def quality_mean(file: Data, weight_list: List[List[float]]):
     """calcula o valor da qualidade final de cada pedido."""
 
     quality_list = [[quality.value for quality in stp.quality_ini]
@@ -96,80 +61,45 @@ def quality_mean(file: Datas, weight_list: List[List[float]]):
         pass
 
 
-def set_routes(file: Datas, 
-               wl: List[float], 
-               inp: List[float],
-               time: List[float]) -> List[List[int]]:
-    """define a ordem de funcionamento das máquinas."""
+def set_outputs(file: Data, objective: float, reclaims: Works) -> Deliveries:
+    """salva os dados de saída de cada pedido."""
 
-    routes = []
-    travel = file['time_travel']
-    start_time = time.copy()
+    outputs = []
+    # caso o modelo não seja inviável
+    if objective is not None:
 
-    for eng in file['engines']:
-        # lista para indicar se a máquina já visitou a pilha
-        visited = [False] * len(file['stockpiles'])
-        route, pos = [], eng.pos_ini
+        # percorre a lista de pedidos para salvar os dados de qualidade
+        requests = [out.quality for out in file['outputs']]
+        for req, out in zip(requests, file['outputs']):
+            # salva os dados da qualidade para cada parâmetro de cada pedido
+            quality_list = [
+                {
+                    'parameter': quality.parameter,
+                    'value': quality.value,
+                    'minimum': quality.minimum,
+                    'maximum': quality.maximum,
+                    'goal': quality.goal,
+                    'importance': quality.importance
+                } for quality in req]
 
-        while not all(visited):
-            try:
-                # encontra a pilha com menor tempo de acesso
-                faster, pos = min((time_travel + start_time[eng.id - 1], i) 
-                                  for i, (time_travel, is_visited) 
-                                  in enumerate(zip(travel[pos], visited))
-                                  if wl[i] > 0 and is_visited is False)
-    
-                # calcula o tempo que a máquina permaneceu operando na pilha
-                duration = round(wl[pos] / eng.speed_reclaim, 1)
-                
-                # caso a máquina também precise reabastecer a pilha visitada
-                if inp[pos] > 0:
-                    reset = travel[pos][pos]
-                    duration += round(inp[pos] / eng.speed_stack, 1) + reset
+            # calcula o horário em que pedido foi iniciado
+            start = min([item['start_time'] for item in reclaims
+                         if item['output'] is out.id])
 
-                # adiona o tempo de operação ao tempo inicial de cada trabalho
-                start_time[eng.id - 1] += duration + faster
+            # calcula o horário em que o pedido foi finalizado
+            end = max([item['start_time'] + item['duration']
+                       for item in reclaims if item['output'] is out.id])
 
-                # adiona os dados à lista de rotas da máquina em questão
-                route.append((faster, eng.id, pos))
-                visited[pos] = True
+            # adiciona as informações do pedido na lista de entregas
+            outputs.append({'weight': out.weight,
+                            'start_time': start,
+                            'duration': round(end - start, 1),
+                            'quality': quality_list})
 
-            # caso o modelo seja inviável, a função min() lança uma exceção
-            except ValueError:
-                break
-
-        # anexa a rota da máquina à lista de rotas
-        routes.append(route)
-
-    return set_engines(file, routes)
+    return outputs
 
 
-def set_engines(file: Datas, routes: List[Route]) -> List[List[int]]:
-    """define onde cada máquina irá atuar baseado em suas rotas."""
-
-    routes = [item for sublist in routes for item in sublist]
-    heapify(routes)
-
-    # result salva as lista de pilhas visitadas por cada máquina
-    result = [[] for _ in range(len(file['engines']))]
-    visited = [False] * len(file['stockpiles'])
-
-    while routes:
-        route = heappop(routes)
-        
-        # route[0] é o tempo gasto para acessar a pilha, utilizado pela heap
-        # route[1] é o id da máquina, que será seu índice na lista 
-        # route[2] é a posição da pilha que entrará na rota da máquina
-
-        eng, stp = route[1] - 1, route[2]
-        if not visited[stp]:
-            result[eng].append(stp)
-            visited[stp] = True
-
-    return result
-
-
-def set_works(file: Datas,
+def set_works(file: Data,
               id: int,
               wl: List[float],
               inp: List[float],
@@ -178,6 +108,7 @@ def set_works(file: Datas,
 
     stacks, reclaims = [], []
     travel = file['time_travel']
+    
     for eng, route, in zip(file['engines'], set_routes(file, wl, inp, time)):
         i = file['engines'].index(eng)
 

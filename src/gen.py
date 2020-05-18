@@ -1,4 +1,5 @@
 from functions import write_file
+from config import *
 import random
 import sys
 
@@ -8,7 +9,7 @@ def generate():
     write_file('./tests/', sys.argv[1], instance_gen(sys.argv[2:]))
 
 
-def instance_gen(argv: [str]) -> dict:
+def instance_gen(argv: List[str]) -> Instance:
     """gerador de instâncias pseudo-aleatórias."""
 
     # converte todos os parametros para os tipos corretos
@@ -131,7 +132,7 @@ def instance_gen(argv: [str]) -> dict:
     return instance
 
 
-def gen_quality(lb: float, ub: float) -> [dict]:
+def gen_quality(lb: float, ub: float) -> QualityIni:
     """gera a qualidade inicial para cada pilha de minério."""
 
     return [

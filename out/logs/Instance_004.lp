@@ -9,15 +9,15 @@ Minimize
    + 1e+06 b_max_00 + 1e+06 b_max_10 + 1e+06 b_max_20 + 1e+06 b_max_30
    + 25 b_max_40 + 2 b_max_50
 Subject To
- input_weitgh_constr_0: y_00 + y_01 + y_02 + y_03 <= 100
+ input_weight_constr_0: y_00 + y_01 + y_02 + y_03 <= 100
  capacity_constr_0: y_00 <= -0
- weitgh_constr_00: x_00 - y_00 <= 400
+ weight_constr_00: x_00 - y_00 <= 400
  capacity_constr_1: y_01 <= 100
- weitgh_constr_10: x_10 - y_01 <= 300
+ weight_constr_10: x_10 - y_01 <= 300
  capacity_constr_2: y_02 <= 100
- weitgh_constr_20: x_20 - y_02 <= 300
+ weight_constr_20: x_20 - y_02 <= 300
  capacity_constr_3: y_03 <= 100
- weitgh_constr_30: x_30 - y_03 <= 300
+ weight_constr_30: x_30 - y_03 <= 300
  demand_constr_0: x_00 + x_10 + x_20 + x_30 = 1000
  min_quality_constr_00: 5 x_00 + 10 x_10 + 15 x_20 - 5 x_30 + 1000 a_min_00
    >= -0

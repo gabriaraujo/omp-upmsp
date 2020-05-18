@@ -48,44 +48,44 @@ Minimize
    + 1.515151515151515 b_max_51 + 2.127659574468084 b_max_52
    + 2.222222222222221 b_max_53
 Subject To
- input_weitgh_constr_0: y_00 + y_01 + y_02 + y_03 + y_04 + y_05 + y_06
+ input_weight_constr_0: y_00 + y_01 + y_02 + y_03 + y_04 + y_05 + y_06
    + y_07 <= 168.6
- input_weitgh_constr_1: y_10 + y_11 + y_12 + y_13 + y_14 + y_15 + y_16
+ input_weight_constr_1: y_10 + y_11 + y_12 + y_13 + y_14 + y_15 + y_16
    + y_17 <= 168.6
- input_weitgh_constr_2: y_20 + y_21 + y_22 + y_23 + y_24 + y_25 + y_26
+ input_weight_constr_2: y_20 + y_21 + y_22 + y_23 + y_24 + y_25 + y_26
    + y_27 <= 168.6
  capacity_constr_0: y_00 + y_10 + y_20 <= 366.2
- weitgh_constr_00: x_00 + x_01 + x_02 + x_03 - y_00 <= 1354.4
- weitgh_constr_01: x_00 + x_01 + x_02 + x_03 - y_10 <= 1354.4
- weitgh_constr_02: x_00 + x_01 + x_02 + x_03 - y_20 <= 1354.4
+ weight_constr_00: x_00 + x_01 + x_02 + x_03 - y_00 <= 1354.4
+ weight_constr_01: x_00 + x_01 + x_02 + x_03 - y_10 <= 1354.4
+ weight_constr_02: x_00 + x_01 + x_02 + x_03 - y_20 <= 1354.4
  capacity_constr_1: y_01 + y_11 + y_21 <= 131.1
- weitgh_constr_10: x_10 + x_11 + x_12 + x_13 - y_01 <= 1731.8
- weitgh_constr_11: x_10 + x_11 + x_12 + x_13 - y_11 <= 1731.8
- weitgh_constr_12: x_10 + x_11 + x_12 + x_13 - y_21 <= 1731.8
+ weight_constr_10: x_10 + x_11 + x_12 + x_13 - y_01 <= 1731.8
+ weight_constr_11: x_10 + x_11 + x_12 + x_13 - y_11 <= 1731.8
+ weight_constr_12: x_10 + x_11 + x_12 + x_13 - y_21 <= 1731.8
  capacity_constr_2: y_02 + y_12 + y_22 <= 304.5
- weitgh_constr_20: x_20 + x_21 + x_22 + x_23 - y_02 <= 1687.6
- weitgh_constr_21: x_20 + x_21 + x_22 + x_23 - y_12 <= 1687.6
- weitgh_constr_22: x_20 + x_21 + x_22 + x_23 - y_22 <= 1687.6
+ weight_constr_20: x_20 + x_21 + x_22 + x_23 - y_02 <= 1687.6
+ weight_constr_21: x_20 + x_21 + x_22 + x_23 - y_12 <= 1687.6
+ weight_constr_22: x_20 + x_21 + x_22 + x_23 - y_22 <= 1687.6
  capacity_constr_3: y_03 + y_13 + y_23 <= 173.6
- weitgh_constr_30: x_30 + x_31 + x_32 + x_33 - y_03 <= 1512
- weitgh_constr_31: x_30 + x_31 + x_32 + x_33 - y_13 <= 1512
- weitgh_constr_32: x_30 + x_31 + x_32 + x_33 - y_23 <= 1512
+ weight_constr_30: x_30 + x_31 + x_32 + x_33 - y_03 <= 1512
+ weight_constr_31: x_30 + x_31 + x_32 + x_33 - y_13 <= 1512
+ weight_constr_32: x_30 + x_31 + x_32 + x_33 - y_23 <= 1512
  capacity_constr_4: y_04 + y_14 + y_24 <= 202.3
- weitgh_constr_40: x_40 + x_41 + x_42 + x_43 - y_04 <= 1477.6
- weitgh_constr_41: x_40 + x_41 + x_42 + x_43 - y_14 <= 1477.6
- weitgh_constr_42: x_40 + x_41 + x_42 + x_43 - y_24 <= 1477.6
+ weight_constr_40: x_40 + x_41 + x_42 + x_43 - y_04 <= 1477.6
+ weight_constr_41: x_40 + x_41 + x_42 + x_43 - y_14 <= 1477.6
+ weight_constr_42: x_40 + x_41 + x_42 + x_43 - y_24 <= 1477.6
  capacity_constr_5: y_05 + y_15 + y_25 <= 480.8
- weitgh_constr_50: x_50 + x_51 + x_52 + x_53 - y_05 <= 966.7
- weitgh_constr_51: x_50 + x_51 + x_52 + x_53 - y_15 <= 966.7
- weitgh_constr_52: x_50 + x_51 + x_52 + x_53 - y_25 <= 966.7
+ weight_constr_50: x_50 + x_51 + x_52 + x_53 - y_05 <= 966.7
+ weight_constr_51: x_50 + x_51 + x_52 + x_53 - y_15 <= 966.7
+ weight_constr_52: x_50 + x_51 + x_52 + x_53 - y_25 <= 966.7
  capacity_constr_6: y_06 + y_16 + y_26 <= 479.8
- weitgh_constr_60: x_60 + x_61 + x_62 + x_63 - y_06 <= 1223.2
- weitgh_constr_61: x_60 + x_61 + x_62 + x_63 - y_16 <= 1223.2
- weitgh_constr_62: x_60 + x_61 + x_62 + x_63 - y_26 <= 1223.2
+ weight_constr_60: x_60 + x_61 + x_62 + x_63 - y_06 <= 1223.2
+ weight_constr_61: x_60 + x_61 + x_62 + x_63 - y_16 <= 1223.2
+ weight_constr_62: x_60 + x_61 + x_62 + x_63 - y_26 <= 1223.2
  capacity_constr_7: y_07 + y_17 + y_27 <= 20.7
- weitgh_constr_70: x_70 + x_71 + x_72 + x_73 - y_07 <= 1049.8
- weitgh_constr_71: x_70 + x_71 + x_72 + x_73 - y_17 <= 1049.8
- weitgh_constr_72: x_70 + x_71 + x_72 + x_73 - y_27 <= 1049.8
+ weight_constr_70: x_70 + x_71 + x_72 + x_73 - y_07 <= 1049.8
+ weight_constr_71: x_70 + x_71 + x_72 + x_73 - y_17 <= 1049.8
+ weight_constr_72: x_70 + x_71 + x_72 + x_73 - y_27 <= 1049.8
  demand_constr_0: x_00 + x_10 + x_20 + x_30 + x_40 + x_50 + x_60 + x_70
    = 1489.1
  min_quality_constr_00: 37.26 x_00 + 10.89 x_10 - 0.95 x_20 + 12.49 x_30

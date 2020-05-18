@@ -1,7 +1,7 @@
 from config import *
 
 
-def file_print(file: Datas):
+def file_print(file: Data):
     """função para imprimir os dados recebidos do arquivo de entrada."""
 
     print('### STOCKPILES ###')

@@ -47,26 +47,26 @@ Minimize
    + 20 b_max_50 + 1.428571428571428 b_max_51 + 7.142857142857159 b_max_52
    + 1.923076923076925 b_max_53
 Subject To
- input_weitgh_constr_0: y_00 + y_01 + y_02 + y_03 + y_04 + y_05 <= 81.9
- input_weitgh_constr_1: y_10 + y_11 + y_12 + y_13 + y_14 + y_15 <= 81.9
+ input_weight_constr_0: y_00 + y_01 + y_02 + y_03 + y_04 + y_05 <= 81.9
+ input_weight_constr_1: y_10 + y_11 + y_12 + y_13 + y_14 + y_15 <= 81.9
  capacity_constr_0: y_00 + y_10 <= 37.9
- weitgh_constr_00: x_00 + x_01 + x_02 + x_03 - y_00 <= 1243.5
- weitgh_constr_01: x_00 + x_01 + x_02 + x_03 - y_10 <= 1243.5
+ weight_constr_00: x_00 + x_01 + x_02 + x_03 - y_00 <= 1243.5
+ weight_constr_01: x_00 + x_01 + x_02 + x_03 - y_10 <= 1243.5
  capacity_constr_1: y_01 + y_11 <= 131.1
- weitgh_constr_10: x_10 + x_11 + x_12 + x_13 - y_01 <= 1054.7
- weitgh_constr_11: x_10 + x_11 + x_12 + x_13 - y_11 <= 1054.7
+ weight_constr_10: x_10 + x_11 + x_12 + x_13 - y_01 <= 1054.7
+ weight_constr_11: x_10 + x_11 + x_12 + x_13 - y_11 <= 1054.7
  capacity_constr_2: y_02 + y_12 <= 167.8
- weitgh_constr_20: x_20 + x_21 + x_22 + x_23 - y_02 <= 1083.1
- weitgh_constr_21: x_20 + x_21 + x_22 + x_23 - y_12 <= 1083.1
+ weight_constr_20: x_20 + x_21 + x_22 + x_23 - y_02 <= 1083.1
+ weight_constr_21: x_20 + x_21 + x_22 + x_23 - y_12 <= 1083.1
  capacity_constr_3: y_03 + y_13 <= 166.5
- weitgh_constr_30: x_30 + x_31 + x_32 + x_33 - y_03 <= 959.6
- weitgh_constr_31: x_30 + x_31 + x_32 + x_33 - y_13 <= 959.6
+ weight_constr_30: x_30 + x_31 + x_32 + x_33 - y_03 <= 959.6
+ weight_constr_31: x_30 + x_31 + x_32 + x_33 - y_13 <= 959.6
  capacity_constr_4: y_04 + y_14 <= 309.2
- weitgh_constr_40: x_40 + x_41 + x_42 + x_43 - y_04 <= 1328.9
- weitgh_constr_41: x_40 + x_41 + x_42 + x_43 - y_14 <= 1328.9
+ weight_constr_40: x_40 + x_41 + x_42 + x_43 - y_04 <= 1328.9
+ weight_constr_41: x_40 + x_41 + x_42 + x_43 - y_14 <= 1328.9
  capacity_constr_5: y_05 + y_15 <= 136.3
- weitgh_constr_50: x_50 + x_51 + x_52 + x_53 - y_05 <= 1417.7
- weitgh_constr_51: x_50 + x_51 + x_52 + x_53 - y_15 <= 1417.7
+ weight_constr_50: x_50 + x_51 + x_52 + x_53 - y_05 <= 1417.7
+ weight_constr_51: x_50 + x_51 + x_52 + x_53 - y_15 <= 1417.7
  demand_constr_0: x_00 + x_10 + x_20 + x_30 + x_40 + x_50 = 1116.7
  min_quality_constr_00: 0.86 x_00 + 11.29 x_10 + 1.73 x_20 + 21.89 x_30
    + 22.96 x_40 + 1.54 x_50 + 1116.7 a_min_00 >= -0

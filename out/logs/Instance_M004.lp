@@ -25,26 +25,26 @@ Minimize
    + 4.166666666666667 b_max_40 + 16.66666666666667 b_max_41
    + 11.11111111111113 b_max_50 + 11.11111111111113 b_max_51
 Subject To
- input_weitgh_constr_0: y_00 + y_01 + y_02 + y_03 + y_04 + y_05 <= 83.6
- input_weitgh_constr_1: y_10 + y_11 + y_12 + y_13 + y_14 + y_15 <= 83.6
+ input_weight_constr_0: y_00 + y_01 + y_02 + y_03 + y_04 + y_05 <= 83.6
+ input_weight_constr_1: y_10 + y_11 + y_12 + y_13 + y_14 + y_15 <= 83.6
  capacity_constr_0: y_00 + y_10 <= 116.6
- weitgh_constr_00: x_00 + x_01 - y_00 <= 867.6
- weitgh_constr_01: x_00 + x_01 - y_10 <= 867.6
+ weight_constr_00: x_00 + x_01 - y_00 <= 867.6
+ weight_constr_01: x_00 + x_01 - y_10 <= 867.6
  capacity_constr_1: y_01 + y_11 <= 265.9
- weitgh_constr_10: x_10 + x_11 - y_01 <= 691.1
- weitgh_constr_11: x_10 + x_11 - y_11 <= 691.1
+ weight_constr_10: x_10 + x_11 - y_01 <= 691.1
+ weight_constr_11: x_10 + x_11 - y_11 <= 691.1
  capacity_constr_2: y_02 + y_12 <= 317.3
- weitgh_constr_20: x_20 + x_21 - y_02 <= 650.6
- weitgh_constr_21: x_20 + x_21 - y_12 <= 650.6
+ weight_constr_20: x_20 + x_21 - y_02 <= 650.6
+ weight_constr_21: x_20 + x_21 - y_12 <= 650.6
  capacity_constr_3: y_03 + y_13 <= 152.4
- weitgh_constr_30: x_30 + x_31 - y_03 <= 838.6
- weitgh_constr_31: x_30 + x_31 - y_13 <= 838.6
+ weight_constr_30: x_30 + x_31 - y_03 <= 838.6
+ weight_constr_31: x_30 + x_31 - y_13 <= 838.6
  capacity_constr_4: y_04 + y_14 <= 407.5
- weitgh_constr_40: x_40 + x_41 - y_04 <= 618.5
- weitgh_constr_41: x_40 + x_41 - y_14 <= 618.5
+ weight_constr_40: x_40 + x_41 - y_04 <= 618.5
+ weight_constr_41: x_40 + x_41 - y_14 <= 618.5
  capacity_constr_5: y_05 + y_15 <= 159
- weitgh_constr_50: x_50 + x_51 - y_05 <= 677.3
- weitgh_constr_51: x_50 + x_51 - y_15 <= 677.3
+ weight_constr_50: x_50 + x_51 - y_05 <= 677.3
+ weight_constr_51: x_50 + x_51 - y_15 <= 677.3
  demand_constr_0: x_00 + x_10 + x_20 + x_30 + x_40 + x_50 = 864.8
  min_quality_constr_00: 44.89 x_00 - 6.66 x_10 + 43.11 x_20 + 29.34 x_30
    + 37.36 x_40 - 12.58 x_50 + 864.8 a_min_00 >= -0
