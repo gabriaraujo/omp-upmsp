@@ -6,72 +6,72 @@
       "weight": 150.8,
       "stockpile": 8,
       "engine": 3,
-      "start_time": 128.9,
+      "start_time": 10.0,
       "duration": 4.1
     }
   ],
   "reclaims": [
     {
+      "weight": 94.6,
+      "stockpile": 8,
+      "engine": 3,
+      "start_time": 24.1,
+      "duration": 2.0,
+      "output": 1
+    },
+    {
       "weight": 1340.2,
       "stockpile": 6,
       "engine": 3,
-      "start_time": 50.0,
+      "start_time": 66.1,
       "duration": 28.9,
       "output": 1
     },
     {
-      "weight": 94.6,
-      "stockpile": 8,
-      "engine": 3,
-      "start_time": 143.0,
-      "duration": 2.0,
-      "output": 1
+      "weight": 477.7,
+      "stockpile": 7,
+      "engine": 1,
+      "start_time": 10.0,
+      "duration": 18.7,
+      "output": 2
     },
     {
       "weight": 1120.5,
       "stockpile": 5,
       "engine": 2,
-      "start_time": 50.0,
+      "start_time": 10.0,
       "duration": 31.7,
-      "output": 2
-    },
-    {
-      "weight": 477.7,
-      "stockpile": 7,
-      "engine": 2,
-      "start_time": 131.7,
-      "duration": 13.5,
       "output": 2
     },
     {
       "weight": 305.9,
       "stockpile": 5,
       "engine": 1,
-      "start_time": 50.0,
+      "start_time": 63.8,
       "duration": 11.9,
       "output": 3
     },
     {
       "weight": 1017.4,
       "stockpile": 7,
-      "engine": 1,
-      "start_time": 111.9,
-      "duration": 39.7,
+      "engine": 2,
+      "start_time": 53.5,
+      "duration": 28.7,
       "output": 3
     },
     {
       "weight": 244.5,
       "stockpile": 8,
-      "engine": 3,
-      "start_time": 145.0,
-      "duration": 5.3,
+      "engine": 2,
+      "start_time": 92.2,
+      "duration": 6.9,
       "output": 3
     },
     {
       "weight": 61.2,
       "stockpile": 6,
       "engine": 2,
-      "start_time": 175.2,
+      "start_time": 72.1,
       "duration": 1.7,
       "output": 4
     },
@@ -79,7 +79,7 @@
       "weight": 83.2,
       "stockpile": 5,
       "engine": 2,
-      "start_time": 206.9,
+      "start_time": 103.8,
       "duration": 2.4,
       "output": 4
     },
@@ -87,7 +87,7 @@
       "weight": 1236.3,
       "stockpile": 8,
       "engine": 3,
-      "start_time": 160.3,
+      "start_time": 145.0,
       "duration": 26.6,
       "output": 4
     }
@@ -95,8 +95,8 @@
   "outputs": [
     {
       "weight": 1434.8,
-      "start_time": 50.0,
-      "duration": 95.0,
+      "start_time": 24.1,
+      "duration": 70.9,
       "quality": [
         {
           "parameter": "Fe",
@@ -150,8 +150,8 @@
     },
     {
       "weight": 1598.2,
-      "start_time": 50.0,
-      "duration": 95.2,
+      "start_time": 10.0,
+      "duration": 31.7,
       "quality": [
         {
           "parameter": "Fe",
@@ -205,8 +205,8 @@
     },
     {
       "weight": 1567.8,
-      "start_time": 50.0,
-      "duration": 101.6,
+      "start_time": 53.5,
+      "duration": 45.6,
       "quality": [
         {
           "parameter": "Fe",
@@ -260,8 +260,8 @@
     },
     {
       "weight": 1380.7,
-      "start_time": 160.3,
-      "duration": 49.0,
+      "start_time": 72.1,
+      "duration": 99.5,
       "quality": [
         {
           "parameter": "Fe",

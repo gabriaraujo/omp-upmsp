@@ -5,66 +5,66 @@
     {
       "weight": 163.8,
       "stockpile": 4,
-      "engine": 1,
-      "start_time": 69.4,
-      "duration": 4.8
+      "engine": 3,
+      "start_time": 10.0,
+      "duration": 3.7
     }
   ],
   "reclaims": [
     {
-      "weight": 411.0,
-      "stockpile": 5,
+      "weight": 705.7,
+      "stockpile": 2,
       "engine": 1,
       "start_time": 10.0,
-      "duration": 9.4,
+      "duration": 16.1,
       "output": 1
     },
     {
-      "weight": 705.7,
-      "stockpile": 2,
+      "weight": 411.0,
+      "stockpile": 5,
       "engine": 2,
       "start_time": 10.0,
-      "duration": 17.0,
+      "duration": 9.9,
       "output": 1
     },
     {
       "weight": 1041.5,
       "stockpile": 4,
-      "engine": 1,
-      "start_time": 84.2,
-      "duration": 23.8,
+      "engine": 3,
+      "start_time": 23.7,
+      "duration": 40.4,
       "output": 2
     },
     {
       "weight": 29.0,
       "stockpile": 6,
-      "engine": 1,
-      "start_time": 148.0,
-      "duration": 0.7,
+      "engine": 3,
+      "start_time": 104.1,
+      "duration": 1.1,
       "output": 2
+    },
+    {
+      "weight": 917.9,
+      "stockpile": 5,
+      "engine": 1,
+      "start_time": 89.4,
+      "duration": 21.0,
+      "output": 3
     },
     {
       "weight": 73.1,
       "stockpile": 6,
       "engine": 1,
-      "start_time": 158.7,
+      "start_time": 140.4,
       "duration": 1.7,
       "output": 3
     },
     {
       "weight": 303.3,
       "stockpile": 2,
-      "engine": 3,
-      "start_time": 70.0,
-      "duration": 11.8,
-      "output": 3
-    },
-    {
-      "weight": 917.9,
-      "stockpile": 5,
-      "engine": 3,
-      "start_time": 151.8,
-      "duration": 35.6,
+      "engine": 1,
+      "start_time": 152.1,
+      "duration": 6.9,
       "output": 3
     },
     {
@@ -80,7 +80,7 @@
     {
       "weight": 1116.7,
       "start_time": 10.0,
-      "duration": 17.0,
+      "duration": 16.1,
       "quality": [
         {
           "parameter": "Fe",
@@ -134,8 +134,8 @@
     },
     {
       "weight": 1070.5,
-      "start_time": 84.2,
-      "duration": 64.5,
+      "start_time": 23.7,
+      "duration": 81.5,
       "quality": [
         {
           "parameter": "Fe",
@@ -189,8 +189,8 @@
     },
     {
       "weight": 1294.3,
-      "start_time": 70.0,
-      "duration": 117.4,
+      "start_time": 89.4,
+      "duration": 69.6,
       "quality": [
         {
           "parameter": "Fe",

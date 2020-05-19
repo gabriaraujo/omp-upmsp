@@ -56,7 +56,7 @@ def instance_gen(argv: List[str]) -> Instance:
     } for i in range(engines)]
 
     # gera os valores para a entrada de minérios
-    src = random.randrange(1, stockpiles)
+    src = random.randint(1, stockpiles)
     instance['inputs'] = [{
         'id': i + 1,
         'source': src,

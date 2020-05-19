@@ -5,81 +5,81 @@
     {
       "weight": 129.2,
       "stockpile": 2,
-      "engine": 1,
+      "engine": 2,
       "start_time": 10.0,
-      "duration": 5.3
+      "duration": 4.9
     },
     {
       "weight": 40.2,
       "stockpile": 3,
-      "engine": 2,
+      "engine": 3,
       "start_time": 10.0,
-      "duration": 1.5
+      "duration": 1.0
     }
   ],
   "reclaims": [
     {
+      "weight": 116.1,
+      "stockpile": 5,
+      "engine": 1,
+      "start_time": 10.0,
+      "duration": 3.4,
+      "output": 1
+    },
+    {
       "weight": 681.6,
       "stockpile": 2,
-      "engine": 1,
-      "start_time": 25.3,
-      "duration": 19.9,
+      "engine": 2,
+      "start_time": 24.9,
+      "duration": 19.8,
       "output": 1
     },
     {
       "weight": 68.6,
       "stockpile": 3,
-      "engine": 2,
-      "start_time": 21.5,
-      "duration": 2.0,
-      "output": 1
-    },
-    {
-      "weight": 116.1,
-      "stockpile": 5,
       "engine": 3,
-      "start_time": 10.0,
-      "duration": 5.2,
+      "start_time": 21.0,
+      "duration": 3.1,
       "output": 1
-    },
-    {
-      "weight": 234.7,
-      "stockpile": 1,
-      "engine": 2,
-      "start_time": 23.5,
-      "duration": 6.8,
-      "output": 2
     },
     {
       "weight": 674.0,
       "stockpile": 6,
+      "engine": 2,
+      "start_time": 23.5,
+      "duration": 19.6,
+      "output": 2
+    },
+    {
+      "weight": 234.7,
+      "stockpile": 1,
       "engine": 3,
       "start_time": 25.2,
-      "duration": 30.4,
+      "duration": 10.6,
       "output": 2
     },
     {
       "weight": 1166.5,
       "stockpile": 3,
-      "engine": 1,
-      "start_time": 45.2,
-      "duration": 34.0,
+      "engine": 2,
+      "start_time": 40.3,
+      "duration": 33.9,
       "output": 3
     },
     {
       "weight": 469.0,
       "stockpile": 4,
       "engine": 2,
-      "start_time": 40.3,
+      "start_time": 60.3,
       "duration": 13.6,
       "output": 4
     },
     {
       "weight": 985.2,
       "stockpile": 5,
-      "engine": 3,
-      "start_time": 65.6,
-      "duration": 44.4,
+      "engine": 2,
+      "start_time": 83.9,
+      "duration": 28.6,
       "output": 4
     }
   ],
@@ -87,7 +87,7 @@
     {
       "weight": 866.3,
       "start_time": 10.0,
-      "duration": 35.2,
+      "duration": 34.7,
       "quality": [
         {
           "parameter": "Fe",
@@ -142,7 +142,7 @@
     {
       "weight": 908.7,
       "start_time": 23.5,
-      "duration": 32.1,
+      "duration": 19.6,
       "quality": [
         {
           "parameter": "Fe",
@@ -196,8 +196,8 @@
     },
     {
       "weight": 1166.5,
-      "start_time": 45.2,
-      "duration": 34.0,
+      "start_time": 40.3,
+      "duration": 33.9,
       "quality": [
         {
           "parameter": "Fe",
@@ -251,8 +251,8 @@
     },
     {
       "weight": 1454.2,
-      "start_time": 40.3,
-      "duration": 69.7,
+      "start_time": 60.3,
+      "duration": 52.2,
       "quality": [
         {
           "parameter": "Fe",

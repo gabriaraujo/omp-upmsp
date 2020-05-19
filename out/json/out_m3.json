@@ -5,26 +5,26 @@
     {
       "weight": 35.5,
       "stockpile": 1,
-      "engine": 1,
+      "engine": 2,
       "start_time": 10.0,
-      "duration": 0.9
+      "duration": 0.8
     }
   ],
   "reclaims": [
     {
-      "weight": 826.7,
-      "stockpile": 1,
+      "weight": 423.4,
+      "stockpile": 6,
       "engine": 1,
-      "start_time": 20.9,
-      "duration": 41.1,
+      "start_time": 10.0,
+      "duration": 21.1,
       "output": 1
     },
     {
-      "weight": 423.4,
-      "stockpile": 6,
+      "weight": 826.7,
+      "stockpile": 1,
       "engine": 2,
-      "start_time": 10.0,
-      "duration": 13.5,
+      "start_time": 20.8,
+      "duration": 26.3,
       "output": 1
     },
     {
@@ -56,7 +56,7 @@
     {
       "weight": 1250.1,
       "start_time": 10.0,
-      "duration": 52.0,
+      "duration": 37.1,
       "quality": [
         {
           "parameter": "Fe",

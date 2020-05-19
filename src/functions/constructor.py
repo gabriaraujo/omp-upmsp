@@ -5,7 +5,7 @@ from heapq import *
 def set_routes(file: Data,
                wl: List[float],
                inp: List[float],
-               time: List[float]) -> List[List[int]]:
+               time: List[float]) -> Routes:
     """define a ordem de funcionamento das máquinas."""
 
     routes = []
@@ -50,7 +50,7 @@ def set_routes(file: Data,
     return set_engines(file, routes)
 
 
-def set_engines(file: Data, routes: List[Route]) -> List[List[int]]:
+def set_engines(file: Data, routes: List[Route]) -> Routes:
     """define onde cada máquina irá atuar baseado em suas rotas."""
 
     routes = [item for sublist in routes for item in sublist]
@@ -73,3 +73,64 @@ def set_engines(file: Data, routes: List[Route]) -> List[List[int]]:
             visited[stp] = True
 
     return result
+
+
+def set_works(file: Data,
+              id: int,
+              wl: List[float],
+              inp: List[float],
+              time: List[float],
+              routes: Routes) -> Tuple[Works, Works]:
+    """define as operações realizadas em cada pilha, a velocidade e o tempo."""
+
+    stacks, reclaims = [], []
+    travel = file['time_travel']
+    
+    for eng, route, in zip(file['engines'], routes):
+        i = file['engines'].index(eng)
+
+        for j, stp in enumerate(route):
+            # tempo de configuração caso haja mais de uma tarefa na mesma pilha
+            reset = 0.0
+
+            # tempo da recuperação, de viagem e configuração até a pilha
+            duration = round(wl[stp] / eng.speed_reclaim, 1)
+            time_travel = travel[stp][route[j - 1]] \
+                if stp is not eng.pos_ini else travel[stp][stp]
+
+            # realiza a atividade de empilhamento antes de realizar a retirada
+            if inp[stp] > 0:
+                stacks.append({
+                    'weight': round(inp[stp], 1),
+                    'stockpile': stp + 1,
+                    'engine': eng.id,
+                    'start_time': round(time[i] + time_travel, 1),
+                    'duration': round(inp[stp] / eng.speed_stack, 1),
+                })
+
+                # adiciona o tempo de empilhamento caso haja alguma entrada
+                time[i] += stacks[-1]['duration']
+                reset += travel[stp][stp]
+                inp[stp] = 0.0
+
+            # atividade de retirada de minério da pilha
+            reclaims.append({
+                'weight': round(wl[stp], 1),
+                'stockpile': stp + 1,
+                'engine': eng.id,
+                'start_time': round(time[i] + time_travel + reset, 1),
+                'duration': duration,
+                'output': id
+            }) if wl[stp] > 0 else None
+
+            time[i] += duration + time_travel
+
+        # altera a posição inicial da máquina para sua última pilha visitada
+        try:
+            eng.pos_ini = route[-1]
+
+        # caso a máquina não tenha recebido nenhuma tarefa
+        except IndexError:
+            pass
+
+    return stacks, reclaims

@@ -23,6 +23,7 @@ Solution = Tuple[Optional[float], Weights, Weights]
 
 # type aliases para o solver
 Route = List[Tuple[float, int, int]]
+Routes = List[List[int]]
 
 # type aliases para os dados do gerador de instâncias
 QualityIni = List[Dict[str, Union[str, float]]]
