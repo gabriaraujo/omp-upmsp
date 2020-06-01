@@ -1,20 +1,28 @@
 {
   "info": "Instance_001",
-  "objective": 50600000650.0,
+  "objective": 50000600000.649994,
   "stacks": [
     {
       "weight": 100.0,
       "stockpile": 4,
-      "engine": 1,
+      "engine": 2,
       "start_time": 10.0,
       "duration": 3.3
     }
   ],
   "reclaims": [
     {
+      "weight": 300.0,
+      "stockpile": 1,
+      "engine": 1,
+      "start_time": 10.0,
+      "duration": 8.6,
+      "output": 1
+    },
+    {
       "weight": 400.0,
       "stockpile": 4,
-      "engine": 1,
+      "engine": 2,
       "start_time": 23.3,
       "duration": 11.4,
       "output": 1
@@ -22,16 +30,8 @@
     {
       "weight": 300.0,
       "stockpile": 3,
-      "engine": 1,
-      "start_time": 54.7,
-      "duration": 8.6,
-      "output": 1
-    },
-    {
-      "weight": 300.0,
-      "stockpile": 1,
       "engine": 2,
-      "start_time": 10.0,
+      "start_time": 54.7,
       "duration": 8.6,
       "output": 1
     }

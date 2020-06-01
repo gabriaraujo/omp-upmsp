@@ -21,9 +21,9 @@ def linear_model(out: Outputs,
     x = {(i, k): omp.add_var(name=f'x_{i}{k}')
          for i in range(p) for k in range(r)}
 
-    # y_li indica a quantidade de minério retirada do input l para a pilha i
-    y = {(l, i): omp.add_var(name=f'y_{l}{i}')
-         for l in range(e) for i in range(p)}
+    # y_hi indica a quantidade de minério retirada do input h para a pilha i
+    y = {(h, i): omp.add_var(name=f'y_{h}{i}')
+         for h in range(e) for i in range(p)}
 
     # var_jk indica o teor de qualidade j do pedido k
     a_max = {(j, k): omp.add_var(name=f'a_max_{j}{k}')
@@ -36,18 +36,18 @@ def linear_model(out: Outputs,
              for j in range(t) for k in range(r)}
 
     # restrição de capacidade das entradas
-    for l in range(e):
-        omp += xsum(y[l, i] for i in range(p)) <= inp[l].weight, \
-            f'input_weight_constr_{l}'
+    for h in range(e):
+        omp += xsum(y[h, i] for i in range(p)) <= inp[h].weight, \
+            f'input_weight_constr_{h}'
 
     # restrição de capacidade das pilhas
     for i in range(p):
-        omp += xsum(y[l, i] for l in range(e)) + stp[i].weight_ini \
+        omp += xsum(y[h, i] for h in range(e)) + stp[i].weight_ini \
             <= stp[i].capacity, f'capacity_constr_{i}'
 
-        for l in range(e):
+        for h in range(e):
             omp += xsum(x[i, k] for k in range(r)) \
-                <= stp[i].weight_ini + y[l, i], f'weight_constr_{i}{l}'
+                <= stp[i].weight_ini + y[h, i], f'weight_constr_{i}{h}'
 
     # criando restrições
     for k in range(r):
@@ -75,7 +75,7 @@ def linear_model(out: Outputs,
             q_3 = xsum(x[i, k] * (stp[i].quality_ini[j].value -
                                   out[k].quality[j].goal) for i in range(p))
 
-            omp += q_3 + b_min[j, k] - b_max[j, k] == 0, \
+            omp += q_3 + (b_min[j, k] - b_max[j, k]) * out[k].weight == 0, \
                 f'goal_quality_constr_{j}{k}'
 
     # peso das restrições na função objetivo
@@ -108,7 +108,7 @@ def linear_model(out: Outputs,
 
         # dicionário com as massas retiradas de cada input j para cada pilha i
         inputs = {
-            f'id: {stp[i].id}': [y[l, i].x for l in range(e)] for i in range(p)
+            f'id: {stp[i].id}': [y[h, i].x for h in range(e)] for i in range(p)
         }
 
         return omp.objective_value, inputs, reclaims

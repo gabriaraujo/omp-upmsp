@@ -1,6 +1,6 @@
 {
   "info": "Instance_M001",
-  "objective": 3558135.5633698665,
+  "objective": 3402951.4706569617,
   "stacks": [
     {
       "weight": 31.7,
@@ -20,19 +20,19 @@
       "output": 1
     },
     {
-      "weight": 386.0,
-      "stockpile": 4,
-      "engine": 2,
-      "start_time": 30.0,
-      "duration": 9.1,
-      "output": 1
-    },
-    {
       "weight": 107.1,
       "stockpile": 3,
       "engine": 2,
-      "start_time": 49.1,
+      "start_time": 30.0,
       "duration": 2.5,
+      "output": 1
+    },
+    {
+      "weight": 386.0,
+      "stockpile": 4,
+      "engine": 2,
+      "start_time": 42.5,
+      "duration": 9.1,
       "output": 1
     },
     {

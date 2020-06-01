@@ -1,6 +1,6 @@
 {
   "info": "Instance_M004",
-  "objective": 1721486.5882067883,
+  "objective": 1655745.3258664676,
   "stacks": [
     {
       "weight": 167.2,
@@ -46,9 +46,9 @@
     {
       "weight": 54.1,
       "stockpile": 4,
-      "engine": 1,
-      "start_time": 87.1,
-      "duration": 2.4,
+      "engine": 2,
+      "start_time": 97.5,
+      "duration": 1.9,
       "output": 2
     }
   ],
@@ -111,7 +111,7 @@
     {
       "weight": 725.2,
       "start_time": 26.9,
-      "duration": 62.6,
+      "duration": 72.5,
       "quality": [
         {
           "parameter": "Fe",

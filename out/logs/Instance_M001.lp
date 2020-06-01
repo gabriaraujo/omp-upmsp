@@ -39,73 +39,73 @@ Subject To
  max_quality_constr_00: - 0.58 x_00 - 24.89 x_10 - 55.5 x_20 - 7.06 x_30
    - 1102.2 a_max_00 <= -0
  goal_quality_constr_00: 0.06 x_00 - 24.25 x_10 - 54.86 x_20 - 6.42 x_30
-   + b_min_00 - b_max_00 = -0
+   + 1102.2 b_min_00 - 1102.2 b_max_00 = -0
  min_quality_constr_10: 0.89 x_00 + 0.34 x_10 + 0.35 x_20 + 0.2 x_30
    + 1102.2 a_min_10 >= -0
  max_quality_constr_10: - 0.61 x_00 - 1.16 x_10 - 1.15 x_20 - 1.3 x_30
    - 1102.2 a_max_10 <= -0
  goal_quality_constr_10: - 0.4 x_00 - 0.95 x_10 - 0.94 x_20 - 1.09 x_30
-   + b_min_10 - b_max_10 = -0
+   + 1102.2 b_min_10 - 1102.2 b_max_10 = -0
  min_quality_constr_20: 1.26 x_00 + 2.37 x_10 + 2.03 x_20 + 4.53 x_30
    + 1102.2 a_min_20 >= -0
  max_quality_constr_20: 0.76 x_00 + 1.87 x_10 + 1.53 x_20 + 4.03 x_30
    - 1102.2 a_max_20 <= -0
  goal_quality_constr_20: 1.16 x_00 + 2.27 x_10 + 1.93 x_20 + 4.43 x_30
-   + b_min_20 - b_max_20 = -0
+   + 1102.2 b_min_20 - 1102.2 b_max_20 = -0
  min_quality_constr_30: 2.29 x_00 + 4.71 x_10 + 3.29 x_20 + 3.98 x_30
    + 1102.2 a_min_30 >= -0
  max_quality_constr_30: 1.79 x_00 + 4.21 x_10 + 2.79 x_20 + 3.48 x_30
    - 1102.2 a_max_30 <= -0
  goal_quality_constr_30: 2.19 x_00 + 4.61 x_10 + 3.19 x_20 + 3.88 x_30
-   + b_min_30 - b_max_30 = -0
+   + 1102.2 b_min_30 - 1102.2 b_max_30 = -0
  min_quality_constr_40: 0.21 x_00 + 0.67 x_10 + 0.94 x_20 + 0.31 x_30
    + 1102.2 a_min_40 >= -0
  max_quality_constr_40: - 0.79 x_00 - 0.33 x_10 - 0.06 x_20 - 0.69 x_30
    - 1102.2 a_max_40 <= -0
  goal_quality_constr_40: 0.13 x_00 + 0.59 x_10 + 0.86 x_20 + 0.23 x_30
-   + b_min_40 - b_max_40 = -0
+   + 1102.2 b_min_40 - 1102.2 b_max_40 = -0
  min_quality_constr_50: - 0.5 x_00 + 0.93 x_10 + 0.68 x_20 + 2.13 x_30
    + 1102.2 a_min_50 >= -0
  max_quality_constr_50: - 2 x_00 - 0.57 x_10 - 0.82 x_20 + 0.63 x_30
    - 1102.2 a_max_50 <= -0
  goal_quality_constr_50: - 1.02 x_00 + 0.41 x_10 + 0.16 x_20 + 1.61 x_30
-   + b_min_50 - b_max_50 = -0
+   + 1102.2 b_min_50 - 1102.2 b_max_50 = -0
  demand_constr_1: x_01 + x_11 + x_21 + x_31 = 1005.5
  min_quality_constr_01: 44.42 x_01 + 20.11 x_11 - 10.5 x_21 + 37.94 x_31
    + 1005.5 a_min_01 >= -0
  max_quality_constr_01: - 0.58 x_01 - 24.89 x_11 - 55.5 x_21 - 7.06 x_31
    - 1005.5 a_max_01 <= -0
  goal_quality_constr_01: 31.12 x_01 + 6.81 x_11 - 23.8 x_21 + 24.64 x_31
-   + b_min_01 - b_max_01 = -0
+   + 1005.5 b_min_01 - 1005.5 b_max_01 = -0
  min_quality_constr_11: 0.89 x_01 + 0.34 x_11 + 0.35 x_21 + 0.2 x_31
    + 1005.5 a_min_11 >= -0
  max_quality_constr_11: - 0.61 x_01 - 1.16 x_11 - 1.15 x_21 - 1.3 x_31
    - 1005.5 a_max_11 <= -0
  goal_quality_constr_11: 0.6 x_01 + 0.05 x_11 + 0.06 x_21 - 0.09 x_31
-   + b_min_11 - b_max_11 = -0
+   + 1005.5 b_min_11 - 1005.5 b_max_11 = -0
  min_quality_constr_21: 1.26 x_01 + 2.37 x_11 + 2.03 x_21 + 4.53 x_31
    + 1005.5 a_min_21 >= -0
  max_quality_constr_21: 0.76 x_01 + 1.87 x_11 + 1.53 x_21 + 4.03 x_31
    - 1005.5 a_max_21 <= -0
  goal_quality_constr_21: 0.87 x_01 + 1.98 x_11 + 1.64 x_21 + 4.14 x_31
-   + b_min_21 - b_max_21 = -0
+   + 1005.5 b_min_21 - 1005.5 b_max_21 = -0
  min_quality_constr_31: 2.29 x_01 + 4.71 x_11 + 3.29 x_21 + 3.98 x_31
    + 1005.5 a_min_31 >= -0
  max_quality_constr_31: 1.79 x_01 + 4.21 x_11 + 2.79 x_21 + 3.48 x_31
    - 1005.5 a_max_31 <= -0
  goal_quality_constr_31: 2.07 x_01 + 4.49 x_11 + 3.07 x_21 + 3.76 x_31
-   + b_min_31 - b_max_31 = -0
+   + 1005.5 b_min_31 - 1005.5 b_max_31 = -0
  min_quality_constr_41: 0.21 x_01 + 0.67 x_11 + 0.94 x_21 + 0.31 x_31
    + 1005.5 a_min_41 >= -0
  max_quality_constr_41: - 0.79 x_01 - 0.33 x_11 - 0.06 x_21 - 0.69 x_31
    - 1005.5 a_max_41 <= -0
  goal_quality_constr_41: - 0.52 x_01 - 0.06 x_11 + 0.21 x_21 - 0.42 x_31
-   + b_min_41 - b_max_41 = -0
+   + 1005.5 b_min_41 - 1005.5 b_max_41 = -0
  min_quality_constr_51: - 0.5 x_01 + 0.93 x_11 + 0.68 x_21 + 2.13 x_31
    + 1005.5 a_min_51 >= -0
  max_quality_constr_51: - 2 x_01 - 0.57 x_11 - 0.82 x_21 + 0.63 x_31
    - 1005.5 a_max_51 <= -0
  goal_quality_constr_51: - 1.24 x_01 + 0.19 x_11 - 0.06 x_21 + 1.39 x_31
-   + b_min_51 - b_max_51 = -0
+   + 1005.5 b_min_51 - 1005.5 b_max_51 = -0
 Bounds
 End
