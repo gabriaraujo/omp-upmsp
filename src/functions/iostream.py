@@ -16,8 +16,9 @@ def read_file(file_name: str) -> Data:
 
     stockpiles = [Stockpile(data['id'],
                             data['position'],
+                            data['yard'],
+                            data['rails'],
                             data['capacity'],
-                            data['engines'],
                             data['weightIni'],
                             [Quality(*q.values()) for q in data['qualityIni']])
                   for data in data['stockpiles']]
@@ -26,11 +27,11 @@ def read_file(file_name: str) -> Data:
                       data['speedStack'],
                       data['speedReclaim'],
                       data['posIni'],
-                      data['stockpiles'])
+                      data['rail'],
+                      data['yards'])
                for data in data['engines']]
 
     inputs = [Input(data['id'],
-                    data['source'],
                     data['weight'],
                     [Quality(*q.values()) for q in data['quality']],
                     data['time'])

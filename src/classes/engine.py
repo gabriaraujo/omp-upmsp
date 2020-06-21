@@ -8,19 +8,22 @@ class Engine:
                  speed_stack: float,
                  speed_reclaim: float,
                  pos_ini: int,
-                 stockpiles: List[int]):
+                 rail: int,
+                 yards: List[int]):
         self._id = id
         self._speed_stack = speed_stack
         self._speed_reclaim = speed_reclaim
         self._pos_ini = pos_ini
-        self._stockpiles = stockpiles
+        self._rail = rail
+        self._yards = yards
 
     def __repr__(self):
         return f'id: {self._id}\n' + \
                f'speedStack: {self._speed_stack}\n' + \
                f'speedReclaim: {self._speed_reclaim}\n' + \
                f'posIni: {self._pos_ini}\n' + \
-               f'stockpiles: {self._stockpiles}\n'
+               f'rail: {self._rail}\n' + \
+               f'yards: {self._yards}\n'
 
     @property
     def id(self) -> int:
@@ -59,10 +62,19 @@ class Engine:
         self._pos_ini = value
 
     @property
-    def stockpiles(self) -> List[int]:
-        """Engine stockpiles."""
-        return self._stockpiles
+    def rail(self) -> int:
+        """"Engine rail."""
+        return self._rail
 
-    @stockpiles.setter
-    def stockpiles(self, value: List[int]):
-        self._stockpiles = value
+    @rail.setter
+    def rail(self, value: int):
+        self._rail = value
+
+    @property
+    def yards(self) -> List[int]:
+        """Engine yards."""
+        return self._yards
+
+    @yards.setter
+    def yards(self, value: List[int]):
+        self._yards = value

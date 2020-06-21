@@ -4,11 +4,12 @@
     {
       "id": 1,
       "position": 0,
-      "capacity": 400,
-      "engines": [
+      "yard": 1,
+      "rails": [
         1,
         2
       ],
+      "capacity": 400,
       "weightIni": 400,
       "qualityIni": [
         {
@@ -20,7 +21,7 @@
           "value": 1
         },
         {
-          "parameter": "AlO3",
+          "parameter": "Al2O3",
           "value": 0.5
         },
         {
@@ -40,16 +41,17 @@
     {
       "id": 2,
       "position": 1,
-      "capacity": 400,
-      "engines": [
+      "yard": 1,
+      "rails": [
         1,
         2
       ],
+      "capacity": 400,
       "weightIni": 300,
       "qualityIni": [
         {
           "parameter": "Fe",
-          "value": 65
+          "value": 50
         },
         {
           "parameter": "SiO2",
@@ -61,7 +63,7 @@
         },
         {
           "parameter": "P",
-          "value":1
+          "value": 1
         },
         {
           "parameter": "+31.5",
@@ -76,11 +78,11 @@
     {
       "id": 3,
       "position": 2,
-      "capacity": 400,
-      "engines": [
-        1,
+      "yard": 2,
+      "rails": [
         2
       ],
+      "capacity": 400,
       "weightIni": 300,
       "qualityIni": [
         {
@@ -112,16 +114,16 @@
     {
       "id": 4,
       "position": 3,
-      "capacity": 400,
-      "engines": [
-        1,
+      "yard": 2,
+      "rails": [
         2
       ],
+      "capacity": 400,
       "weightIni": 300,
       "qualityIni": [
         {
           "parameter": "Fe",
-          "value": 50
+          "value": 70
         },
         {
           "parameter": "SiO2",
@@ -149,38 +151,34 @@
   "engines": [
     {
       "id": 1,
-      "speedStack": 30.0,
+      "speedStack": 0.0,
       "speedReclaim": 35.0,
-      "posIni": 2,
-      "stockpiles": [
-        1,
-        2,
-        3,
-        4
+      "posIni": 1,
+      "rail": 1,
+      "yards": [
+        1
       ]
     },
     {
       "id": 2,
       "speedStack": 30.0,
       "speedReclaim": 35.0,
-      "posIni": 1,
-      "stockpiles": [
+      "posIni": 2,
+      "rail": 2,
+      "yards": [
         1,
-        2,
-        3,
-        4
+        2
       ]
     }
   ],
   "inputs": [
-  	{
+    {
       "id": 1,
-      "source": 2,
       "weight": 100.0,
       "quality": [
         {
           "parameter": "Fe",
-          "value": 62.6
+          "value": 60
         },
         {
           "parameter": "SiO2",
@@ -192,7 +190,7 @@
         },
         {
           "parameter": "P",
-          "value": 0.9
+          "value": 1.0
         },
         {
           "parameter": "+31.5",

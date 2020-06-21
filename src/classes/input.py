@@ -7,19 +7,16 @@ class Input:
 
     def __init__(self,
                  id: int,
-                 source: int,
                  weight: float,
                  quality: List[Quality],
                  time: float):
         self._id = id
-        self._source = source
         self._weight = weight
         self._quality = quality
         self._time = time
 
     def __repr__(self):
         return f'id: {self._id}\n' + \
-               f'source: {self._source}\n' + \
                f'weight: {self._weight}\n' + \
                f'quality: {self._quality}\n' + \
                f'time: {self._time}\n'
@@ -32,15 +29,6 @@ class Input:
     @id.setter
     def id(self, value: int):
         self._id = value
-
-    @property
-    def source(self) -> int:
-        """Input source."""
-        return self._source
-
-    @source.setter
-    def source(self, value: int):
-        self._source = value
 
     @property
     def weight(self) -> float:

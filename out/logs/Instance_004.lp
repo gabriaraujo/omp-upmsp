@@ -19,11 +19,11 @@ Subject To
  capacity_constr_3: y_03 <= 100
  weight_constr_30: x_30 - y_03 <= 300
  demand_constr_0: x_00 + x_10 + x_20 + x_30 = 1000
- min_quality_constr_00: 5 x_00 + 10 x_10 + 15 x_20 - 5 x_30 + 1000 a_min_00
+ min_quality_constr_00: 5 x_00 - 5 x_10 + 15 x_20 + 15 x_30 + 1000 a_min_00
    >= -0
- max_quality_constr_00: - 40 x_00 - 35 x_10 - 30 x_20 - 50 x_30
+ max_quality_constr_00: - 40 x_00 - 50 x_10 - 30 x_20 - 30 x_30
    - 1000 a_max_00 <= -0
- goal_quality_constr_00: 5 x_00 + 10 x_10 + 15 x_20 - 5 x_30
+ goal_quality_constr_00: 5 x_00 - 5 x_10 + 15 x_20 + 15 x_30
    + 1000 b_min_00 - 1000 b_max_00 = -0
  min_quality_constr_10: x_00 + 0.5 x_10 + x_20 + 2 x_30 + 1000 a_min_10
    >= -0

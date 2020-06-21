@@ -8,22 +8,25 @@ class Stockpile:
     def __init__(self,
                  id: int,
                  position: int,
+                 yard: int,
+                 rails: List[int],
                  capacity: float,
-                 engines: List[int],
                  weight_ini: float,
                  quality_ini: List[Quality]):
         self._id = id
         self._position = position
+        self._yard = yard
+        self._rails = rails
         self._capacity = capacity
-        self._engines = engines
         self._weight_ini = weight_ini
         self._quality_ini = quality_ini
 
     def __repr__(self):
         return f'id: {self._id}\n' + \
                f'position: {self._position}\n' + \
+               f'yard: {self._yard}\n' + \
+               f'rails: {self._rails}\n' + \
                f'capacity: {self._capacity}\n' + \
-               f'engines: {self._engines}\n' + \
                f'weightIni: {self._weight_ini}\n' + \
                f'qualityIni: {self._quality_ini}\n'
 
@@ -46,6 +49,24 @@ class Stockpile:
         self._position = value
 
     @property
+    def yard(self) -> int:
+        """Stockpile yard."""
+        return self._yard
+
+    @yard.setter
+    def yard(self, value):
+        self._yard = value
+
+    @property
+    def rails(self) -> List[int]:
+        """Stockpile rails."""
+        return self._rails
+
+    @rails.setter
+    def rails(self, value):
+        self._rails = value
+
+    @property
     def capacity(self) -> float:
         """Stockpile capacity."""
         return self._capacity
@@ -53,15 +74,6 @@ class Stockpile:
     @capacity.setter
     def capacity(self, value: float):
         self._capacity = value
-
-    @property
-    def engines(self) -> [int]:
-        """Stockpile engines."""
-        return self._engines
-
-    @engines.setter
-    def engines(self, value: [int]):
-        self._engines = value
 
     @property
     def weight_ini(self) -> float:
