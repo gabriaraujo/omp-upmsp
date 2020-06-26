@@ -10,7 +10,7 @@ GEN_INSTANCES := \
 
 run:
 	@$(STD_INSTANCES)
-	@$(GEN_INSTANCES)
+#	@$(GEN_INSTANCES)
 
 gen:
 	python3 src/gen.py instance_m1.json Instance_M001 4 600 2 1000 1 2 0.2
