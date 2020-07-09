@@ -6,64 +6,73 @@ def set_routes(file: Data,
                wl: List[float],
                inp: List[float],
                time: List[float]) -> Routes:
-    """define a ordem de funcionamento das máquinas."""
+    """define a ordem de funcionamento de todas as máquinas."""
 
     routes = []
-    travel = file['time_travel']
     start_time = time.copy()
 
+    # anexa a rota da máquina individual à lista de rotas
     for eng in file['engines']:
-        # lista para indicar se a máquina já visitou a pilha
-        visited = [False for stp in file['stockpiles']
-                   if eng.rail in stp.rails]
-
-        # lista com as rotas da máquina e variável com sua posição inicial
-        route, pos = [], eng.pos_ini
-
-        while not all(visited):
-            try:
-                # encontra a pilha com menor tempo de acesso
-                faster, pos = min((time_travel + start_time[eng.id - 1], i)
-                                  for i, (time_travel, is_visited)
-                                  in enumerate(zip(travel[pos], visited))
-                                  if wl[i] > 0 and is_visited is False
-                                  and eng.rail in file['stockpiles'][i].rails)
-
-                # indica qual atividade será realizada pela máquina
-                # r para retomar, s para empilhar e b para ambas
-                atv = 'r'
-
-                # calcula o tempo que a máquina permaneceu operando na pilha
-                duration = round(wl[pos] / eng.speed_reclaim, 1) \
-                    if eng.speed_reclaim > 0 else 0
-
-                # caso a máquina precise reabastecer a pilha visitada
-                if inp[pos] > 0:
-                    reset = travel[pos][pos] if eng.speed_reclaim > 0 else 0
-                    duration += round(inp[pos] / eng.speed_stack, 1) + reset \
-                        if eng.speed_stack > 0 else 0
-
-                    atv = 's' if eng.speed_stack > 0 else atv
-                    atv = 'b' if eng.speed_reclaim > 0 and \
-                        eng.speed_stack > 0 else atv
-
-                if duration > 0:
-                    # adiciona o tempo de operação ao tempo inicial do trabalho
-                    start_time[eng.id - 1] += duration + faster
-
-                    # adiciona os dados à lista de rotas da máquina em questão
-                    route.append((faster, eng.id, pos, atv))
-
-                visited[pos] = True
-
-            # caso o modelo seja inviável, a função min() lança uma exceção
-            except ValueError:
-                break
-
-        # anexa a rota da máquina à lista de rotas
-        routes.append(route)
+        routes.append(set_route(file, wl, inp, start_time, eng))
 
     return set_engines(file, routes)
+
+
+def set_route(file: Data,
+              wl: List[float],
+              inp: List[float],
+              time: List[float],
+              eng: Engine) -> Route:
+    """define a ordem de funcionamento de cada máquina individual."""
+
+    # lista para indicar se a máquina já visitou a pilha
+    visited = [False for stp in file['stockpiles'] if eng.rail in stp.rails]
+
+    # lista com as rotas da máquina e variável com sua posição inicial
+    route, pos = [], eng.pos_ini
+    travel = file['time_travel']
+
+    while not all(visited):
+        try:
+            # encontra a pilha com menor tempo de acesso
+            faster, pos = min((time_travel + time[eng.id - 1], i)
+                              for i, (time_travel, is_visited)
+                              in enumerate(zip(travel[pos], visited))
+                              if wl[i] > 0 and is_visited is False
+                              and eng.rail in file['stockpiles'][i].rails)
+
+            # indica qual atividade será realizada pela máquina
+            # r para retomar, s para empilhar e b para ambas
+            atv = 'r'
+
+            # calcula o tempo que a máquina permaneceu operando na pilha
+            duration = round(wl[pos] / eng.speed_reclaim, 1) \
+                if eng.speed_reclaim > 0 else 0
+
+            # caso a máquina precise reabastecer a pilha visitada
+            if inp[pos] > 0:
+                reset = travel[pos][pos] if eng.speed_reclaim > 0 else 0
+                duration += round(inp[pos] / eng.speed_stack, 1) + reset \
+                    if eng.speed_stack > 0 else 0
+
+                atv = 's' if eng.speed_stack > 0 else atv
+                atv = 'b' if eng.speed_reclaim > 0 and \
+                    eng.speed_stack > 0 else atv
+
+            if duration > 0:
+                # adiciona o tempo de operação ao tempo inicial do trabalho
+                time[eng.id - 1] += duration + faster
+
+                # adiciona os dados à lista de rotas da máquina em questão
+                route.append((faster, eng.id, pos, atv))
+
+            visited[pos] = True
+
+        # caso o modelo seja inviável, a função min() lança uma exceção
+        except ValueError:
+            break
+
+    return route
 
 
 def set_engines(file: Data, routes: List[Route]) -> Routes:
@@ -85,12 +94,12 @@ def set_engines(file: Data, routes: List[Route]) -> Routes:
         # route[3] é o tipo de atividade que será realizada na pilha
 
         eng, stp, atv = route[1] - 1, route[2], route[3]
-        if work[stp] is not atv and work[stp] is not 'b':
-            if atv is 'b' and work[stp] is 's':
+        if work[stp] != atv and work[stp] != 'b':
+            if atv == 'b' and work[stp] == 's':
                 result[eng].append((stp, 'r'))
                 work[stp] = 'b'
 
-            elif atv is 'b' and work[stp] is 'r':
+            elif atv == 'b' and work[stp] == 'r':
                 result[eng].append((stp, 's'))
                 work[stp] = 'b'
 
@@ -125,7 +134,7 @@ def set_works(file: Data,
                 if stp is not eng.pos_ini else travel[stp][stp]
 
             # realiza a atividade de empilhamento antes de realizar a retirada
-            if atv is 's' or atv is 'b':
+            if atv == 's' or atv == 'b':
                 stacks.append({
                     'weight': round(inp[stp], 1),
                     'stockpile': stp + 1,
@@ -147,7 +156,7 @@ def set_works(file: Data,
                 'start_time': round(time[eng.id - 1] + time_travel + reset, 1),
                 'duration': duration,
                 'output': id
-            }) if atv is 'r' or atv is 'b' else None
+            }) if atv == 'r' or atv == 'b' else None
 
             time[eng.id - 1] += duration + time_travel
 

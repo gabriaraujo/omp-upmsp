@@ -42,7 +42,7 @@ def local_search(file: Data,
         dispatch = round(work[1], 1)
 
         count += 1
-        if dispatch < best_dispatch and valid_sl(file, inp, stack, reclaim):
+        if dispatch < best_dispatch:
             # salva os dados das melhores soluções encontradas até o momento
 
             best_dispatch = dispatch
@@ -74,21 +74,6 @@ def swap(route: Union[List[int], Routes]):
             if i != j:
                 route[i], route[j] = route[j], route[i]
                 break
-
-
-def valid_sl(file: Data,
-             inp: List[float],
-             stack: Works,
-             reclaim: Works) -> bool:
-    """verifica se a busca local gera trocas capazes de atender a demanda."""
-
-    if sum(inp) is sum([stk['weight'] for stk in stack]) and \
-       all([out.weight is sum([rec['weight'] for rec in reclaim
-                               if rec['output'] is out.id])
-            for out in file['outputs']]):
-        return True
-
-    return False
 
 
 def work_time(reclaims: Works, id: int):
