@@ -40,7 +40,7 @@ To use the instance generator properly, run the commands from the root directory
     Usage exemple:    	
     python3 src/gen.py instance_1.json Instance_M001 4 600 2 1000 1 2 0.2
 
-Note that for the optional parameters to work as expected they must be entered in the exact order listed above.
+Note that for the optional parameters to work as expected they must be entered in the exact order listed above. The generated instances can be found in the <a href="https://github.com/gabriaraujo/omp/tree/master/tests" target="_blank"> `tests`</a> folder.
 
 ## Dependencies
 - <a href="https://numpy.org" target= "_blank">NumPy</a> - Library that offers comprehensive mathematical functions, random number generators, linear algebra routines, Fourier transforms, and more.
