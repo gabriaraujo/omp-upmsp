@@ -1,5 +1,5 @@
 # OMP Solver
-> Solver for the ore mixing problem | Scientific Research
+> Solver for the ore mixing problem
 
 ## Ore Mixing or Blending Problem
 
