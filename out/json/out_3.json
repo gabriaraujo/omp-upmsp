@@ -6,7 +6,7 @@
    "weight": 100.0,
    "stockpile": 2,
    "engine": 2,
-   "start_time": 85.7,
+   "start_time": 95.7,
    "duration": 3.3
   }
  ],
@@ -31,7 +31,7 @@
    "weight": 200.0,
    "stockpile": 4,
    "engine": 2,
-   "start_time": 40.0,
+   "start_time": 30.0,
    "duration": 5.7,
    "output": 1
   }

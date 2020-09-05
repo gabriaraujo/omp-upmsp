@@ -1,4 +1,4 @@
-# importa as classes para que o diretório funcione como um módulo
+# import the classes so that the directory works as a module
 
 from .stockpile import Stockpile
 from .engine import Engine

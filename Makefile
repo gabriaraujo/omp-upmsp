@@ -1,15 +1,23 @@
 STD_INSTANCES := \
-	for n in $$(seq 1 10); \
-		do python3 src/main.py instance_$$n.json out_$$n.json; \
+	for n in $$(seq 1 10) ; do \
+		for m in $$(seq 1 10) ; do \
+		python3 src/main.py instance_$$n.json I$${n}S$${m}.json $$m ; \
+		done \
+	done
+
+STATIC_SEED := \
+	for n in $$(seq 1 10) ; do \
+		python3 src/main.py instance_$$n.json out_$$n.json 0 ; \
 	done
 
 GEN_INSTANCES := \
-	for n in $$(seq 1 10); \
-		do python3 src/main.py instance_m$$n.json out_m$$n.json; \
+	for n in $$(seq 1 10) ; do \
+		python3 src/main.py instance_m$$n.json out_m$$n.json ; \
 	done
 
 run:
-	@$(STD_INSTANCES)
+	@$(STATIC_SEED)
+#	@$(STD_INSTANCES)
 #	@$(GEN_INSTANCES)
 
 gen:
@@ -23,5 +31,3 @@ gen:
 	python3 src/gen.py instance_m8.json Instance_M008 8 1600 4 1400 3 3 0.4
 	python3 src/gen.py instance_m9.json Instance_M009 8 1800 6 1400 3 4 0.2
 	python3 src/gen.py instance_m10.json Instance_M010 8 1800 6 1400 3 4 0.4
-
-
