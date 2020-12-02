@@ -3,7 +3,7 @@
 
 ## 📑 About this Project
 This is a research project in Optimization Models and Algorithms in Industry 4.0 and aims to propose heuristic solutions and modeling in linear programming for the [Ore Mixing 
-Problem (OMP)](https://github.com/gabriaraujo/omp-upmsp#-ore-mixing-or-blending-problem) and the 
+Problem (OMP)](https://github.com/gabriaraujo/omp-upmsp#%EF%B8%8F-ore-mixing-or-blending-problem) and the 
 [Unrelated Parallel Machine Schedule Problem (UPMSP)](https://github.com/gabriaraujo/omp-upmsp#-unrelated-parallel-machine-schedule-problem). The ore mixing and blending problem 
 consists in determining the quantity of each ore, coming from a 
 set of fronts or piles, which must be blended to form a final product with characteristics that meet the requirements of a specific customer. As the ores have different 
