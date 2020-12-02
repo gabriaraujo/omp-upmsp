@@ -2,8 +2,10 @@
 > Solver for the Ore Mixing Problem (OMP) and the Unrelated Parallel Machine Schedule Problem (UPMSP).
 
 ## 📑 About this Project
-This is a research project in Optimization Models and Algorithms in Industry 4.0 and aims to propose heuristic solutions and modeling in linear programming for the Ore Mixing 
-Problem (OMP) and the Unrelated Parallel Machine Schedule Problem (UPMSP). The ore mixing and blending problem consists in determining the quantity of each ore, coming from a 
+This is a research project in Optimization Models and Algorithms in Industry 4.0 and aims to propose heuristic solutions and modeling in linear programming for the [Ore Mixing 
+Problem (OMP)](https://github.com/gabriaraujo/omp-upmsp#-ore-mixing-or-blending-problem) and the 
+[Unrelated Parallel Machine Schedule Problem (UPMSP)](https://github.com/gabriaraujo/omp-upmsp#-unrelated-parallel-machine-schedule-problem). The ore mixing and blending problem 
+consists in determining the quantity of each ore, coming from a 
 set of fronts or piles, which must be blended to form a final product with characteristics that meet the requirements of a specific customer. As the ores have different 
 characteristics, whether the content of a certain chemical element or the percentage of an ore in a certain granulometric range, it is necessary to combine the ores in certain 
 proportions so that the mixture meets the quality and quantity goals. Likewise, the machinery performs the stacking and recovery of materials from the ore stacks and due to the 
