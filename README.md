@@ -1,53 +1,69 @@
-# OMP Solver
-> Solver for the ore mixing problem
+# OMP-UPMSP Solver
+> Solver for the Ore Mixing Problem (OMP) and the Unrelated Parallel Machine Schedule Problem (UPMSP).
 
-## Ore Mixing or Blending Problem
+## 📑 About this Project
+This is a research project in Optimization Models and Algorithms in Industry 4.0 and aims to propose heuristic solutions and modeling in linear programming for the Ore Mixing 
+Problem (OMP) and the Unrelated Parallel Machine Schedule Problem (UPMSP). The ore mixing and blending problem consists in determining the quantity of each ore, coming from a 
+set of fronts or piles, which must be blended to form a final product with characteristics that meet the requirements of a specific customer. As the ores have different 
+characteristics, whether the content of a certain chemical element or the percentage of an ore in a certain granulometric range, it is necessary to combine the ores in certain 
+proportions so that the mixture meets the quality and quantity goals. Likewise, the machinery performs the stacking and recovery of materials from the ore stacks and due to the 
+load differences between orders and the need to combine the ores to meet the quality standards, the time and the energy required to stack and recover vary considerably by job.
 
+## ⛰️ Ore Mixing or Blending Problem
 The ore mixing or blending problem consists in determining the quantity of each ore, coming from a set of fronts or piles, which must be blended to form a final product with characteristics that meet the requirements of a given customer. As the ores have different characteristics, whether the content of a certain chemical element or the percentage of an ore in a certain granulometric range, it is necessary to combine the ores in certain proportions so that the mixture meets the quality and quantity targets.
 
-## Getting Started
+## 🚜 Unrelated Parallel Machine Schedule Problem
+The problem is to schedule a set of jobs, each available at a certain time, on unrelated machines. In this scenario, the machinery performs the stacking and recovery of 
+materials from the ore stacks and due to the load differences between orders and the need to combine the ores to meet the quality standards, the time and the energy required 
+to stack and recover change considerably by work.
 
-The source code includes the linear model and a greedy heuristic for the OMP.
+## 💡 Why?
+This project is part of my scientific research and I would be very happy to receive feedback on the project, code, structure, anything that can make me a better developer!
 
-Note that specific input files are required to execute the solver, available at <a href="https://github.com/gabriaraujo/omp/tree/master/tests" target="_blank"> `tests`</a> folder.
+E-mail: <a href="mailto:gabrielcaetanodm@gmail.com">gabrielcaetanodm@gmail.com</a> | 
+LinkedIn: <a href="https://www.linkedin.com/in/gabrielcaetanodm/" target="_blank">gabrielcaetanodm</a>
 
-To use the solver properly, run the commands from the root directory.
+The orientations and ideas for this project are provide by [Túlio Toffolo](https://github.com/tuliotoffolo).
 
-    python3 src/main.py <input argument> <output argument>
+## 📥 How to use
+- Clone this repository: `git clone https://github.com/gabriaraujo/omp-upmsp.git`
 
-    Usage exemple:
-    python3 src/main.py instance_1.json out_1.json
+To use just follow the instructions below:
 
-The solver outputs can be found in the <a href="https://github.com/gabriaraujo/omp/tree/master/out" target="_blank">`out`</a> folder. The generated results can be found in the <a href="https://github.com/gabriaraujo/omp/tree/master/out/json" target="_blank">`json`</a> subfolder and the model details (lp format) in the <a href="https://github.com/gabriaraujo/omp/tree/master/out/logs" target="_blank">`logs`</a> subfolder. 
+    Usage: python3 src/main.py <input> <output> [options]
+    <input>  : Name of the problem input file.
+    <output> : Name of the (output) solution file.
 
-## Instance Generator
-An instance generator for OMP was also developed.
+    Options:
+        -constructive <constructive> : premodel, postmodel (default: postmodel).
+        -algorithm <algorithm>       : lahc, sa.
+        -feedback <feedback>         : maximum number of feedback interactions with the model (defaulf: 0).
+        -seed <seed>                 : random seed (default: 0).
+        -maxiters <maxiters>         : maximum number of interactions (default: 1000).
 
-To use the instance generator properly, run the commands from the root directory.
+    LAHC parameters:
+        -lsize <lsize> : LAHC list size (default: 1000).
 
-    python3 src/main.py <json file name> [options]
+    SA parameters:
+        -alpha <alpha> : cooling rate for the Simulated Annealing (default: 0.9).
+        -samax <samax> : iterations before updating the temperature for Simulated Annealing (default: 1000).
+        -t0 <t0>       : initial temperature for the Simulated Annealing (default: 1.0). 
 
-    Optional parameters (see the note below):
-        -name <str>       : internal name for the instance (default: Instance_R{1, ..., 1000}).
-        -stockpiles <int> : amount of stockpiles for the problem (default: 4).
-        -capacity <float> : capacity of each stockpile (default: 400).
-        -outputs <int>    : number of orders to be fulfilled (default: 1).
-        -weight <float>   : total ore mass of each order (default: 1000.0).
-        -inputs <int>     : amount of ore input to the problem (default: 1).
-        -engines <int>    : amount of equipment available (default: 2).
-        -variant <float>  : rate of change for quality and quantity of ores (default: 0.2).
+    Examples:
+        python3 src/main.py instance_1.json out_1.json
+        python3 src/main.py instance_1.json out_1.json -constructive premodel -seed 1
+        python3 src/main.py instance_1.json out_1.json -algorithm sa -alpha 0.98 -samax 1000 -t0 1e5
+        
+Note that specific input files are required to execute the solver, available at <a href="https://github.com/gabriaraujo/omp/tree/master/tests" target="_blank"> `tests`</a> folder. To use the solver properly, run the commands from the root directory.
 
-    Usage exemple:    	
-    python3 src/gen.py instance_1.json Instance_M001 4 600 2 1000 1 2 0.2
+The solver outputs can be found in the created `out` folder. The generated results can be found in the `json` subfolder and the model details (lp format) in the `logs` subfolder. 
 
-Note that for the optional parameters to work as expected they must be entered in the exact order listed above. The generated instances can be found in the <a href="https://github.com/gabriaraujo/omp/tree/master/tests" target="_blank"> `tests`</a> folder.
-
-## Dependencies
+## 💽 Dependencies
 - <a href="https://numpy.org" target= "_blank">NumPy</a> - Library that offers comprehensive mathematical functions, random number generators, linear algebra routines, Fourier transforms, and more.
 - <a href="https://pypi.org/project/ujson/" target= "_blank">UltraJSON</a> - Ultra fast JSON encoder and decoder for Python.
 - <a href="https://pypi.org/project/mip/" target= "_blank">Python MIP</a> - Python tools for Modeling and Solving Mixed-Integer Linear Programs (MIPs).
 
-## Questions?
+## ☕ Questions?
 If you have any questions, please feel free to contact me.
 
 Thanks!
