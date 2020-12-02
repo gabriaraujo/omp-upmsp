@@ -1,5 +1,7 @@
 # OMP-UPMSP Solver
-> Solver for the Ore Mixing Problem (OMP) and the Unrelated Parallel Machine Schedule Problem (UPMSP).
+<div align="center">
+  <img src="./design/splash.jpg" />
+</div>
 
 ## 📑 About this Project
 This is a research project in Optimization Models and Algorithms in Industry 4.0 and aims to propose heuristic solutions and modeling in linear programming for the [Ore Mixing 
