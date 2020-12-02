@@ -1,7 +1,7 @@
-from algorithm.constructive import SimpleConstructive
+from algorithm.constructive import Constructive
 from model.problem import Problem
 from model.solution import Solution
-from typing import Optional, List
+from typing import Optional
 
 class Move:
     """This class represents a Move (or Neighborhood). The basic methods as 
@@ -11,21 +11,21 @@ class Move:
     def __init__(
         self: 'Move', 
         problem: Problem, 
-        constructive: SimpleConstructive, 
+        constructive: Constructive, 
         name: str
     ):
         """Instantiates a new Move.
 
         Args:
             problem (Problem): The problem reference.
-            constructive (SimpleConstructive): The move constructive procedure.
+            constructive (Constructive): The move constructive procedure.
             name (str): The name of this neighborhood (for debugging purposes).
         """
 
         self._problem: Problem = problem
         self._name: str = name
 
-        self._constructive: SimpleConstructive = constructive
+        self._constructive: Constructive = constructive
 
         self._current_solution: Optional[Solution] = None
         self._intermediate_state: bool = False
@@ -93,11 +93,23 @@ class Move:
 
         self.__iters += 1
         self._current_solution = solution
-
         self._initial_cost = solution.cost
-        self._delta_cost = float('inf')
 
+        self._constructive.solution = solution
+        self._constructive.run(True)
+
+        self._delta_cost = solution.cost - self._initial_cost
         return self._delta_cost
+
+    def gen_move(self: 'Move', solution: Solution) -> None:
+        """This method generates a random candidate for the movement that must 
+        be subsequently validated by has_move ().
+        
+        Args:
+            solution (Solution): The solution to be modified.
+        """
+
+        raise NotImplementedError
 
     def has_move(self: 'Move', solution: Solution) -> bool:
         """This method returns a boolean indicating whether this neighborhood 
@@ -111,7 +123,7 @@ class Move:
                 solution, False otherwise.
         """
 
-        return True
+        raise NotImplementedError
 
     def reset(self: 'Move') -> None:
         """This method is called whenever the neighborhood should be reset 
@@ -131,12 +143,12 @@ class Move:
         self._problem = value
 
     @property
-    def constructive(self: 'Move') -> SimpleConstructive:
-        """SimpleConstructive: The move constructive procedure."""
+    def constructive(self: 'Move') -> Constructive:
+        """Constructive: The move constructive procedure."""
         return self._constructive
 
     @constructive.setter
-    def constructive(self: 'Move', value: SimpleConstructive) -> None:
+    def constructive(self: 'Move', value: Constructive) -> None:
         self._constructive = value
 
     @property

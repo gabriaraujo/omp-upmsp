@@ -1,7 +1,9 @@
 from config import Stockpiles, Outputs, Inputs, Objective
 from model.problem import Problem
 from mip import Model, Var, LinExpr, xsum
-from typing import Optional
+from typing import Optional, Tuple, Dict
+import random
+import os
 
 
 class LinModel:
@@ -31,7 +33,7 @@ class LinModel:
         self._omp: Model = Model('Ore Mixing Problem')
 
         # Problem data used to solve the model
-        self._info: str = problem.info
+        self._info: str = problem.info[0]
         self._stockpiles: Stockpiles = problem.stockpiles
         self._outputs: Outputs = problem.outputs
         self._inputs: Inputs = problem.inputs
@@ -45,6 +47,19 @@ class LinModel:
         # variables for the Ore Mixing Problem
         self._x: Optional[Var] = None
         self._y: Optional[Var] = None
+
+        # weights of the restrictions in the objective function
+        self._w_1: int = problem.info[1]
+        self._w_2: int = problem.info[2]
+
+        # variable weights for the Ore Mixing Problem
+        self._w_x: Dict[Tuple[int, int], int] = {
+            (i, k): 1 for i in range(self._p) for k in range(self._r)
+        }
+
+        self._w_y: Dict[Tuple[int, int], int] = {
+            (h, i): 1 for h in range(self._e) for i in range(self._p)
+        }
 
         # deviation variables for the Ore Mixing Problem
         self._a_max: Optional[Var] = None
@@ -79,7 +94,8 @@ class LinModel:
         assert self.__has_objective, \
             'calling the resolve() before mandatory call to __add_objective().'
 
-         # solving the model
+        # solving the model
+        os.makedirs(os.path.dirname(f'./out/logs/'), exist_ok=True)
         self._omp.write(f'./out/logs/{self._info}.lp')
         self._omp.optimize()
 
@@ -103,6 +119,51 @@ class LinModel:
 
         else:
             return None, {}, {}
+
+    def add_weights(
+        self: 'LinModel', 
+        variable: str, 
+        weights: Dict[Tuple[int, int], int]
+    ) -> None:
+        """This method assigns weights to the variables. It must be called 
+        whenever it is necessary to send to send feedback to this model.
+        
+        Args:
+            variable (str): Indicator of which variable weights are defined. 
+                It must be 'x' or 'y'.
+            weights (Dict[Tuple[int, int], int]): Dict of weights reclaimed or 
+                stacked resulting from a previous execution of this model.
+        """
+
+        assert variable == 'x' or variable == 'y', (
+            'the variable \'x\' or \'y\' to which the weights '
+            'will be applied must be defined.'
+        )
+
+        assert weights, \
+            'calling add_weights with an empty matrix of weights.'
+
+        if variable == 'x':
+            # resets the previous list of weights, if any
+            self._w_x = {
+                (i, k): 1 for i in range(self._p) for k in range(self._r)
+            }
+
+            # sets a new list of weights with random values
+            for k, lin in enumerate(weights):
+                for i, col in enumerate(lin):
+                    self._w_x[i, k] = random.randint(1, 1e3) if col > 0 else 1
+
+        elif variable == 'y':
+            # resets the previous list of weights, if any
+            self._w_y = {
+                (h, i): 1 for h in range(self._e) for i in range(self._p)
+            }
+
+            # sets a new list of weights with random values
+            for i, lin in enumerate(weights):
+                for h, col in enumerate(lin):
+                    self._w_y[h, i] = random.randint(1, 1e3) if col > 0 else 1
 
     def __add_vars(self: 'LinModel') -> None:
         """This method assigns values ​​to variables. It is automatically called 
@@ -219,14 +280,6 @@ class LinModel:
         
         self.__has_objective = True
 
-        # weights of the restrictions in the objective function
-        w_1: int = int(1e3)
-        w_2: int = 1
-
-        # d_scheduling = xsum(p[i, k] * self._x[i, k]
-        #     for i in range(self._p) for k in range(self._r)
-        # )
-
         # deviation from limits
         d_limit: LinExpr = xsum(
             self._outputs[k].quality[j].importance *
@@ -243,8 +296,22 @@ class LinModel:
             for j in range(self._t) for k in range(self._r)
         )
 
+        # scheduling reclaims
+        r_scheduling: LinExpr = xsum(
+            self._w_x[i, k] * self._x[i, k]
+            for i in range(self._p) for k in range(self._r)
+        )
+
+        # scheduling inputs
+        i_scheduling: LinExpr = xsum(
+            self._w_y[h, i] * self._y[h, i]
+            for h in range(self._e) for i in range(self._p)
+        )
+
         # objective function
-        self._omp += w_1 * d_limit + w_2 * d_goal
+        self._omp += self._w_1 * d_limit \
+                  + self._w_2 * d_goal \
+                  + r_scheduling + i_scheduling
 
     def __normalize(self: 'LinModel', j: int, k: int, bound: str) -> float:
         """This method helps to calculate the units of deviation and avoids 
@@ -263,6 +330,9 @@ class LinModel:
                 indicated limit. If this result is zero, then the value 
                 1e-6 will be returned.
         """
+
+        assert bound == 'ub' or bound == 'lb', \
+            'the upper or lower bound indicator must be defined.'
 
         # outputs[k].quality[j] is the quality parameter j of the request k
         ans: float = 0

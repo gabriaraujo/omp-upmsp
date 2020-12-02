@@ -2,3 +2,4 @@
 
 from .heuristic import Heuristic
 from .sa import SA
+from .lahc import LAHC

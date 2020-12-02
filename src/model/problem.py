@@ -1,5 +1,6 @@
 from config import Stockpiles, Engines, Inputs, Outputs, Travels
 from model.classes import Stockpile, Engine, Input, Output, Quality, Request
+from typing import List, Union
 import ujson
 
 
@@ -27,7 +28,7 @@ class Problem:
         with open(instance_path, 'r') as file:
             data = ujson.load(file)
 
-        self._info: str = data['info']
+        self._info: List[Union[str, int]] = data['info']
 
         self._stockpiles: Stockpiles = [
             Stockpile(
@@ -76,12 +77,13 @@ class Problem:
 
     # region simple getters and setters
     @property
-    def info(self: 'Problem') -> str:
-        """str: The instance name."""
+    def info(self: 'Problem') -> List[Union[str, int]]:
+        """List[Union[str, int]]: List with the instance name and the omega 
+        values for the linear model."""
         return self._info
     
     @info.setter
-    def info(self: 'Problem', value: str) -> None:
+    def info(self: 'Problem', value: List[Union[str, int]]) -> None:
         self._info = value
 
     @property

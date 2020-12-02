@@ -8,7 +8,7 @@ class Output:
     when the output request can be started."""
 
     def __init__(
-        self: 'Input',
+        self: 'Output',
         id: int,
         destination: int,
         weight: float,
@@ -30,7 +30,7 @@ class Output:
         self._quality: List[Request] = quality
         self._time: float = time
 
-    def __repr__(self: 'Input') -> str:
+    def __repr__(self: 'Output') -> str:
         """This method returns the string representation of an Output.
         
         Returns:
@@ -45,46 +45,46 @@ class Output:
 
     # region simple getters and setters
     @property
-    def id(self: 'Input') -> int:
+    def id(self: 'Output') -> int:
         """int: The output identifier."""
         return self._id
 
     @id.setter
-    def id(self: 'Input', value: int) -> None:
+    def id(self: 'Output', value: int) -> None:
         self._id = value
 
     @property
-    def destination(self: 'Input') -> int:
+    def destination(self: 'Output') -> int:
         """int: The destination identifier of the output."""
         return self._destination
 
     @destination.setter
-    def destination(self: 'Input', value: int) -> None:
+    def destination(self: 'Output', value: int) -> None:
         self._destination = value
 
     @property
-    def weight(self: 'Input') -> float:
+    def weight(self: 'Output') -> float:
         """float: The weight of ore requested in the output."""
         return self._weight
 
     @weight.setter
-    def weight(self: 'Input', value: float) -> None:
+    def weight(self: 'Output', value: float) -> None:
         self._weight = value
 
     @property
-    def quality(self: 'Input') -> List[Request]:
+    def quality(self: 'Output') -> List[Request]:
         """List[Request]: List with the requested quality parameters."""
         return self._quality
 
     @quality.setter
-    def quality(self: 'Input', value: List[Request]) -> None:
+    def quality(self: 'Output', value: List[Request]) -> None:
         self._quality = value
 
     @property
-    def time(self: 'Input') -> float:
+    def time(self: 'Output') -> float:
         """float: Time when the output request can be started."""
         return self._time
 
     @time.setter
-    def time(self: 'Input', value: float) -> None:
+    def time(self: 'Output', value: float) -> None:
         self._time = value

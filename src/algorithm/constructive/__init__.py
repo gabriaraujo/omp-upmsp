@@ -1,4 +1,6 @@
 # import the classes so that the directory works as a module
 
-from .simple import SimpleConstructive
-from .linear import LinModel
+from .constructive import Constructive
+from .postmodel import PostModel
+from .premodel import PreModel
+from .linmodel import LinModel

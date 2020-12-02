@@ -4,6 +4,7 @@ from .problem import Problem
 from typing import Optional, List, Tuple
 import numpy as np
 import ujson
+import os
 
 
 class Solution:
@@ -29,6 +30,7 @@ class Solution:
         self._cost: float = float('inf')
         self._routes: Routes = [[] for _ in range(len(problem.engines))]
         self._start_time: List[float] = [0] * len(problem.engines)
+        self._gap: List[float] = [1] * len(problem.outputs)
         self._stacks: Jobs = []
         self._reclaims: Jobs = []
         self._deliveries: Deliveries = []
@@ -72,12 +74,23 @@ class Solution:
 
             start, end = self.work_time(out.id)
 
+            # calculates the optimal delivery duration
+            optimal_duration: float = out.weight / sum([
+                eng.speed_reclaim for eng in self.problem.engines
+            ])
+
+            # calculates the gap between the durations
+            self._gap[out.id - 1] = round(
+                1 - optimal_duration / (end - start),
+                2
+            )
+
             # add order information to the delivery list
             self._deliveries.append(
                 {
                     'weight': out.weight,
                     'start_time': start,
-                    'duration': round(end - start, 1),
+                    'duration': round(end - start, 2),
                     'quality': quality_list
                 }
             )
@@ -159,11 +172,13 @@ class Solution:
         result: Result = {
             'info': self._problem.info,
             'objective': self._objective,
+            'gap': self._gap,
             'stacks': self._stacks,
             'reclaims': self._reclaims,
             'outputs': self._deliveries
         }
 
+        os.makedirs(os.path.dirname(file_path), exist_ok=True)
         with open(file_path, 'w') as file:
             ujson.dump(result, file, indent=2)
 
@@ -173,6 +188,7 @@ class Solution:
 
         self._stacks = []
         self._reclaims = []
+        self._deliveries = []
 
     def __quality_mean(self: 'Solution') -> None:
         """This method calculates and sets the value of the final quality of 
@@ -205,7 +221,7 @@ class Solution:
             # assigns the calculated quality value to its respective parameter
             for quality, out in zip(mean, self._problem.outputs):
                 for value, request in zip(quality, out.quality):
-                    request.value = round(value, 1)
+                    request.value = round(value, 2)
 
         # if the model is infeasible the np.average() function throws an exception
         except ZeroDivisionError:
@@ -284,6 +300,18 @@ class Solution:
     @start_time.setter
     def start_time(self: 'Solution', value: List[float]) -> None:
         self._start_time = value
+
+    @property
+    def gap(self: 'Solution') -> List[float]:
+        """List[float]: List with the gap between the optimal and current
+        delivery duration. The indexes are associated with the IDs of each 
+        output.
+        """
+        return self._gap
+
+    @gap.setter
+    def gap(self: 'Solution', value: List[float]) -> None:
+        self._gap = value
 
     @property
     def stacks(self: 'Solution') -> Jobs:

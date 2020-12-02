@@ -1,5 +1,9 @@
 {
-  "info": "Instance_008",
+  "info": [
+    "Instance_008",
+    1000,
+    1
+  ],
   "stockpiles": [
     {
       "id": 1,
@@ -9,32 +13,32 @@
         1,
         2
       ],
-      "capacity": 400,
-      "weightIni": 400,
+      "capacity": 200000,
+      "weightIni": 120000,
       "qualityIni": [
         {
           "parameter": "Fe",
-          "value": 60
+          "value": 57.3
         },
         {
           "parameter": "SiO2",
-          "value": 1
+          "value": 5.3
         },
         {
           "parameter": "Al2O3",
-          "value": 0.5
+          "value": 4.5
         },
         {
           "parameter": "P",
-          "value": 1
-        },
-        {
-          "parameter": "+31.5",
           "value": 0.05
         },
         {
+          "parameter": "+31.5",
+          "value": 8
+        },
+        {
           "parameter": "-6.3",
-          "value": 4
+          "value": 20
         }
       ]
     },
@@ -46,32 +50,32 @@
         1,
         2
       ],
-      "capacity": 400,
-      "weightIni": 300,
+      "capacity": 100000,
+      "weightIni": 90000,
       "qualityIni": [
         {
           "parameter": "Fe",
-          "value": 50
+          "value": 56.3
         },
         {
           "parameter": "SiO2",
-          "value": 0.5
+          "value": 5.6
         },
         {
           "parameter": "Al2O3",
-          "value": 0.5
+          "value": 4.8
         },
         {
           "parameter": "P",
-          "value": 1
-        },
-        {
-          "parameter": "+31.5",
           "value": 0.05
         },
         {
+          "parameter": "+31.5",
+          "value": 8
+        },
+        {
           "parameter": "-6.3",
-          "value": 4
+          "value": 20
         }
       ]
     },
@@ -82,32 +86,32 @@
       "rails": [
         2
       ],
-      "capacity": 400,
-      "weightIni": 300,
+      "capacity": 200000,
+      "weightIni": 100000,
       "qualityIni": [
         {
           "parameter": "Fe",
-          "value": 70
+          "value": 57.3
         },
         {
           "parameter": "SiO2",
-          "value": 1
+          "value": 3.7
         },
         {
           "parameter": "Al2O3",
-          "value": 0.5
+          "value": 5
         },
         {
           "parameter": "P",
-          "value": 1
-        },
-        {
-          "parameter": "+31.5",
           "value": 0.05
         },
         {
+          "parameter": "+31.5",
+          "value": 2
+        },
+        {
           "parameter": "-6.3",
-          "value": 3
+          "value": 15
         }
       ]
     },
@@ -118,32 +122,32 @@
       "rails": [
         2
       ],
-      "capacity": 400,
-      "weightIni": 300,
+      "capacity": 40000,
+      "weightIni": 30000,
       "qualityIni": [
         {
           "parameter": "Fe",
-          "value": 70
+          "value": 56.3
         },
         {
           "parameter": "SiO2",
-          "value": 2
+          "value": 3.8
         },
         {
           "parameter": "Al2O3",
-          "value": 0.5
+          "value": 5.3
         },
         {
           "parameter": "P",
-          "value": 1
-        },
-        {
-          "parameter": "+31.5",
           "value": 0.05
         },
         {
+          "parameter": "+31.5",
+          "value": 2
+        },
+        {
           "parameter": "-6.3",
-          "value": 5
+          "value": 15
         }
       ]
     }
@@ -152,7 +156,7 @@
     {
       "id": 1,
       "speedStack": 0.0,
-      "speedReclaim": 35.0,
+      "speedReclaim": 1300.0,
       "posIni": 1,
       "rail": 1,
       "yards": [
@@ -161,8 +165,8 @@
     },
     {
       "id": 2,
-      "speedStack": 30.0,
-      "speedReclaim": 35.0,
+      "speedStack": 3600.0,
+      "speedReclaim": 1300.0,
       "posIni": 2,
       "rail": 2,
       "yards": [
@@ -174,7 +178,7 @@
   "inputs": [
     {
       "id": 1,
-      "weight": 100.0,
+      "weight": 90000.0,
       "quality": [
         {
           "parameter": "Fe",
@@ -208,48 +212,48 @@
     {
       "id": 1,
       "destination": 1,
-      "weight": 1000,
+      "weight": 300000,
       "quality": [
         {
           "parameter": "Fe",
-          "minimum": 55,
+          "minimum": 63,
           "maximum": 100,
-          "goal": 55,
+          "goal": 63,
           "importance": 10
         },
         {
           "parameter": "SiO2",
-          "minimum": 0,
-          "maximum": 1.5,
-          "goal": 1.5,
+          "minimum": 3.5,
+          "maximum": 5,
+          "goal": 3.5,
           "importance": 1000
         },
         {
           "parameter": "Al2O3",
-          "minimum": 0,
-          "maximum": 0.5,
-          "goal": 0.5,
+          "minimum": 1.5,
+          "maximum": 2,
+          "goal": 1.5,
           "importance": 100
         },
         {
           "parameter": "P",
-          "minimum": 0,
-          "maximum": 0.5,
-          "goal": 0.5,
+          "minimum": 0.08,
+          "maximum": 0.10,
+          "goal": 0.08,
           "importance": 100
         },
         {
           "parameter": "+31.5",
           "minimum": 0,
-          "maximum": 0.09,
-          "goal": 0.04,
+          "maximum": 10,
+          "goal": 10,
           "importance": 100
         },
         {
           "parameter": "-6.3",
-          "minimum": 3.5,
-          "maximum": 5,
-          "goal": 4,
+          "minimum": 0,
+          "maximum": 25,
+          "goal": 25,
           "importance": 100
         }
       ],
@@ -259,53 +263,53 @@
   "distancesTravel": [
     [
       0.0,
-      1.0,
-      2.0,
-      3.0
+      0.09,
+      0.18,
+      0.27
     ],
     [
-      1.0,
+      0.09,
       0.0,
-      3.0,
-      2.0
+      0.27,
+      0.18
     ],
     [
-      2.0,
-      3.0,
+      0.18,
+      0.27,
       0.0,
-      1.0
+      0.09
     ],
     [
-      3.0,
-      2.0,
-      1.0,
+      0.27,
+      0.18,
+      0.09,
       0.0
     ]
   ],
   "timeTravel": [
     [
-      10.0,
-      30.0,
-      40.0,
-      60.0
+      0.06,
+      0.11,
+      0.16,
+      0.21
     ],
     [
-      30.0,
-      10.0,
-      60.0,
-      40.0
+      0.11,
+      0.06,
+      0.21,
+      0.16
     ],
     [
-      40.0,
-      60.0,
-      10.0,
-      30.0
+      0.16,
+      0.21,
+      0.06,
+      0.11
     ],
     [
-      60.0,
-      40.0,
-      30.0,
-      10.0
+      0.21,
+      0.16,
+      0.11,
+      0.06
     ]
   ]
 }

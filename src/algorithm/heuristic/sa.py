@@ -4,7 +4,6 @@ from model.solution import Solution
 from .heuristic import Heuristic
 import random
 import math
-import time
 import copy
 
 class SA(Heuristic):
@@ -13,9 +12,9 @@ class SA(Heuristic):
     def __init__(
         self: 'SA', 
         problem: Problem,
-        alpha: float, 
-        t0: float, 
-        sa_max: int = int(1e4)
+        alpha: float,
+        t0: float,
+        sa_max: int = int(1e3)
     ):
         """Instantiates a new Simulated Annealing.
 
@@ -38,64 +37,62 @@ class SA(Heuristic):
     def run(
         self: 'SA', 
         initial_solution: Solution,
-        time_limit: int, 
-        max_iters: int
+        max_iters: int,
+        best_known: bool = False
     ) -> None:
         """Executes the Simulated Annealing and updates the best solution. 
 
         Args:
             initial_solution (Solution): The initial (input) solution.
-            time_limit (int): The time limit (in seconds).
-            max_iters (int): The maximum number of iterations without
-                improvements to execute.
+            max_iters (int): The maximum number of iterations to execute.
+            best_known (bool): True if the initial best_solution have already 
+                been established, False otherwise. Note that the False option 
+                will define the initial best_solution as the initial_solution. 
+                Defaults to False.
         """
 
-        final_time: float = time.time() + time_limit
+        if not best_known:
+            self._best_solution = initial_solution
 
-        self._best_solution = initial_solution
         solution: Solution = copy.deepcopy(initial_solution)
-
         temperature: float = self.__t0
-        iters_in_temperature: int = 0
+        
+        self._iters = 0
+        while temperature > self.__eps and self._iters < max_iters:
+            for _ in range(self.__sa_max):
+                solution.start_time = initial_solution.start_time.copy()
 
-        while self._iters < max_iters and time.time() < final_time:
-            solution.start_time = initial_solution.start_time.copy()
+                move: Move = self.select_move(solution)
+                delta: float = move.do_move(solution)
 
-            move: Move = self.select_move(solution)
-            delta: float = move.do_move(solution)
+                # if the solution is improved
+                if delta < 0:
+                    self.accept_move(move)
+                    # self._iters = 0
 
-            # if the solution is improved
-            if delta < 0:
-                self.accept_move(move)
-                self._iters = 0
+                    if (solution.cost < self._best_solution.cost):
+                        self._best_solution = copy.deepcopy(solution)
 
-                if (solution.cost < self._best_solution.cost):
-                    self._best_solution = copy.deepcopy(solution)
-
-            # if solution is not improved, but is accepted
-            elif delta == 0:
-                self.accept_move(move)
-
-            # solution is not improved, but may be accepted with a probability
-            else:
-                x: float = random.uniform(0, 1)
-                if x < math.exp(-delta / temperature):
+                # if solution is not improved, but is accepted
+                elif delta == 0:
                     self.accept_move(move)
 
-                # if solution is rejected
+                # solution is not improved, but may be accepted with a probability
                 else:
-                    self.reject_move(move)
+                    x: float = random.uniform(0, 1)
+                    if x < math.exp(-delta / temperature):
+                        self.accept_move(move)
+
+                    # if solution is rejected
+                    else:
+                        self.reject_move(move)
+
+            self._iters += 1
+            temperature *= self.__alpha
 
             # if necessary, updates temperature
-            iters_in_temperature += 1
-            if iters_in_temperature >= self.__sa_max:
-                iters_in_temperature = 0
-                temperature *= self.__alpha
-
-                if temperature < self.__eps:
-                    temperature = self.__t0
-            
-            self._iters += 1
+            if temperature < self.__eps:
+                temperature = self.__t0
 
     # region simple getters and setters
     @property

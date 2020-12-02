@@ -1,4 +1,4 @@
-from algorithm.constructive import SimpleConstructive
+from algorithm.constructive import Constructive
 from model.classes import Engine
 from model.problem import Problem
 from model.solution import Solution
@@ -18,19 +18,19 @@ class Swap(Move):
     def __init__(
         self: 'Swap', 
         problem: Problem, 
-        constructive: SimpleConstructive
+        constructive: Constructive
     ):
         """Instantiates a new Swap Move.
 
         Args:
             problem (Problem): The problem reference.
-            constructive (SimpleConstructive): The move constructive procedure.
+            constructive (Constructive): The move constructive procedure.
         """
 
         super().__init__(problem, constructive,'Swap')
 
         self._engine_1: Engine = random.choice(problem.engines)
-        self._engine_2: Engine
+        self._engine_2: Engine = random.choice(problem.engines)
 
         # try to get the engine from the neighboring yard
         index: int = problem.engines.index(self._engine_1)
@@ -40,19 +40,14 @@ class Swap(Move):
         except IndexError:
             self._engine_2 = problem.engines[index - 1]
 
-        finally:
-            self._engine_2 = random.choice(problem.engines)
+        self._route_1: List[Tuple[int, str]] = []
+        self._route_2: List[Tuple[int, str]] = []
 
-        self._route_1: List[Tuple[int, str]] = \
-            self._current_solution.routes[self._engine_1.id - 1]
-        self._route_2: List[Tuple[int, str]] = \
-            self._current_solution.routes[self._engine_2.id - 1]
+        self._job_1: Tuple[int, str] = ()
+        self._job_2: Tuple[int, str] = ()
 
-        self._job_1: Tuple[int, str] = random.choice(self._route_1)
-        self._job_2: Tuple[int, str] = random.choice(self._route_2)
-
-        self._pos_1: int = self._route_1.index(self._job_1)
-        self._pos_2: int = self._route_2.index(self._job_2)
+        self._pos_1: Optional[int] = None
+        self._pos_2: Optional[int] = None
 
     def accept(self: 'Swap') -> None:
         """This method must be called whenever the modification made by 
@@ -70,8 +65,8 @@ class Swap(Move):
 
         super().reject()
 
-        self._route_1.remove(self._job_1)
-        self._route_2.remove(self._job_2)
+        self._route_1.remove(self._job_2)
+        self._route_2.remove(self._job_1)
 
         self._route_1.insert(self._pos_1, self._job_1)
         self._route_2.insert(self._pos_2, self._job_2)
@@ -89,22 +84,41 @@ class Swap(Move):
             int: The impact (delta cost) of this move in the solution.
         """
 
-        super().do_move(solution)
+        self._pos_1 = self._route_1.index(self._job_1)
+        self._pos_2 = self._route_2.index(self._job_2)
 
         self._route_1.remove(self._job_1)
         self._route_2.remove(self._job_2)
 
-        self._route_1.insert(random.randrange(len(self._route_1)), self._job_2)
-        self._route_2.insert(random.randrange(len(self._route_2)), self._job_1)
+        try:
+            self._route_1.insert(random.randrange(len(self._route_1)), self._job_2)
+            self._route_2.insert(random.randrange(len(self._route_2)), self._job_1)
 
-        self._constructive.solution = solution
-        self._constructive.run(True)
+        except ValueError:
+            self._route_1.insert(self._pos_1, self._job_2)
+            self._route_2.insert(self._pos_2, self._job_1)
 
-        self._delta_cost = solution.cost - self._initial_cost
+        return super().do_move(solution)
 
-        return self._delta_cost
+    def gen_move(self: 'Swap', solution: Solution) -> None:
+        """This method generates a random candidate for the movement that must 
+        be subsequently validated by has_move ().
+        
+        Args:
+            solution (Solution): The solution to be modified.
+        """
 
-    def has_move(self: 'Switch', solution: Solution) -> bool:
+        self._current_solution = solution
+
+        # resets the current neighborhood so that new ones can be explored
+        self.reset()
+
+        for _ in range(int(1e3)):
+            self._job_1 = random.choice(self._route_1)
+            self._job_2 = random.choice(self._route_2)
+            if self.has_move(solution): break
+
+    def has_move(self: 'Swap', solution: Solution) -> bool:
         """This method returns a boolean indicating whether this neighborhood 
         can be applied to the current solution.
 
@@ -116,9 +130,7 @@ class Swap(Move):
                 solution, False otherwise.
         """
 
-        if self._engine_1.speed_reclaim > 0 and self._engine_2.speed_reclaim > 0 \
-        or self._engine_1.speed_stack > 0 and self._engine_2.speed_stack > 0:
-            return True
+        return self._job_1[1] == self._job_2[1]
 
     def reset(self: 'Swap') -> None:
         """This method is called whenever the neighborhood should be reset 
@@ -135,11 +147,84 @@ class Swap(Move):
         except IndexError:
             self._engine_2 = self._problem.engines[index - 1]
 
-        finally:
-            self._engine_2 = random.choice(self._problem.engines)
+        self._route_1 = self._current_solution.routes[self._engine_1.id - 1]
+        self._route_2 = self._current_solution.routes[self._engine_2.id - 1]
 
         self._job_1 = random.choice(self._route_1)
         self._job_2 = random.choice(self._route_2)
 
         self._pos_1 = self._route_1.index(self._job_1)
         self._pos_2 = self._route_2.index(self._job_2)
+
+    # region simple getters and setters
+    @property
+    def engine_1(self: 'Swap') -> Engine:
+        """Engine: The first engine reference."""
+        return self._engine_1
+
+    @engine_1.setter
+    def engine_1(self: 'Swap', value: Engine) -> None:
+        self._engine_1 = value
+
+    @property
+    def engine_2(self: 'Swap') -> Engine:
+        """Engine: The second reference."""
+        return self._engine_2
+
+    @engine_2.setter
+    def engine_2(self: 'Swap', value: Engine) -> None:
+        self._engine_2 = value
+
+    @property
+    def route_1(self: 'Swap') -> List[Tuple[int, str]]:
+        """List[Tuple[int, str]]: The route of the first engine."""
+        return self._route_1
+
+    @route_1.setter
+    def route_1(self: 'Swap', value: List[Tuple[int, str]]) -> None:
+        self._route_1 = value
+
+    @property
+    def route_2(self: 'Swap') -> List[Tuple[int, str]]:
+        """List[Tuple[int, str]]: The route of the second engine."""
+        return self._route_2
+
+    @route_2.setter
+    def route_2(self: 'Swap', value: List[Tuple[int, str]]) -> None:
+        self._route_2 = value
+
+    @property
+    def job_1(self: 'Swap') -> Tuple[int, str]:
+        """Tuple[int, str]: The selected job from the first engine route."""
+        return self._job_1
+
+    @job_1.setter
+    def job_1(self: 'Swap', value: Tuple[int, str]) -> None:
+        self._job_1 = value
+
+    @property
+    def job_2(self: 'Swap') -> Tuple[int, str]:
+        """Tuple[int, str]: The selected job from the SECOND engine route."""
+        return self._job_2
+
+    @job_2.setter
+    def job_2(self: 'Swap', value: Tuple[int, str]) -> None:
+        self._job_2 = value
+
+    @property
+    def pos_1(self: 'Swap') -> Optional[int]:
+        """Optional[int]: The index of the first job."""
+        return self._pos_1
+
+    @pos_1.setter
+    def pos_1(self: 'Swap', value: Optional[int]) -> None:
+        self._pos_1 = value
+
+    @property
+    def pos_2(self: 'Swap') -> Optional[int]:
+        """Optional[int]: The index of the second job."""
+        return self._pos_2
+
+    @pos_2.setter
+    def pos_2(self: 'Swap', value: Optional[int]) -> None:
+        self._pos_2 = value

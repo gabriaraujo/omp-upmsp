@@ -35,3 +35,6 @@ Instance = Dict[str, Union[str, Stock, Eng, Inp, Out, Travels]]
 
 # type aliases for the .json file information
 Info = Dict[str, Union[Result, Instance]]
+
+#type aliases for the terminal parameters
+Parmeters = Dict[str, Union[str, int, float, Any]]

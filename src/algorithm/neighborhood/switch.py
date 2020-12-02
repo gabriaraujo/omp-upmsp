@@ -1,7 +1,6 @@
-from algorithm.constructive import SimpleConstructive
+from algorithm.constructive import Constructive
 from model.classes import Engine
 from model.problem import Problem
-from algorithm.constructive import SimpleConstructive
 from model.solution import Solution
 from .move import Move
 from typing import Optional, List, Tuple
@@ -16,13 +15,13 @@ class Switch(Move):
     def __init__(
         self: 'Switch', 
         problem: Problem, 
-        constructive: SimpleConstructive
+        constructive: Constructive
     ):
         """Instantiates a new Switch Move.
 
         Args:
             problem (Problem): The problem reference.
-            constructive (SimpleConstructive): The move constructive procedure.
+            constructive (Constructive): The move constructive procedure.
         """
 
         super().__init__(problem, constructive, 'Switch')
@@ -67,8 +66,6 @@ class Switch(Move):
             int: The impact (delta cost) of this move in the solution.
         """
 
-        super().do_move(solution)
-
         route: List[Tuple[int, str]] = \
             solution.routes[self._engine.id - 1]
 
@@ -79,12 +76,22 @@ class Switch(Move):
         route[self._job_1], route[self._job_2] = \
             route[self._job_2], route[self._job_1]
 
-        self._constructive.solution = solution
-        self._constructive.run(True)
+        return super().do_move(solution)
 
-        self._delta_cost = solution.cost - self._initial_cost
+    def gen_move(self: 'Switch', solution: Solution) -> None:
+        """This method generates a random candidate for the movement that must 
+        be subsequently validated by has_move ().
+        
+        Args:
+            solution (Solution): The solution to be modified.
+        """
 
-        return self._delta_cost
+        # resets the current neighborhood so that new ones can be explored
+        self.reset()
+
+        for _ in range(int(1e3)):
+            self._engine = random.choice(self._problem.engines)
+            if self.has_move(solution): break
 
     def has_move(self: 'Switch', solution: Solution) -> bool:
         """This method returns a boolean indicating whether this neighborhood 

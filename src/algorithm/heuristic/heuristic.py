@@ -1,4 +1,3 @@
-from algorithm.constructive import SimpleConstructive
 from algorithm.neighborhood import Move
 from model.problem import Problem
 from model.solution import Solution
@@ -67,10 +66,13 @@ class Heuristic:
         """
 
         size: int = len(self._moves)
+
         move: Move = self._moves[random.randrange(0, size)]
+        move.gen_move(solution)
 
         while not move.has_move(solution):
             move = self._moves[(random.randrange(0, size))]
+            move.gen_move(solution)
 
         return move
 
