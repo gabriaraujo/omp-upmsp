@@ -1,6 +1,6 @@
 from config import Objective, Parmeters
 from algorithm.constructive import Constructive, LinModel, PreModel, PostModel
-from algorithm.neighborhood import Switch, Swap
+from algorithm.neighborhood import Shift, SimpleSwap, Swap, Switch
 from algorithm.heuristic import Heuristic, SA, LAHC
 from model.problem import Problem
 from model.solution import Solution
@@ -139,6 +139,8 @@ def create_neighborhoods(
         solver (Heuristic): The heuristic procedure.
         constructive (Constructive): The constructive procedure.
     """
+    solver.add_move(Shift(problem, constructive))
+    solver.add_move(SimpleSwap(problem, constructive))
     solver.add_move(Swap(problem, constructive))
     solver.add_move(Switch(problem, constructive))
 
