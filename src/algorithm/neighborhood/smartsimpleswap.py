@@ -140,19 +140,19 @@ class SmartSimpleSwap(Move):
             for item in self._current_solution.reclaims
         ]
 
-        self._make_span = filter(
+        self._make_span = list(filter(
             lambda x: x[0] == max(engine_duration)[0], 
             engine_duration
-        )
+        ))
 
         self._engine_1_id = random.choice(self._make_span)[1]
 
         # try to get the engine from the neighboring yard
         try:
-            self._engine_2_id = self._problem.engines[self._engine_1_id]
+            self._engine_2_id = self._problem.engines[self._engine_1_id].id
 
         except IndexError:
-            self._engine_2_id = self._problem.engines[self._engine_1_id - 2]
+            self._engine_2_id = self._problem.engines[self._engine_1_id - 2].id
 
         self._route_1 = self._current_solution.routes[self._engine_1_id - 1]
         self._route_2 = self._current_solution.routes[self._engine_2_id - 1]

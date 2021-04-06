@@ -87,6 +87,8 @@ class SmartSwitch(Move):
             solution (Solution): The solution to be modified.
         """
 
+        self._current_solution = solution
+
         # resets the current neighborhood so that new ones can be explored
         self.reset()
 
@@ -115,10 +117,10 @@ class SmartSwitch(Move):
             for item in self._current_solution.reclaims
         ]
 
-        self._make_span = filter(
+        self._make_span = list(filter(
             lambda x: x[0] == max(engine_duration)[0], 
             engine_duration
-        )
+        ))
 
         self._engine_id = random.choice(self._make_span)[1]
         

@@ -112,10 +112,10 @@ class SmartShift(Move):
             for item in self._current_solution.reclaims
         ]
 
-        self._make_span = filter(
+        self._make_span = list(filter(
             lambda x: x[0] == max(engine_duration)[0], 
             engine_duration
-        )
+        ))
 
         self._engine_id = random.choice(self._make_span)[1]
         self._route = self._current_solution.routes[self._engine_id - 1]
