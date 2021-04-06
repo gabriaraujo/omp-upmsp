@@ -1,6 +1,7 @@
 from config import Objective, Parmeters
 from algorithm.constructive import Constructive, LinModel, PreModel, PostModel
-from algorithm.neighborhood import Shift, SimpleSwap, Swap, Switch
+from algorithm.neighborhood import Shift, SimpleSwap, Swap, Switch, \
+    SmartSimpleSwap, SmartShift, SmartSwap, SmartSwitch
 from algorithm.heuristic import Heuristic, SA, LAHC
 from model.problem import Problem
 from model.solution import Solution
@@ -143,6 +144,10 @@ def create_neighborhoods(
     solver.add_move(SimpleSwap(problem, constructive))
     solver.add_move(Swap(problem, constructive))
     solver.add_move(Switch(problem, constructive))
+    solver.add_move(SmartShift(problem, constructive))
+    solver.add_move(SmartSimpleSwap(problem, constructive))
+    solver.add_move(SmartSwap(problem, constructive))
+    solver.add_move(SmartSwitch(problem, constructive))
 
 
 def feedback_approach(
