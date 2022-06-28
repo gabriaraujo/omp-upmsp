@@ -47,6 +47,11 @@ RUN_FEEDBACK_SA := \
 		done \
 	done
 
+RUN_DEFAULT := \
+	for n in $$(seq 1 10) ; do \
+		python3 src/main.py instance_$$n.json out_$$n.json; \
+	done
+
 GEN_INSTANCES := \
 	for n in $$(seq 1 10) ; do \
 		python3 src/main.py instance_m$$n.json out_m$$n.json ; \
@@ -68,6 +73,9 @@ run-inverse:
 run-feedback:
 	@$(RUN_FEEDBACK_LAHC)
 	@$(RUN_FEEDBACK_SA)
+
+run-default:
+	@$(RUN_DEFAULT)
 
 all: run run-lahc run-sa run-inverse run-feedback
 
