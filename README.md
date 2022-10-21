@@ -68,7 +68,7 @@ The solver outputs can be found in the created `out` folder. The generated resul
 - <a href="https://pypi.org/project/mip/" target= "_blank">Python MIP</a> - Python tools for Modeling and Solving Mixed-Integer Linear Programs (MIPs).
 
 ## 📕 License
-The software is available under the [Eclipse Public License 2.0](https://github.com/gabriaraujo/omp-upmsp/blob/master/LICENSE).
+The software is available under the [MIT License](https://github.com/gabriaraujo/omp-upmsp/blob/master/LICENSE).
 
 ## ☕ Questions?
 If you have any questions, please feel free to contact me.
