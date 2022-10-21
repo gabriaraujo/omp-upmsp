@@ -8,7 +8,7 @@ from model.solution import Solution
 from typing import List, Optional
 import random
 import sys
-
+import time
 
 def main():
     """This is the main function of the program, responsible of parsing the 

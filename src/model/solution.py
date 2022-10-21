@@ -150,7 +150,7 @@ class Solution:
 
         return start, end
 
-    def write(self: 'Solution', file_path: str) -> None:
+    def write(self: 'Solution', file_path: str, time) -> None:
         """This method writes the solution in a .json file and, for that, 
         the UltraJSON packege is necessary.
     

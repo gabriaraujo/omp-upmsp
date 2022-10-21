@@ -59,33 +59,32 @@ class SA(Heuristic):
         
         self._iters = 0
         while temperature > self.__eps and self._iters < max_iters:
-            for _ in range(self.__sa_max):
-                solution.start_time = initial_solution.start_time.copy()
+            solution.start_time = initial_solution.start_time.copy()
 
-                move: Move = self.select_move(solution)
-                delta: float = move.do_move(solution)
+            move: Move = self.select_move(solution)
+            delta: float = move.do_move(solution)
 
-                # if the solution is improved
-                if delta < 0:
+            # if the solution is improved
+            if delta < 0:
+                self.accept_move(move)
+                self._iters = 0
+
+                if (solution.cost < self._best_solution.cost):
+                    self._best_solution = copy.deepcopy(solution)
+
+            # if solution is not improved, but is accepted
+            elif delta == 0:
+                self.accept_move(move)
+
+            # solution is not improved, but may be accepted with a probability
+            else:
+                x: float = random.uniform(0, 1)
+                if x < math.exp(-delta / temperature):
                     self.accept_move(move)
-                    # self._iters = 0
 
-                    if (solution.cost < self._best_solution.cost):
-                        self._best_solution = copy.deepcopy(solution)
-
-                # if solution is not improved, but is accepted
-                elif delta == 0:
-                    self.accept_move(move)
-
-                # solution is not improved, but may be accepted with a probability
+                # if solution is rejected
                 else:
-                    x: float = random.uniform(0, 1)
-                    if x < math.exp(-delta / temperature):
-                        self.accept_move(move)
-
-                    # if solution is rejected
-                    else:
-                        self.reject_move(move)
+                    self.reject_move(move)
 
             self._iters += 1
             temperature *= self.__alpha

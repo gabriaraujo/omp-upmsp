@@ -61,12 +61,12 @@ class Shift(Move):
         Returns:
             float: The impact (delta cost) of this move in the solution.
         """
+        if self.has_move(solution):
+            self._job = random.choice(self._route)
+            self._pos = self._route.index(self._job)
 
-        self._job = random.choice(self._route)
-        self._pos = self._route.index(self._job)
-
-        self._route.remove(self._job)
-        self._route.insert(random.randrange(len(self._route)), self._job)
+            self._route.remove(self._job)
+            self._route.insert(random.randrange(len(self._route)), self._job)
 
         return super().do_move(solution)
 
